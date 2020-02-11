@@ -15,8 +15,8 @@ export default class HtmlComponent {
 
     bem(blockName) {
         const bem = (...names) => this._toStyles(this.classNames(...names));
-        bem.block = modifiers => this._toStyles(this._applyModifiers(blockName, modifiers));
-        bem.element = (elementName, modifiers) => this._toStyles(this._applyModifiers(blockName + '__' + elementName, modifiers));
+        bem.block = modifiers => this._applyModifiers(blockName, modifiers);
+        bem.element = (elementName, modifiers) => this._applyModifiers(blockName + '__' + elementName, modifiers);
         return bem;
     }
 

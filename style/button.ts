@@ -66,19 +66,19 @@ export default (variables, classes) => {
     // btn%color / ex: btnPrimary
     Object.keys(variables.themeColors).forEach((item) => {
         const classColor = item.charAt(0).toUpperCase() + item.slice(1).toLowerCase();
-        classes['btn' + classColor] = mixinButtonVariant(variables, variables.themeColors[item], variables.themeColors[item]);
+        classes['btn-' + item] = mixinButtonVariant(variables, variables.themeColors[item], variables.themeColors[item]);
     });
 
     // btnOutline%color / ex: btnOutlinePrimary
     Object.keys(variables.themeColors).forEach((item) => {
         const classColor = item.charAt(0).toUpperCase() + item.slice(1).toLowerCase();
-        classes['btnOutline' + classColor] = mixinButtonOutlineVariant(variables, variables.themeColors[item], variables.btnOutlineBackgroundColor);
+        classes['btn-outline-' + item] = mixinButtonOutlineVariant(variables, variables.themeColors[item], variables.btnOutlineBackgroundColor);
     });
 
     // btnText%color / ex: btnTextPrimary
     Object.keys(variables.themeColors).forEach((item) => {
         const classColor = item.charAt(0).toUpperCase() + item.slice(1).toLowerCase();
-        classes['btnText' + classColor] = {
+        classes['btn-text-' + item] = {
             color: variables.white, // temporal
         };
     });
@@ -86,7 +86,7 @@ export default (variables, classes) => {
     // btnOutlineText%color / ex: btnOutlineTextPrimary
     Object.keys(variables.themeColors).forEach((item) => {
         const classColor = item.charAt(0).toUpperCase() + item.slice(1).toLowerCase();
-        classes['btnOutlineText' + classColor] = {
+        classes['btn-outline-text-' + item] = {
             color: variables.themeColors[item], // temporal
         };
     });
