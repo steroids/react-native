@@ -1,4 +1,4 @@
-import {StyleSheet} from 'react-native';
+import {StyleSheet} from "react-native";
 
 export default class HtmlComponent {
     namespace = '';
@@ -21,23 +21,39 @@ export default class HtmlComponent {
     }
 
     classNames(...names) {
+        console.log('CLASSNAMES ARRAY', names);
         return Array.prototype.slice
             .call(names)
-            .filter(v => v)
-            .join(' ');
+            .filter(v => v);
     }
 
     _toStyles(names) {
-        if (!this._styles[names]) {
+        const cachedName = names.filter((item) => typeof(item) === 'string').join(' ');
+
+        if (!this._styles[cachedName]) {
+            console.log("BEM CLASSNAMES", names);
             let styles = {};
-            names.split(' ').forEach(name => {
+            names.forEach(name => {
+                let additionalStyles;
+                console.log("BEM NAME TYPE", typeof(name));
+                if (typeof(name) === 'object') {
+                    additionalStyles = name;
+                    console.log("BEM ADDITIONAL STYLES OBJECT", additionalStyles);
+                } else {
+                    additionalStyles = this.classes[name];
+                    console.log("BEM ADDITIONAL STYLES " + name, additionalStyles);
+                }
+
                 styles = {
                     ...styles,
-                    ...this.classes[name],
+                    ...additionalStyles,
                 };
             });
 
             // TODO StyleSheet.create & StyleSheet.compose
+            // this._styles = StyleSheet.compose(this._styles,{
+            //     [names]: styles
+            // });
             this._styles[names] = styles;
         }
         return this._styles[names];

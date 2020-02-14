@@ -221,33 +221,37 @@ export default custom => {
         btnPaddingX: variables.inputBtnPaddingX,
         btnLineHeight: variables.inputBtnLineHeight,
 
-        // btn_padding_y_sm: input_btn_padding_y_sm,
-        // btn_padding_x_sm: input_btn_padding_x_sm,
-        // btn_line_height_sm: input_btn_line_height_sm,
+        // btnPaddingYSm: inputBtnPaddingYSm,
+        // btnPaddingXSm: inputBtnPaddingXSm,
+        // btnLineHeightSm: inputBtnLineHeightSm,
 
-        // btn_padding_y_lg: input_btn_padding_y_lg,
-        // btn_padding_x_lg: input_btn_padding_x_lg,
-        // btn_line_height_lg: input_btn_line_height_lg,
+        // btnPaddingYLg: inputBtnPaddingYLg,
+        // btnPaddingXLg: inputBtnPaddingXLg,
+        // btnLineHeightLg: inputBtnLineHeightLg,
 
         btnBorderWidth: variables.inputBtnBorderWidth,
         btnFontFamily: variables.fontFamilyBase,
-        // btn_font_weight: font_weight_normal, // todo: makes no sense?
+        // btnFontWeight: fontWeightNormal, // todo: makes no sense?
 
         btnBorderRadius: variables.borderRadius,
-        btnBorderRadius_lg: variables.borderRadiusLg,
-        btnBorderRadius_sm: variables.borderRadiusSm,
+        btnBorderRadiusLg: variables.borderRadiusLg,
+        btnBorderRadiusSm: variables.borderRadiusSm,
 
         btnOutlineBackgroundColor: variables.bodyBg, // 'transparent'
 
         // forms
-/*
-// TODO other...
+        labelMarginBottom: 0.5 * variables.rem,
 
-        label_margin_bottom: 0.5 * variables.rem,
+        inputBtnPaddingY: 0.75 * variables.rem,
+        inputBtnPaddingX: 1.5 * variables.rem,
+        inputBtnLineHeight: variables.lineHeightBase,
+    };
 
-        input_padding_y: input_btn_padding_y,
-        input_padding_x: input_btn_padding_x,
-        input_line_height: input_btn_line_height,
+    variables = {
+        ...variables,
+        inputPaddingY: variables.inputBtnPaddingY,
+        inputPaddingX: variables.inputBtnPaddingX,
+        inputLineHeight: variables.lineHeightBase,
 
         // $input-padding-y-sm:                    $input-btn-padding-y-sm !default;
         // $input-padding-x-sm:                    $input-btn-padding-x-sm !default;
@@ -257,17 +261,17 @@ export default custom => {
         // $input-padding-x-lg:                    $input-btn-padding-x-lg !default;
         // $input-line-height-lg:                  $input-btn-line-height-lg !default;
 
-        input_bg: white,
-        input_disabled_bg: gray_200,
+        inputBg: variables.white,
+        inputDisabledBg: variables.gray200,
 
-        input_color: gray_700,
-        input_border_color: gray_400,
-        input_border_width: input_btn_border_width,
+        inputColor: variables.gray700,
+        inputBorderColor: variables.gray400,
+        inputBorderWidth: variables.inputBtnBorderWidth,
         // $input-box-shadow:                      inset 0 1px 1px rgba($black, .075) !default;
 
-        input_border_radius: border_radius,
-        input_border_radius_lg: border_radius_lg,
-        input_border_radius_sm: border_radius_sm,
+        inputBorderRadius: variables.borderRadius,
+        inputBorderRadiusLg: variables.borderRadiusLg,
+        inputBorderRadiusSm: variables.borderRadiusSm,
 
         // $input-focus-bg:                        $input-bg !default;
         // $input-focus-border-color:              lighten($component-active-bg, 25%) !default;
@@ -275,10 +279,10 @@ export default custom => {
         // $input-focus-width:                     $input-btn-focus-width !default;
         // $input-focus-box-shadow:                $input-btn-focus-box-shadow !default;
 
-        input_placeholder_color: gray_600,
-        input_plaintext_color: body_color,
+        inputPlaceholderColor: variables.gray600,
+        inputPlaintextColor: variables.bodyColor,
 
-        input_height_border: input_border_width * 2,
+        inputHeightBorder: variables.inputBorderWidth * 2,
 
         // $input-height-inner:                    ($font-size-base * $input-btn-line-height) + ($input-btn-padding-y * 2) !default;
         // $input-height:                          calc(#{$input-height-inner} + #{$input-height-border}) !default;
@@ -306,21 +310,23 @@ export default custom => {
         // $input-group-addon-bg:                  $gray-200 !default;
         // $input-group-addon-border-color:        $input-border-color !default;
 
+        /*
+        // TODO other...
         // cards
 
-        card_spacer_y: 0.75 * spacer * variables.rem,
-        card_spacer_x: 1.25 * spacer * variables.rem,
-        card_border_width: border_width,
-        card_border_radius: border_radius,
-        card_border_color: border_color, // rgba($black, .125)
-        card_inner_border_radius: card_border_radius - card_border_width,
-        card_cap_bg: gray_100, // rgba($black, .03)
-        card_bg: white,
+        cardSpacerY: 0.75 * spacer * variables.rem,
+        cardSpacerX: 1.25 * spacer * variables.rem,
+        cardBorderWidth: borderWidth,
+        cardBorderRadius: borderRadius,
+        cardBorderColor: borderColor, // rgba($black, .125)
+        cardInnerBorderRadius: cardBorderRadius - cardBorderWidth,
+        cardCapBg: gray100, // rgba($black, .03)
+        cardBg: white,
 
-        card_shadow_color: shadow_color,
-        card_shadow_opacity: shadow_opacity,
-        card_shadow_offset: shadow_offset,
-        card_shadow_radius: card_border_radius,
+        cardShadowColor: shadowColor,
+        cardShadowOpacity: shadowOpacity,
+        cardShadowOffset: shadowOffset,
+        cardShadowRadius: cardBorderRadius,
 
         // $card-img-overlay-padding:          1.25rem !default;
 
@@ -333,27 +339,27 @@ export default custom => {
 
         // modals
 
-        modal_inner_padding: 1 * spacer * variables.rem,
+        modalInnerPadding: 1 * spacer * variables.rem,
 
-        modal_dialog_margin: 1 * spacer * variables.rem,
+        modalDialogMargin: 1 * spacer * variables.rem,
         // $modal-dialog-margin-y-sm-up: 30px !default;
 
         // $modal-title-line-height:     $line-height-base !default;
 
-        modal_content_bg: white,
-        modal_content_border_color: 'transparent', // color(black).fate(0.2)
-        modal_content_border_width: 0, // border_width,
-        modal_content_border_radius: border_radius * 3, // border_radius_lg,
+        modalContentBg: white,
+        modalContentBorderColor: 'transparent', // color(black).fate(0.2)
+        modalContentBorderWidth: 0, // borderWidth,
+        modalContentBorderRadius: borderRadius * 3, // borderRadiusLg,
 
-        modal_content_shadow_color: shadow_color,
-        modal_content_shadow_opacity: shadow_opacity,
-        modal_content_shadow_offset: {width: shadow_offset.width * 2, height: shadow_offset.height * 2},
-        modal_content_shadow_radius: modal_content_border_radius,
+        modalContentShadowColor: shadowColor,
+        modalContentShadowOpacity: shadowOpacity,
+        modalContentShadowOffset: {width: shadowOffset.width * 2, height: shadowOffset.height * 2},
+        modalContentShadowRadius: modalContentBorderRadius,
         // $modal-content-box-shadow-xs:       0 .25rem .5rem rgba($black, .5) !default;
         // $modal-content-box-shadow-sm-up:    0 .5rem 1rem rgba($black, .5) !default;
 
-        modal_backdrop_bg: black,
-        modal_backdrop_opacity: 0.5, // for compatibilty
+        modalBackdropBg: black,
+        modalBackdropOpacity: 0.5, // for compatibilty
         // $modal-header-border-color:         $gray-200 !default;
         // $modal-footer-border-color:         $modal-header-border-color !default;
         // $modal-header-border-width:         $modal-content-border-width !default;
@@ -368,18 +374,18 @@ export default custom => {
 
         // progress bars
 
-        progress_height: 1 * variables.rem,
-        progress_font_size: 0.75 * font_size_base,
-        progress_bg: gray_200,
-        progress_border_radius: border_radius,
-        progress_box_shadow_color: shadow_color,
-        progress_box_shadow_offset: shadow_offset,
-        progress_box_shadow_opacity: 0.5 * shadow_opacity, // 0.1
-        progress_box_shadow_radius: progress_border_radius,
-        progress_bar_color: white,
-        progress_bar_bg: primary,
-        progress_bar_animation_timing: 'placeholder', // 1s linear infinite !default;
-        progress_bar_transition: 'placeholder', // width .6s ease !default;
+        progressHeight: 1 * variables.rem,
+        progressFontSize: 0.75 * fontSizeBase,
+        progressBg: gray200,
+        progressBorderRadius: borderRadius,
+        progressBoxShadowColor: shadowColor,
+        progressBoxShadowOffset: shadowOffset,
+        progressBoxShadowOpacity: 0.5 * shadowOpacity, // 0.1
+        progressBoxShadowRadius: progressBorderRadius,
+        progressBarColor: white,
+        progressBarBg: primary,
+        progressBarAnimationTiming: 'placeholder', // 1s linear infinite !default;
+        progressBarTransition: 'placeholder', // width .6s ease !default;
 */
         ...custom,
     };
