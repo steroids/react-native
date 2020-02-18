@@ -17,10 +17,14 @@ export {
 
 export default function (customVariables, classes = {}) {
     const variables = createVariables(customVariables);
+
     return {
-        ...common(variables, classes),
-        ...input(variables, classes),
-        ...button(variables, classes),
-        ...elements(variables, classes),
+        variables: variables,
+        classes: {
+            ...common(variables, classes),
+            ...input(variables, classes),
+            ...button(variables, classes),
+            ...elements(variables, classes),
+        }
     }
 }

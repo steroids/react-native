@@ -1,4 +1,5 @@
 import {StyleSheet} from 'react-native';
+import colors from "./colors";
 
 export default custom => {
     let variables = {
@@ -18,28 +19,8 @@ export default custom => {
         fontWeightNormal: '400',
         fontWeightBold: '700',
 
-        // Colors
-        white: '#fff',
-        gray100: '#f8f9fa',
-        gray200: '#e9ecef',
-        gray300: '#dee2e6',
-        gray400: '#ced4da',
-        gray500: '#adb5bd',
-        gray600: '#6c757d',
-        gray700: '#495057',
-        gray800: '#343a40',
-        gray900: '#212529',
-        black: '#000',
-        blue: '#007bff',
-        cyan: '#17a2b8',
-        red: '#dc3545',
-        yellow: '#ffc107',
-        green: '#28a745',
-        indigo: '#6610f2',
-        pyrple: '#6f42c1',
-        pink: '#e83e8c',
-        orange: '#fd7e14',
-        teal: '#20c997',
+        ...colors(custom),
+        themeColorInterval: 0.08, // 8%
 
         // Sizes
         sizes: {
@@ -98,7 +79,7 @@ export default custom => {
         inputBtnBorderWidth: variables.borderWidth,
 
         // Borders
-        borderColor: variables.gray300,
+        borderColor: variables.colors.gray300,
         borderRadius: 0.25 * variables.rem,
         borderRadiusLg: 0.3 * variables.rem,
         borderRadiusSm: 0.2 * variables.rem,
@@ -107,34 +88,13 @@ export default custom => {
         gridColumns: 12,
         gridGutterWidth: variables.spacer * 1.5 * variables.rem,
 
-        shadowColor: variables.black, // new
+        shadowColor: variables.colors.black, // new
         shadowOpacity: 0.2, // new
         shadowOffset: {width: 0.1 * variables.rem, height: 0.1 * variables.rem}, // new / experimental
 
         // Body
-        bodyBg: variables.white,
-        bodyColor: variables.gray900,
-
-        // Colors
-        grays: {
-            '100': variables.gray100,
-            '200': variables.gray200,
-            '300': variables.gray300,
-            '400': variables.gray400,
-            '500': variables.gray500,
-            '600': variables.gray600,
-            '700': variables.gray700,
-            '800': variables.gray800,
-            '900': variables.gray900,
-        },
-        primary: variables.blue,
-        secondary: variables.gray600,
-        success: variables.green,
-        info: variables.cyan,
-        warning: variables.yellow,
-        danger: variables.red,
-        light: variables.gray100,
-        dark: variables.gray800,
+        bodyBg: variables.colors.white,
+        bodyColor: variables.colors.gray900,
 
         ...custom,
     };
@@ -143,8 +103,8 @@ export default custom => {
         ...variables,
 
         // Forms
-        inputBtnPaddingY: 0.75 * variables.rem,
-        inputBtnPaddingX: 1.5 * variables.rem,
+        inputBtnPaddingY: 0.05 * variables.rem,
+        inputBtnPaddingX: 0.05 * variables.rem,
         inputBtnLineHeight: variables.lineHeightBase,
 
         ...custom,
@@ -152,19 +112,6 @@ export default custom => {
 
     variables = {
         ...variables,
-
-        // Theme colors
-        themeColors: {
-            primary: variables.primary,
-            secondary: variables.secondary,
-            success: variables.success,
-            info: variables.info,
-            warning: variables.warning,
-            danger: variables.danger,
-            light: variables.light,
-            dark: variables.dark,
-        },
-        themeColorInterval: 0.08, // 8%
 
         // Spacers
         spacers: {
@@ -179,7 +126,7 @@ export default custom => {
         gridBreakpoints: variables.gridBreakpointsHorizontal,
 
         // Links
-        linkColor: variables.info,
+        linkColor: variables.colors.info,
         linkDecoration: 'underline',
 
         fontSizeBase: variables.rem,
@@ -264,8 +211,8 @@ export default custom => {
         inputBg: variables.white,
         inputDisabledBg: variables.gray200,
 
-        inputColor: variables.gray700,
-        inputBorderColor: variables.gray400,
+        inputColor: variables.colors.gray700,
+        inputBorderColor: variables.colors.gray400,
         inputBorderWidth: variables.inputBtnBorderWidth,
         // $input-box-shadow:                      inset 0 1px 1px rgba($black, .075) !default;
 
@@ -279,7 +226,7 @@ export default custom => {
         // $input-focus-width:                     $input-btn-focus-width !default;
         // $input-focus-box-shadow:                $input-btn-focus-box-shadow !default;
 
-        inputPlaceholderColor: variables.gray600,
+        inputPlaceholderColor: variables.colors.gray600,
         inputPlaintextColor: variables.bodyColor,
 
         inputHeightBorder: variables.inputBorderWidth * 2,

@@ -1,5 +1,7 @@
 import {mixinButtonOutlineVariant, mixinButtonSize, mixinButtonVariant} from './mixins/buttons';
 
+// TODO move all this to ButtonView
+
 export default (variables, classes) => {
     classes = {
         ...classes,
@@ -64,19 +66,19 @@ export default (variables, classes) => {
     };
 
     // btn%color / ex: btnPrimary
-    Object.keys(variables.themeColors).forEach((item) => {
+    Object.keys(variables.colors).forEach((item) => {
         const classColor = item.charAt(0).toUpperCase() + item.slice(1).toLowerCase();
-        classes['btn-' + item] = mixinButtonVariant(variables, variables.themeColors[item], variables.themeColors[item]);
+        classes['btn-' + item] = mixinButtonVariant(variables, variables.colors[item], variables.colors[item]);
     });
 
     // btnOutline%color / ex: btnOutlinePrimary
-    Object.keys(variables.themeColors).forEach((item) => {
+    Object.keys(variables.colors).forEach((item) => {
         const classColor = item.charAt(0).toUpperCase() + item.slice(1).toLowerCase();
-        classes['btn-outline-' + item] = mixinButtonOutlineVariant(variables, variables.themeColors[item], variables.btnOutlineBackgroundColor);
+        classes['btn-outline-' + item] = mixinButtonOutlineVariant(variables, variables.colors[item], variables.btnOutlineBackgroundColor);
     });
 
     // btnText%color / ex: btnTextPrimary
-    Object.keys(variables.themeColors).forEach((item) => {
+    Object.keys(variables.colors).forEach((item) => {
         const classColor = item.charAt(0).toUpperCase() + item.slice(1).toLowerCase();
         classes['btn-text-' + item] = {
             color: variables.white, // temporal
@@ -84,10 +86,10 @@ export default (variables, classes) => {
     });
 
     // btnOutlineText%color / ex: btnOutlineTextPrimary
-    Object.keys(variables.themeColors).forEach((item) => {
+    Object.keys(variables.colors).forEach((item) => {
         const classColor = item.charAt(0).toUpperCase() + item.slice(1).toLowerCase();
         classes['btn-outline-text-' + item] = {
-            color: variables.themeColors[item], // temporal
+            color: variables.colors[item], // temporal
         };
     });
 

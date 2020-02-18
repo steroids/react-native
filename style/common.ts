@@ -45,22 +45,39 @@ export default (variables, classes) => {
 
         'h1': {
             fontSize: variables.h1FontSize,
-            fontWeight: 'bold'
+            fontWeight: 'bold',
+            paddingTop: 25,
+            paddingBottom: 15,
         },
-
         'h2': {
             fontSize: variables.h2FontSize,
-            fontWeight: 'bold'
+            fontWeight: 'bold',
+            paddingTop: 22,
+            paddingBottom: 12,
         },
-
         'h3': {
             fontSize: variables.h3FontSize,
-            fontWeight: 'bold'
+            fontWeight: 'bold',
+            paddingTop: 18,
+            paddingBottom: 10,
         },
-
         'h4': {
             fontSize: variables.h4FontSize,
-            fontWeight: 'bold'
+            fontWeight: 'bold',
+            paddingTop: 15,
+            paddingBottom: 8,
+        },
+        'h5': {
+            fontSize: variables.h5FontSize,
+            fontWeight: 'bold',
+            paddingTop: 12,
+            paddingBottom: 7,
+        },
+        'h6': {
+            fontSize: variables.h6FontSize,
+            fontWeight: 'bold',
+            paddingTop: 10,
+            paddingBottom: 5,
         }
     };
 

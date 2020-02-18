@@ -2,7 +2,7 @@ import {StyleSheet} from "react-native";
 
 export default class HtmlComponent {
     namespace = '';
-    variables: object;
+    variables: any;
     classes: object;
     _styles: object;
 
@@ -17,31 +17,47 @@ export default class HtmlComponent {
         const bem = (...names) => this._toStyles(this.classNames(...names));
         bem.block = modifiers => this._applyModifiers(blockName, modifiers);
         bem.element = (elementName, modifiers) => this._applyModifiers(blockName + '__' + elementName, modifiers);
+        bem.color = (colorName) => this.getColor(colorName);
         return bem;
     }
 
+    getColor(colorName) {
+        if (colorName) {
+            if (this.variables.themeColors[colorName]) {
+                return this.variables.themeColors[colorName]
+            } else if (this.variables.colors[colorName]) {
+                return this.variables.colors[colorName]
+            }
+        }
+
+        return this.variables.themeColors.primary;
+    }
+
     classNames(...names) {
-        console.log('CLASSNAMES ARRAY', names);
         return Array.prototype.slice
             .call(names)
-            .filter(v => v);
+            .filter(v => v)
+            .map(v => {
+                if (typeof(v) === 'string' && v.indexOf(' ') !== -1) {
+                    return v.split(' ');
+                } else {
+                    return v;
+                }
+            })
+            .flat(1);
     }
 
     _toStyles(names) {
         const cachedName = names.filter((item) => typeof(item) === 'string').join(' ');
 
         if (!this._styles[cachedName]) {
-            console.log("BEM CLASSNAMES", names);
             let styles = {};
             names.forEach(name => {
                 let additionalStyles;
-                console.log("BEM NAME TYPE", typeof(name));
                 if (typeof(name) === 'object') {
                     additionalStyles = name;
-                    console.log("BEM ADDITIONAL STYLES OBJECT", additionalStyles);
                 } else {
                     additionalStyles = this.classes[name];
-                    console.log("BEM ADDITIONAL STYLES " + name, additionalStyles);
                 }
 
                 styles = {
