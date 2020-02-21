@@ -22,34 +22,43 @@ interface IRNButtonViewProps extends IButtonViewProps, IBemHocOutput {
 export default class ButtonView extends React.PureComponent <IRNButtonViewProps, any>{
 
     render() {
-        let RNButtonComponent = this.RNButtonComponent();
-
-        return (
-            <RNButtonComponent
-                disabled={this.props.disabled}
-                onPress={this.props.onClick}
-                background={TouchableNativeFeedback.SelectableBackground()}
-            >
-                <View style={this._getStyle()}>
-                    {this.renderLabel()}
-                </View>
-            </RNButtonComponent>
-        )
-    }
-
-    RNButtonComponent() {
         let RNButtonComponent;
-
+        let RNComponentProps;
         switch (Platform.OS) {
             case "android":
                 RNButtonComponent = TouchableNativeFeedback;
+                RNComponentProps = {
+                    background: TouchableNativeFeedback.SelectableBackground()
+                };
                 break;
             case "ios":
             default:
+                // TODO
+                let undColor;
+                if (!this.props.outline) {
+                    undColor = color(this.props.bem.color(this.props.color)).darken(0.15).hex();
+                } else {
+                    undColor = color(this.props.bem.color(this.props.color)).lighten(0.8).hex();
+                }
                 RNButtonComponent = TouchableHighlight;
+                RNComponentProps = {
+                    style: {flex: 1},
+                    activeOpacity: 0.6,
+                    underlayColor: undColor
+                }
         }
 
-        return RNButtonComponent;
+        return (
+            <View style={this._getStyle()}>
+                <RNButtonComponent
+                    disabled={this.props.disabled}
+                    onPress={this.props.onClick}
+                    {...RNComponentProps}
+                >
+                    {this.renderLabel()}
+                </RNButtonComponent>
+            </View>
+        )
     }
 
     preloaderSize() {
@@ -97,7 +106,7 @@ export default class ButtonView extends React.PureComponent <IRNButtonViewProps,
                         size={this.preloaderSize()}
                     />
                 )}
-                {this.props.icon && (
+                {this.props.icon && !this.props.isLoading && (
                     <Image
                         style={bem(
                             bem.element(
@@ -111,12 +120,15 @@ export default class ButtonView extends React.PureComponent <IRNButtonViewProps,
                         source={this.props.icon}
                     />
                 )}
-                <Text style={
-                    bem(
-                        bem.element('label-text', {size: this.props.size}),
-                        { color: this.textColor() }
-                    )
-                }>
+                <Text
+                    numberOfLines={1}
+                    style={
+                        bem(
+                            bem.element('label-text', {size: this.props.size}),
+                            { color: this.textColor() }
+                        )
+                    }
+                >
                     {this.props.children}
                 </Text>
             </View>

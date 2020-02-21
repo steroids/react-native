@@ -1,4 +1,5 @@
 import {StyleSheet} from "react-native";
+import flatten from 'lodash/flatten';
 
 export default class HtmlComponent {
     namespace = '';
@@ -34,17 +35,18 @@ export default class HtmlComponent {
     }
 
     classNames(...names) {
-        return Array.prototype.slice
-            .call(names)
-            .filter(v => v)
-            .map(v => {
-                if (typeof(v) === 'string' && v.indexOf(' ') !== -1) {
-                    return v.split(' ');
-                } else {
-                    return v;
-                }
-            })
-            .flat(1);
+        return flatten(
+            Array.prototype.slice
+                .call(names)
+                .filter(v => v)
+                .map(v => {
+                    if (typeof(v) === 'string' && v.indexOf(' ') !== -1) {
+                        return v.split(' ');
+                    } else {
+                        return v;
+                    }
+                })
+        );
     }
 
     _toStyles(names) {

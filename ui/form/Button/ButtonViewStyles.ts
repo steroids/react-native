@@ -3,12 +3,13 @@ export default (variables, classes) => {
         ...classes,
 
         'ButtonView': {
-            flexGrow: 1,
-            flexDirection: 'row'
+            flex: 1,
+            flexDirection: 'row',
+            minWidth: variables.btnMinWidth
         },
 
         'ButtonView_disabled': {
-            backgroundColor: variables.colors.gray400,
+            backgroundColor: variables.inputDisabledBg,
             borderWidth: 0
         },
         'ButtonView_outline': {
@@ -40,18 +41,18 @@ export default (variables, classes) => {
         },
         'ButtonView__label-text_size_sm': {
             fontSize: variables.fontSizeBaseSm,
-            paddingVertical: 0.1 * variables.inputBtnPaddingY,
-            paddingHorizontal: 0.1 * variables.inputBtnPaddingX
+            paddingVertical: 0.5 * variables.btnPaddingY,
+            paddingHorizontal: 0.5 * variables.btnPaddingX
         },
         'ButtonView__label-text_size_md': {
             fontSize: variables.fontSizeBase,
-            paddingVertical: 0.3 * variables.inputBtnPaddingY,
-            paddingHorizontal: 0.3 * variables.inputBtnPaddingX
+            paddingVertical: variables.btnPaddingY,
+            paddingHorizontal: variables.btnPaddingX
         },
         'ButtonView__label-text_size_lg': {
             fontSize: variables.fontSizeBaseLg,
-            paddingVertical: 0.7 * variables.inputBtnPaddingY,
-            paddingHorizontal: 0.7 * variables.inputBtnPaddingX
+            paddingVertical: 1.5 * variables.btnPaddingYLg,
+            paddingHorizontal: 1.5 * variables.btnPaddingXLg
         },
 
         // TODO adjust sizes, they are empirical

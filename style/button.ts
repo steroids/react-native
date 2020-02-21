@@ -42,14 +42,15 @@ export default (variables, classes) => {
             //   background-image: none;
             //   @include box-shadow($btn-focus-box-shadow, $btn-active-box-shadow);
             // }
-            ...mixinButtonSize(
-                variables,
-                variables.inputBtnPaddingY,
-                variables.inputBtnPaddingX,
-                variables.fontSizeBase,
-                variables.inputBtnLineHeight,
-                variables.btnBorderRadius,
-            ),
+            // TODO
+            // ...mixinButtonSize(
+            //     variables,
+            //     variables.inputBtnPaddingY,
+            //     variables.inputBtnPaddingX,
+            //     variables.fontSizeBase,
+            //     variables.inputBtnLineHeight,
+            //     variables.btnBorderRadius,
+            // ),
         },
 
         btnTouchable: { // experimental

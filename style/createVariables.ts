@@ -76,6 +76,7 @@ export default custom => {
         lineHeightBase: 1.5 * variables.rem, // ???
         lineHeightLg: 1.5 * variables.rem,
         lineHeightSm: 1.5 * variables.rem,
+
         inputBtnBorderWidth: variables.borderWidth,
 
         // Borders
@@ -103,8 +104,8 @@ export default custom => {
         ...variables,
 
         // Forms
-        inputBtnPaddingY: 0.05 * variables.rem,
-        inputBtnPaddingX: 0.05 * variables.rem,
+        inputBtnPaddingY: 0.5 * variables.rem,
+        inputBtnPaddingX: 0.5 * variables.rem,
         inputBtnLineHeight: variables.lineHeightBase,
 
         ...custom,
@@ -164,9 +165,17 @@ export default custom => {
 
         // Buttons
 
-        btnPaddingY: variables.inputBtnPaddingY,
+        btnPaddingY: 1.2 * variables.inputBtnPaddingY,
+        btnPaddingYSm: 0.5 * variables.inputBtnPaddingY,
+        btnPaddingYLg: 1.5 * variables.inputBtnPaddingY,
+
         btnPaddingX: variables.inputBtnPaddingX,
+        btnPaddingXSm: 0.5 * variables.inputBtnPaddingX,
+        btnPaddingXLg: 1.5 * variables.inputBtnPaddingX,
+
         btnLineHeight: variables.inputBtnLineHeight,
+
+        btnMinWidth: 90,
 
         // btnPaddingYSm: inputBtnPaddingYSm,
         // btnPaddingXSm: inputBtnPaddingXSm,
@@ -197,8 +206,16 @@ export default custom => {
     variables = {
         ...variables,
         inputPaddingY: variables.inputBtnPaddingY,
+        inputPaddingYSm: 0.6 * variables.inputBtnPaddingY,
+        inputPaddingYLg: 1.3 * variables.inputBtnPaddingY,
+
         inputPaddingX: variables.inputBtnPaddingX,
+        inputPaddingXSm: 0.6 * variables.inputBtnPaddingX,
+        inputPaddingXLg: 1.3 * variables.inputBtnPaddingX,
+
         inputLineHeight: variables.lineHeightBase,
+        inputLineHeightSm: 0.7 * variables.lineHeightBase,
+        inputLineHeightLg: 1.4 * variables.lineHeightBase,
 
         // $input-padding-y-sm:                    $input-btn-padding-y-sm !default;
         // $input-padding-x-sm:                    $input-btn-padding-x-sm !default;
@@ -207,18 +224,23 @@ export default custom => {
         // $input-padding-y-lg:                    $input-btn-padding-y-lg !default;
         // $input-padding-x-lg:                    $input-btn-padding-x-lg !default;
         // $input-line-height-lg:                  $input-btn-line-height-lg !default;
+    };
 
-        inputBg: variables.white,
-        inputDisabledBg: variables.gray200,
+    variables = {
+        ...variables,
+        inputBg: variables.colors.white,
+        inputDisabledBg: variables.colors.gray200,
 
         inputColor: variables.colors.gray700,
         inputBorderColor: variables.colors.gray400,
-        inputBorderWidth: variables.inputBtnBorderWidth,
+        inputBorderWidth: 3 * variables.borderWidth,
+
+        inputInvalidColor: variables.colors.danger,
         // $input-box-shadow:                      inset 0 1px 1px rgba($black, .075) !default;
 
-        inputBorderRadius: variables.borderRadius,
-        inputBorderRadiusLg: variables.borderRadiusLg,
-        inputBorderRadiusSm: variables.borderRadiusSm,
+        inputBorderRadius: variables.inputLineHeight,
+        inputBorderRadiusLg: variables.inputLineHeightLg,
+        inputBorderRadiusSm: variables.inputLineHeightSm,
 
         // $input-focus-bg:                        $input-bg !default;
         // $input-focus-border-color:              lighten($component-active-bg, 25%) !default;
