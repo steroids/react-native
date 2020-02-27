@@ -1,9 +1,9 @@
 import React from 'react';
 import {TextInput, View} from 'react-native';
-
 import {bem} from '@steroidsjs/core/hoc';
 import {IInputFieldViewProps} from "@steroidsjs/core/ui/form/InputField/InputField";
 import {IBemHocOutput} from "@steroidsjs/core/hoc/bem";
+import styles from './InputFieldViewStyles';
 
 type IKeyboardTypes = 'default' | 'number-pad' | 'decimal-pad' | 'numeric' | 'email-address' | 'phone-pad';
 type IAutoCompleteTypes = 'off' | 'username' | 'password' | 'email' | 'name' | 'tel' | 'street-address'
@@ -22,7 +22,7 @@ interface IRNInputFieldState {
     focused: Boolean
 }
 
-@bem('InputFieldView')
+@bem('InputFieldView', styles)
 export default class InputFieldView extends React.PureComponent<IRNInputFieldProps, IRNInputFieldState> {
 
     constructor(props: any) {

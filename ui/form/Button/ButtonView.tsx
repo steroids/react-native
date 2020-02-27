@@ -12,13 +12,14 @@ import {bem} from '@steroidsjs/core/hoc';
 import color from 'color';
 import {IButtonViewProps} from "@steroidsjs/core/ui/form/Button/Button";
 import {IBemHocOutput} from "@steroidsjs/core/hoc/bem";
+import styles from './ButtonViewStyles';
 
 interface IRNButtonViewProps extends IButtonViewProps, IBemHocOutput {
     style?: any,
     textColor?: string,
 }
 
-@bem('ButtonView')
+@bem('ButtonView', styles)
 export default class ButtonView extends React.PureComponent <IRNButtonViewProps, any>{
 
     render() {

@@ -15,26 +15,30 @@ export default class HtmlComponent {
     }
 
     bem(blockName) {
-        const bem = (...names) => this._toStyles(this.classNames(...names));
+        const bem = (...names) => this._toStyles(this._classNames(...names));
         bem.block = modifiers => this._applyModifiers(blockName, modifiers);
         bem.element = (elementName, modifiers) => this._applyModifiers(blockName + '__' + elementName, modifiers);
-        bem.color = (colorName) => this.getColor(colorName);
+        bem.color = (colorName) => this._getColor(colorName);
         return bem;
     }
 
-    getColor(colorName) {
+    addStyles(styles) {
+        this.classes = styles(this.variables, this.classes);
+    }
+
+    _getColor(colorName) {
         if (colorName) {
             if (this.variables.themeColors[colorName]) {
-                return this.variables.themeColors[colorName]
+                return this.variables.themeColors[colorName];
             } else if (this.variables.colors[colorName]) {
-                return this.variables.colors[colorName]
+                return this.variables.colors[colorName];
             }
         }
 
         return this.variables.themeColors.primary;
     }
 
-    classNames(...names) {
+    _classNames(...names) {
         return flatten(
             Array.prototype.slice
                 .call(names)
@@ -50,10 +54,12 @@ export default class HtmlComponent {
     }
 
     _toStyles(names) {
-        const cachedName = names.filter((item) => typeof(item) === 'string').join(' ');
+        const classNames = names.filter((item) => typeof(item) === 'string');
+        const cachedName = classNames.join(' ');
 
-        if (!this._styles[cachedName]) {
+        if (!this._styles[cachedName] || classNames.length !== names.length) {
             let styles = {};
+
             names.forEach(name => {
                 let additionalStyles;
                 if (typeof(name) === 'object') {
@@ -68,12 +74,12 @@ export default class HtmlComponent {
                 };
             });
 
-            // TODO StyleSheet.create & StyleSheet.compose
-            // this._styles = StyleSheet.compose(this._styles,{
-            //     [names]: styles
-            // });
-            this._styles[names] = styles;
+            this._styles = StyleSheet.create({
+                ...this._styles,
+                [names]: styles
+            });
         }
+
         return this._styles[names];
     }
 

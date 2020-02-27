@@ -2,9 +2,6 @@ import button from './button';
 import input from './input';
 import common from './common';
 
-// TODO should be done automatically in future
-import elements from './elements';
-
 import createVariables from './createVariables';
 
 export {
@@ -12,7 +9,6 @@ export {
     input,
     button,
     createVariables,
-    elements,
 };
 
 export default function (customVariables, classes = {}) {
@@ -24,7 +20,6 @@ export default function (customVariables, classes = {}) {
             ...common(variables, classes),
             ...input(variables, classes),
             ...button(variables, classes),
-            ...elements(variables, classes),
         }
     }
 }
