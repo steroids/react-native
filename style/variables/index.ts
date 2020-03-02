@@ -1,8 +1,11 @@
-import {StyleSheet} from 'react-native';
+import {Platform, StyleSheet} from 'react-native';
 import colors from "./colors";
 
 export default custom => {
     let variables = {
+        ...colors(custom),
+        themeColorInterval: 0.08, // 8%
+
         // Options
         enableRounded: true,
         enableShadows: true,
@@ -13,14 +16,11 @@ export default custom => {
         borderWidth: StyleSheet.hairlineWidth, // 1
 
         // Font
-        fontFamilySansSerif: 'system', // ios: 'san francisco'
-        fontFamilyMonospace: 'system', // ios: 'sfmono-regular',
+        fontFamilySansSerif: Platform.select({android: 'Roboto', ios: 'San Francisco'}),
+        fontFamilyMonospace: Platform.select({android: 'Roboto', ios: 'San Francisco'}),
         fontWeightLight: '300',
         fontWeightNormal: '400',
         fontWeightBold: '700',
-
-        ...colors(custom),
-        themeColorInterval: 0.08, // 8%
 
         // Sizes
         sizes: {
@@ -143,8 +143,9 @@ export default custom => {
         h6FontSize: variables.rem,
 
         headingsMarginBottom: variables.spacer / 2 * variables.rem,
+        headingsMarginTop: variables.spacer / 4 * variables.rem,
         headingsFontFamily: variables.fontFamilyBase,
-        headingsFontWeight: variables.fontWeightBase,
+        headingsFontWeight: variables.fontWeightBold,
         headingsColor: variables.bodyColor,
 
         textMuted: variables.gray600,
@@ -186,6 +187,7 @@ export default custom => {
         // btnLineHeightLg: inputBtnLineHeightLg,
 
         btnBorderWidth: variables.inputBtnBorderWidth,
+        btnOutlineBorderWidth: 6 * variables.inputBtnBorderWidth,
         btnFontFamily: variables.fontFamilyBase,
         // btnFontWeight: fontWeightNormal, // todo: makes no sense?
 
@@ -193,7 +195,7 @@ export default custom => {
         btnBorderRadiusLg: variables.borderRadiusLg,
         btnBorderRadiusSm: variables.borderRadiusSm,
 
-        btnOutlineBackgroundColor: variables.bodyBg, // 'transparent'
+        btnOutlineBackgroundColor: 'transparent', // 'transparent'
 
         // forms
         labelMarginBottom: 0.5 * variables.rem,
@@ -229,7 +231,7 @@ export default custom => {
     variables = {
         ...variables,
         inputBg: variables.colors.white,
-        inputDisabledBg: variables.colors.gray200,
+        inputDisabledBg: variables.colors.gray300,
 
         inputColor: variables.colors.gray700,
         inputBorderColor: variables.colors.gray400,

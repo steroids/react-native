@@ -5,6 +5,12 @@ export default (variables, classes) => {
         'ButtonView': {
             flex: 1,
             flexDirection: 'row',
+            overflow: 'hidden',
+            justifyContent: 'center',
+
+            borderWidth: variables.inputBtnBorderWidth,
+            borderStyle: 'solid',
+            borderColor: 'transparent',
             minWidth: variables.btnMinWidth
         },
 
@@ -13,11 +19,10 @@ export default (variables, classes) => {
             borderWidth: 0
         },
         'ButtonView_outline': {
-            borderWidth: 2,
-            backgroundColor: 'transparent',
+            borderWidth: variables.btnOutlineBorderWidth,
+            backgroundColor: variables.btnOutlineBackgroundColor,
         },
 
-        // TODO border radius doesn't work
         'ButtonView_size_sm': {
             borderRadius: variables.borderRadiusSm
         },
@@ -37,7 +42,8 @@ export default (variables, classes) => {
 
         'ButtonView__label-text': {
             textTransform: 'uppercase',
-            fontWeight: 'bold'
+            fontWeight: 'bold',
+            fontFamily: variables.btnFontFamily,
         },
         'ButtonView__label-text_size_sm': {
             fontSize: variables.fontSizeBaseSm,
@@ -68,6 +74,10 @@ export default (variables, classes) => {
             width: 30,
             height: 30
         },
+
+        'bg-color-success': {
+            backgroundColor: variables.themeColors.success,
+        }
     };
 
     return classes;

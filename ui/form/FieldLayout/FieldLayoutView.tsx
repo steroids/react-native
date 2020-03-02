@@ -1,34 +1,36 @@
 import React from 'react';
-import PropTypes from 'prop-types';
-
 import {bem} from '@steroidsjs/core/hoc';
 import {View, Text} from "react-native";
+import {IBemHocOutput} from "@steroidsjs/core/hoc/bem";
+
+type LayoutsTypes = 'default' | 'horizontal' | 'inline';
+
+interface IProps extends IBemHocOutput{
+    label: string | boolean;
+    hint: string | boolean;
+    errors: string | string[] | false;
+    required: boolean;
+    layout: LayoutsTypes;
+    layoutProps: any;
+    size: Size;
+    // TODO, probably not needed
+    layoutstyle: string | false;
+}
+
+interface IState {}
 
 @bem('FieldLayoutView')
-export default class FieldLayoutView extends React.PureComponent <any, any> {
+export default class FieldLayoutView extends React.PureComponent <IProps, IState> {
 
-    static propTypes = {
-        label: PropTypes.oneOfType([
-            PropTypes.string,
-            PropTypes.bool,
-        ]),
-        hint: PropTypes.oneOfType([
-            PropTypes.string,
-            PropTypes.bool,
-        ]),
-        errors: PropTypes.oneOfType([
-            PropTypes.string,
-            PropTypes.arrayOf(PropTypes.string),
-        ]),
-        required: PropTypes.bool,
-        layout: PropTypes.oneOfType([
-            PropTypes.oneOf(['default', 'inline', 'horizontal']),
-            PropTypes.string,
-            PropTypes.bool,
-        ]),
-        layoutProps: PropTypes.object,
-        size: PropTypes.oneOf(['sm', 'md', 'lg']),
-        layoutstyle: PropTypes.string,
+    static defaultProps = {
+        required: false,
+        label: false,
+        hint: false,
+        errors: false,
+        layout: 'default',
+        layoutProps: null,
+        size: 'md',
+        layoutstyle: false
     };
 
     render() {
@@ -38,7 +40,6 @@ export default class FieldLayoutView extends React.PureComponent <any, any> {
                 bem.block({
                     layout: this.props.layout
                 }),
-                'form-group',
                 this.props.layoutstyle,
                 this.props.layout === 'horizontal' && 'row',
                 this.props.layout === 'inline' && 'form-inline mb-0'
