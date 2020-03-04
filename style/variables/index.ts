@@ -1,5 +1,6 @@
 import {Platform, StyleSheet} from 'react-native';
 import colors from "./colors";
+import color from 'color';
 
 export default custom => {
     let variables = {
@@ -104,9 +105,16 @@ export default custom => {
         ...variables,
 
         // Forms
-        inputBtnPaddingY: 0.5 * variables.rem,
-        inputBtnPaddingX: 0.5 * variables.rem,
+        inputBtnPaddingY: 0.4 * variables.rem,
+        inputBtnPaddingX: 1.2 * variables.rem,
         inputBtnLineHeight: variables.lineHeightBase,
+
+        labelMarginBottom: 0.5 * variables.rem,
+        labelTextColor: variables.colors.gray600,
+
+        inputIconSize: 20,
+        inputIconSizeSm: 10,
+        inputIconSizeLg: 30,
 
         ...custom,
     };
@@ -195,29 +203,26 @@ export default custom => {
         btnBorderRadiusLg: variables.borderRadiusLg,
         btnBorderRadiusSm: variables.borderRadiusSm,
 
+        btnIconSize: 20,
+        btnIconSizeSm: 10,
+        btnIconSizeLg: 30,
+
         btnOutlineBackgroundColor: 'transparent', // 'transparent'
-
-        // forms
-        labelMarginBottom: 0.5 * variables.rem,
-
-        inputBtnPaddingY: 0.75 * variables.rem,
-        inputBtnPaddingX: 1.5 * variables.rem,
-        inputBtnLineHeight: variables.lineHeightBase,
     };
 
     variables = {
         ...variables,
         inputPaddingY: variables.inputBtnPaddingY,
-        inputPaddingYSm: 0.6 * variables.inputBtnPaddingY,
-        inputPaddingYLg: 1.3 * variables.inputBtnPaddingY,
+        inputPaddingYSm: 0.4 * variables.inputBtnPaddingY,
+        inputPaddingYLg: 1.6 * variables.inputBtnPaddingY,
 
         inputPaddingX: variables.inputBtnPaddingX,
-        inputPaddingXSm: 0.6 * variables.inputBtnPaddingX,
-        inputPaddingXLg: 1.3 * variables.inputBtnPaddingX,
+        inputPaddingXSm: 0.8 * variables.inputBtnPaddingX,
+        inputPaddingXLg: 1.2 * variables.inputBtnPaddingX,
 
         inputLineHeight: variables.lineHeightBase,
-        inputLineHeightSm: 0.7 * variables.lineHeightBase,
-        inputLineHeightLg: 1.4 * variables.lineHeightBase,
+        inputLineHeightSm: 0.6 * variables.lineHeightBase,
+        inputLineHeightLg: 1.6 * variables.lineHeightBase,
 
         // $input-padding-y-sm:                    $input-btn-padding-y-sm !default;
         // $input-padding-x-sm:                    $input-btn-padding-x-sm !default;
@@ -232,17 +237,19 @@ export default custom => {
         ...variables,
         inputBg: variables.colors.white,
         inputDisabledBg: variables.colors.gray300,
+        inputFocusedColor: variables.themeColors.info,
+        inputHintColor: variables.themeColors.secondary,
 
         inputColor: variables.colors.gray700,
         inputBorderColor: variables.colors.gray400,
         inputBorderWidth: 3 * variables.borderWidth,
 
-        inputInvalidColor: variables.colors.danger,
+        inputInvalidColor: color(variables.colors.danger).lighten(0.65),
         // $input-box-shadow:                      inset 0 1px 1px rgba($black, .075) !default;
 
         inputBorderRadius: variables.inputLineHeight,
         inputBorderRadiusLg: variables.inputLineHeightLg,
-        inputBorderRadiusSm: variables.inputLineHeightSm,
+        inputBorderRadiusSm: variables.inputLineHeight,
 
         // $input-focus-bg:                        $input-bg !default;
         // $input-focus-border-color:              lighten($component-active-bg, 25%) !default;

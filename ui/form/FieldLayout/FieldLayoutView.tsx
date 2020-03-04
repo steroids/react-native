@@ -2,6 +2,7 @@ import React from 'react';
 import {bem} from '@steroidsjs/core/hoc';
 import {View, Text} from "react-native";
 import {IBemHocOutput} from "@steroidsjs/core/hoc/bem";
+import styles from "./FieldLayoutViewStyles";
 
 type LayoutsTypes = 'default' | 'horizontal' | 'inline';
 
@@ -19,7 +20,7 @@ interface IProps extends IBemHocOutput{
 
 interface IState {}
 
-@bem('FieldLayoutView')
+@bem('FieldLayoutView', styles)
 export default class FieldLayoutView extends React.PureComponent <IProps, IState> {
 
     static defaultProps = {
@@ -28,7 +29,9 @@ export default class FieldLayoutView extends React.PureComponent <IProps, IState
         hint: false,
         errors: false,
         layout: 'default',
-        layoutProps: null,
+        layoutProps: {
+            cols: [5, 7]
+        },
         size: 'md',
         layoutstyle: false
     };
@@ -42,41 +45,42 @@ export default class FieldLayoutView extends React.PureComponent <IProps, IState
                 }),
                 this.props.layoutstyle,
                 this.props.layout === 'horizontal' && 'row',
-                this.props.layout === 'inline' && 'form-inline mb-0'
             )}>
                 {this.props.label && (
-                    <Text style={bem(
+                    <View style={bem(
                         bem.element('label', {
-                            required: this.props.required
+                            horizontal: this.props.layout === 'horizontal'
                         }),
-                        this.props.layout === 'horizontal' && 'col-form-label text-right',
                         this.props.layout === 'horizontal' && 'col-' + this.props.layoutProps.cols[0],
-                        this.props.layout === 'inline' && 'sr-only',
                     )}>
-                        {this.props.label + ':'}
-                    </Text>
+                        <Text style={bem(bem.element('label-text'))}>
+                            {this.props.label + ':'}
+                            {this.props.required &&
+                                <Text style={bem('text-danger')}>*</Text>
+                            }
+                        </Text>
+                    </View>
                 )}
                 <View
                     style={bem(
-                        bem.element('field'),
+                        bem.element('field', {horizontal: this.props.layout === 'horizontal'}),
                         this.props.layout === 'horizontal' && 'col-' + this.props.layoutProps.cols[1],
-                        this.props.layout === 'horizontal' && !this.props.label && 'offset-' + this.props.layoutProps.cols[0],
+                        // TODO strange styling
+                        // this.props.layout === 'horizontal' && !this.props.label && 'offset-' + this.props.layoutProps.cols[0],
                         this.props.layout === 'inline' && 'w-100'
                     )}
                 >
                     {this.props.children}
                     {this.props.errors && (
-                        <View style={bem(bem.element('invalid-feedback'), 'invalid-feedback')}>
+                        <View style={bem(bem.element('invalid-feedback'))}>
                             {[].concat(this.props.errors).map((error, index) => (
-                                <View key={index}>
-                                    <Text style={bem('invalid-feedback-text')}>{error}</Text>
-                                </View>
+                                <Text key={index} style={bem('text-danger w-100')}>{error}</Text>
                             ))}
                         </View>
                     )}
-                    {!this.props.errors && this.props.layout !== 'inline'  && this.props.hint && (
-                        <View style={bem(bem.element('hint'), 'text-muted')}>
-                            <Text>{this.props.hint}</Text>
+                    {!this.props.errors && this.props.layout !== 'inline' && this.props.hint && (
+                        <View>
+                            <Text style={bem(bem.element('hint'))}>{this.props.hint}</Text>
                         </View>
                     )}
                 </View>

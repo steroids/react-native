@@ -1,5 +1,6 @@
 import bgAndTextColors from "./generators/bgAndTextColors";
 import titles from "./generators/titles";
+import layout from "./generators/layout";
 
 import createVariables from './variables';
 
@@ -11,6 +12,7 @@ export default function (customVariables, classes = {}) {
         classes: {
             ...bgAndTextColors(variables),
             ...titles(variables),
+            ...layout(variables),
         }
     }
 }

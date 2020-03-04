@@ -110,13 +110,7 @@ export default class ButtonView extends React.PureComponent <IProps, IState>{
                 )}
                 {this.props.icon && !this.props.isLoading && (
                     <Image
-                        style={bem(
-                            bem.element(
-                                'icon',
-                                {size: this.props.size},
-                            ),
-                            'material-icons'
-                        )}
+                        style={bem(bem.element('icon', {size: this.props.size}))}
                         // @ts-ignore TODO remove ignore
                         source={this.props.icon}
                     />
