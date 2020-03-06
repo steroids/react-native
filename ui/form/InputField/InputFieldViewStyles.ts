@@ -12,10 +12,10 @@ export default (variables, classes) => {
             borderWidth: variables.inputBorderWidth,
             borderColor: variables.inputBorderColor,
         },
-        'InputFieldView_icon_right': {
+        'InputFieldView_with-suffix': {
             paddingRight: 10,
         },
-        'InputFieldView_icon_left': {
+        'InputFieldView_with-prefix': {
             paddingLeft: 10,
         },
         'InputFieldView_disabled': {
@@ -45,8 +45,10 @@ export default (variables, classes) => {
 
         'InputFieldView__input': {
             flex: 1,
-            lineHeight: variables.inputLineHeight,
             color: variables.inputColor,
+        },
+        'InputFieldView__input_multiline': {
+            textAlignVertical: 'top'
         },
         'InputFieldView__input_size_sm': {
             lineHeight: variables.inputLineHeightSm,
@@ -60,10 +62,10 @@ export default (variables, classes) => {
             lineHeight: variables.inputLineHeightLg,
             fontSize: variables.fontSizeBaseLg,
         },
-        'InputFieldView__input_icon_right': {
+        'InputFieldView__input_with-suffix': {
             paddingRight: 10,
         },
-        'InputFieldView__input_icon_left': {
+        'InputFieldView__input_with-prefix': {
             paddingLeft: 10,
         },
 
@@ -75,15 +77,15 @@ export default (variables, classes) => {
             backgroundColor: variables.inputDisabledBg,
         },
 
-        'InputFieldView__icon_size_sm': {
+        'InputFieldView__side-element_size_sm': {
             width: variables.inputIconSizeSm,
             height: variables.inputIconSizeSm
         },
-        'InputFieldView__icon_size_md': {
+        'InputFieldView__side-element_size_md': {
             width: variables.inputIconSize,
             height: variables.inputIconSize
         },
-        'InputFieldView__icon_size_lg': {
+        'InputFieldView__side-element_size_lg': {
             width: variables.inputIconSizeLg,
             height: variables.inputIconSizeLg
         },

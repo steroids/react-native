@@ -35,6 +35,5 @@ export default function (variables) {
         };
     });
 
-    console.log("LAYOUT STYLES", classes);
     return classes;
 }
