@@ -21,6 +21,8 @@ interface IProps extends IInputFieldViewProps, IBemHocOutput {
     suffixElement: number | ReactNode,
     style?: StyleProp<any>,
     multiline: number | false,
+    editable: boolean,
+    value: string
 }
 
 interface IState {
@@ -50,7 +52,9 @@ export default class InputFieldView extends React.PureComponent<IProps, IState> 
         autoCompleteType: 'off',
         prefixElement: null,
         suffixElement: null,
-        multiline: false
+        multiline: false,
+        editable: true,
+        value: null
     };
 
     renderSideElement(component: number | ReactNode) {
@@ -100,13 +104,13 @@ export default class InputFieldView extends React.PureComponent<IProps, IState> 
                     autoCompleteType={this.props.autoCompleteType}
                     keyboardType={this.props.keyboardType}
                     placeholder={this.props.placeholder}
-                    editable={!this.props.disabled}
+                    editable={this.props.editable && !this.props.disabled}
                     onFocus={(e) => this.setState({focused: true})}
                     onBlur={(e) => this.setState({focused: false})}
                     onChange={(e) => {
                         this.props.inputProps.onChange(e.nativeEvent.text);
                     }}
-                    defaultValue={''}
+                    value={this.props.value}
                     numberOfLines={Number(this.props.multiline) || 1}
                     multiline={this.props.multiline && this.props.multiline > 1}
                 />

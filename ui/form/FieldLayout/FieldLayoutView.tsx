@@ -65,8 +65,6 @@ export default class FieldLayoutView extends React.PureComponent <IProps, IState
                     style={bem(
                         bem.element('field', {horizontal: this.props.layout === 'horizontal'}),
                         this.props.layout === 'horizontal' && 'col-' + this.props.layoutProps.cols[1],
-                        // TODO strange styling
-                        // this.props.layout === 'horizontal' && !this.props.label && 'offset-' + this.props.layoutProps.cols[0],
                         this.props.layout === 'inline' && 'w-100'
                     )}
                 >
