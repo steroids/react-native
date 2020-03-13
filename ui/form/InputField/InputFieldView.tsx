@@ -1,5 +1,5 @@
 import React, {ReactNode} from 'react';
-import {Image, StyleProp, TextInput, View} from 'react-native';
+import {Image, ImageSourcePropType, StyleProp, TextInput, View} from 'react-native';
 import {bem} from '@steroidsjs/core/hoc';
 import {IInputFieldViewProps} from "@steroidsjs/core/ui/form/InputField/InputField";
 import {IBemHocOutput} from "@steroidsjs/core/hoc/bem";
@@ -11,18 +11,18 @@ type AutoCompleteTypes = 'off' | 'username' | 'password' | 'email' | 'name' | 't
     'postal-code' | 'cc-number' | 'cc-csc' | 'cc-exp' | 'cc-exp-month' | 'cc-exp-year';
 
 interface IProps extends IInputFieldViewProps, IBemHocOutput {
-    keyboardType: KeyboardTypes,
-    autoCompleteType: AutoCompleteTypes,
-    size: Size,
-    onBlur: any,
-    onFocus: any,
-    color: string,
-    prefixElement: number | ReactNode,
-    suffixElement: number | ReactNode,
+    keyboardType?: KeyboardTypes,
+    autoCompleteType?: AutoCompleteTypes,
+    size?: Size,
+    onBlur?: any,
+    onFocus?: any,
+    color?: string,
+    prefixElement?: ImageSourcePropType | ReactNode,
+    suffixElement?: ImageSourcePropType | ReactNode,
     style?: StyleProp<any>,
-    multiline: number | false,
-    editable: boolean,
-    value: string
+    multiline?: number | false,
+    editable?: boolean,
+    value?: string
 }
 
 interface IState {
@@ -57,7 +57,7 @@ export default class InputFieldView extends React.PureComponent<IProps, IState> 
         value: null
     };
 
-    renderSideElement(component: number | ReactNode) {
+    renderSideElement(component: ImageSourcePropType | ReactNode) {
         const bem = this.props.bem;
 
         if (React.isValidElement(component)) {
@@ -67,7 +67,7 @@ export default class InputFieldView extends React.PureComponent<IProps, IState> 
         return (
             <Image
                 style={bem(bem.element('side-element', {size: this.props.size}))}
-                source={component}
+                source={component as ImageSourcePropType}
             />
         )
     }
@@ -105,8 +105,8 @@ export default class InputFieldView extends React.PureComponent<IProps, IState> 
                     keyboardType={this.props.keyboardType}
                     placeholder={this.props.placeholder}
                     editable={this.props.editable && !this.props.disabled}
-                    onFocus={(e) => this.setState({focused: true})}
-                    onBlur={(e) => this.setState({focused: false})}
+                    onFocus={() => this.setState({focused: true})}
+                    onBlur={() => this.setState({focused: false})}
                     onChange={(e) => {
                         this.props.inputProps.onChange(e.nativeEvent.text);
                     }}

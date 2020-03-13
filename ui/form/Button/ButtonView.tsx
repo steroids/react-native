@@ -36,7 +36,6 @@ export default class ButtonView extends React.PureComponent <IProps, IState>{
                 break;
             case "ios":
             default:
-                // TODO
                 let undColor = color(this.props.bem.color(this.props.color));
                 undColor = this.props.outline
                     ? undColor.lighten(0.8)
