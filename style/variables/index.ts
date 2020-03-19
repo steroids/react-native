@@ -114,7 +114,7 @@ export default custom => {
 
         inputIconSize: 20,
         inputIconSizeSm: 10,
-        inputIconSizeLg: 30,
+        inputIconSizeLg: 25,
 
         ...custom,
     };
@@ -222,7 +222,7 @@ export default custom => {
 
         inputLineHeight: variables.lineHeightBase,
         inputLineHeightSm: 0.6 * variables.lineHeightBase,
-        inputLineHeightLg: 1.6 * variables.lineHeightBase,
+        inputLineHeightLg: 1.2 * variables.lineHeightBase,
 
         // $input-padding-y-sm:                    $input-btn-padding-y-sm !default;
         // $input-padding-x-sm:                    $input-btn-padding-x-sm !default;
@@ -261,6 +261,8 @@ export default custom => {
         inputPlaintextColor: variables.bodyColor,
 
         inputHeightBorder: variables.inputBorderWidth * 2,
+
+        dateTimeFieldsOffset: 8,
 
         // $input-height-inner:                    ($font-size-base * $input-btn-line-height) + ($input-btn-padding-y * 2) !default;
         // $input-height:                          calc(#{$input-height-inner} + #{$input-height-border}) !default;

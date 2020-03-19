@@ -87,7 +87,7 @@ export default (variables, classes) => {
         },
         'InputFieldView__side-element_size_lg': {
             width: variables.inputIconSizeLg,
-            height: variables.inputIconSizeLg
+            height: variables.inputIconSizeLg,
         },
     };
 
