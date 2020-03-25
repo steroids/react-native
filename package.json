@@ -14,6 +14,14 @@
     "url": "https://github.com/steroids/react-native/issues"
   },
   "dependencies": {
-    "@steroidsjs/core": "*"
+    "@steroidsjs/core": "*",
+    "conditional-decorator": "^0.1.7",
+    "@react-native-community/datetimepicker": "^2.2.3",
+    "@react-navigation/drawer": "^5.0.1",
+    "@react-navigation/native": "^5.0.1",
+    "@react-navigation/stack": "^5.0.1",
+    "react-native-paper": "^3.6.0",
+    "react-native-reanimated": "~1.4.0",
+    "react-native-safe-area-context": "0.6.0"
   }
 }
