@@ -15,7 +15,7 @@ interface IRNInputFieldProps extends IInputFieldViewProps, IBemHocOutput {
     size: Size,
     onBlur: any,
     onFocus: any,
-    color: string
+    color: string,
 }
 
 interface IRNInputFieldState {
@@ -91,9 +91,6 @@ export default class InputFieldView extends React.PureComponent<IRNInputFieldPro
                     editable={!this.props.disabled}
                     onFocus={(e) => this.setState({focused: true})}
                     onBlur={(e) => this.setState({focused: false})}
-                    onChange={(e) => {
-                        this.props.inputProps.onChange(e.nativeEvent.text);
-                    }}
                 />
             </View>
         );
