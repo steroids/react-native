@@ -4,17 +4,14 @@ import {View, Text} from "react-native";
 import {IBemHocOutput} from "@steroidsjs/core/hoc/bem";
 import styles from "./FieldLayoutViewStyles";
 
-type LayoutsTypes = 'default' | 'horizontal' | 'inline';
-
 interface IProps extends IBemHocOutput{
     label: string | boolean;
     hint: string | boolean;
     errors: string | string[] | false;
     required: boolean;
-    layout: LayoutsTypes;
+    layout: FormLayout;
     layoutProps: any;
     size: Size;
-    // TODO, probably not needed
     layoutstyle: string | false;
 }
 
@@ -28,8 +25,8 @@ export default class FieldLayoutView extends React.PureComponent <IProps, IState
         label: false,
         hint: false,
         errors: false,
-        layout: 'default',
-        layoutProps: {
+        layout: {
+            layout: 'default',
             cols: [5, 7]
         },
         size: 'md',
@@ -41,17 +38,18 @@ export default class FieldLayoutView extends React.PureComponent <IProps, IState
         return (
             <View style={bem(
                 bem.block({
-                    layout: this.props.layout
+                    layout: this.props.layout.layout,
+                    size: this.props.size
                 }),
-                this.props.layoutstyle,
-                this.props.layout === 'horizontal' && 'row',
+                this.props.layout.layout === 'horizontal' && 'row',
+                this.props.layoutstyle
             )}>
                 {this.props.label && (
                     <View style={bem(
                         bem.element('label', {
-                            horizontal: this.props.layout === 'horizontal'
+                            horizontal: this.props.layout.layout === 'horizontal'
                         }),
-                        this.props.layout === 'horizontal' && 'col-' + this.props.layoutProps.cols[0],
+                        this.props.layout.layout === 'horizontal' && 'col-' + this.props.layout.cols[0],
                     )}>
                         <Text style={bem(bem.element('label-text'))}>
                             {this.props.label + ':'}
@@ -63,9 +61,9 @@ export default class FieldLayoutView extends React.PureComponent <IProps, IState
                 )}
                 <View
                     style={bem(
-                        bem.element('field', {horizontal: this.props.layout === 'horizontal'}),
-                        this.props.layout === 'horizontal' && 'col-' + this.props.layoutProps.cols[1],
-                        this.props.layout === 'inline' && 'w-100'
+                        bem.element('field', {horizontal: this.props.layout.layout === 'horizontal'}),
+                        this.props.layout.layout === 'horizontal' && 'col-' + this.props.layout.cols[1],
+                        this.props.layout.layout === 'inline' && 'w-100'
                     )}
                 >
                     {this.props.children}
@@ -76,7 +74,7 @@ export default class FieldLayoutView extends React.PureComponent <IProps, IState
                             ))}
                         </View>
                     )}
-                    {!this.props.errors && this.props.layout !== 'inline' && this.props.hint && (
+                    {!this.props.errors && this.props.layout.layout !== 'inline' && this.props.hint && (
                         <View>
                             <Text style={bem(bem.element('hint'))}>{this.props.hint}</Text>
                         </View>

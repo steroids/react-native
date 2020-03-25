@@ -3,8 +3,12 @@ import colors from "./colors";
 import color from 'color';
 
 export default custom => {
+    custom = {
+        ...custom,
+        ...colors(custom)
+    };
+
     let variables = {
-        ...colors(custom),
         themeColorInterval: 0.08, // 8%
 
         // Options
@@ -17,8 +21,8 @@ export default custom => {
         borderWidth: StyleSheet.hairlineWidth, // 1
 
         // Font
-        fontFamilySansSerif: Platform.select({android: 'Roboto', ios: 'San Francisco'}),
-        fontFamilyMonospace: Platform.select({android: 'Roboto', ios: 'San Francisco'}),
+        fontFamilySansSerif: Platform.select({android: 'Roboto', ios: 'System'}),
+        fontFamilyMonospace: Platform.select({android: 'Roboto', ios: 'System'}),
         fontWeightLight: '300',
         fontWeightNormal: '400',
         fontWeightBold: '700',

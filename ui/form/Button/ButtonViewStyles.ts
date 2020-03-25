@@ -3,7 +3,6 @@ export default (variables, classes) => {
         ...classes,
 
         'ButtonView': {
-            flex: 1,
             flexDirection: 'row',
             overflow: 'hidden',
             justifyContent: 'center',

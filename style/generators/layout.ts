@@ -11,7 +11,6 @@ export default function (variables) {
     };
 
     classes['row'] = {
-        flex: 1,
         flexDirection: 'row',
         flexWrap: 'wrap',
     };
@@ -24,8 +23,6 @@ export default function (variables) {
 
         classes[`col-${count}`] = {
             flex: 1,
-            flexGrow: 1,
-            flexShrink: 1,
             flexBasis: width + '%',
             maxWidth: width + '%',
         };

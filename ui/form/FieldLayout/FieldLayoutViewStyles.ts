@@ -3,10 +3,10 @@ export default (variables, classes) => {
         ...classes,
 
         'FieldLayoutView': {
-            position: 'relative'
+            position: 'relative',
         },
+
         'FieldLayoutView_inline': {
-            flex: 1,
             flexDirection: 'row',
             flexWrap: 'wrap',
             alignItems: 'center'
@@ -16,7 +16,6 @@ export default (variables, classes) => {
             marginBottom: variables.labelMarginBottom,
         },
         'FieldLayoutView__label_horizontal': {
-            flex: 1,
             flexDirection: 'row',
             alignItems: 'center',
             justifyContent: 'flex-start'
@@ -26,23 +25,14 @@ export default (variables, classes) => {
             color: variables.labelTextColor
         },
 
-        'FieldLayoutView__field': {
-            flex: 1
-        },
         'FieldLayoutView__field_horizontal': {
             flexDirection: 'row',
             justifyContent: 'flex-end'
         },
 
-        'FieldLayoutView__invalid-feedback': {
-            flex: 1,
-        },
-
         'FieldLayoutView__hint': {
             color: variables.inputHintColor
         }
-
-
     };
 
     return classes;
