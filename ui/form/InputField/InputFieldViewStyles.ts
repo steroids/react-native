@@ -3,7 +3,6 @@ export default (variables, classes) => {
         ...classes,
 
         'InputFieldView': {
-            flex: 1,
             flexDirection: 'row',
             alignItems: 'center',
             overflow: 'hidden',
@@ -44,8 +43,8 @@ export default (variables, classes) => {
         },
 
         'InputFieldView__input': {
-            flex: 1,
             color: variables.inputColor,
+            width: '100%',
         },
         'InputFieldView__input_multiline': {
             textAlignVertical: 'top'
