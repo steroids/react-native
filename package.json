@@ -1,6 +1,6 @@
 {
   "name": "@steroidsjs/native",
-  "version": "2.0.0-beta.3",
+  "version": "2.0.0-beta.4",
   "description": "",
   "main": "index.js",
   "author": "Vladimir Kozhin <hello@kozhindev.com>",
@@ -22,6 +22,8 @@
     "@react-navigation/stack": "^5.0.1",
     "react-native-paper": "^3.6.0",
     "react-native-reanimated": "~1.4.0",
-    "react-native-safe-area-context": "0.6.0"
+    "react-native-safe-area-context": "0.6.0",
+    "react-native-gesture-handler": "~1.5.0",
+    "@react-native-community/masked-view": "0.1.5"
   }
 }
