@@ -14,13 +14,15 @@ import {IButtonViewProps} from "@steroidsjs/core/ui/form/Button/Button";
 import {IBemHocOutput} from "@steroidsjs/core/hoc/bem";
 import styles from './ButtonViewStyles';
 
-interface IRNButtonViewProps extends IButtonViewProps, IBemHocOutput {
+interface IProps extends IButtonViewProps, IBemHocOutput {
     style?: any,
     textColor?: string,
 }
 
+interface IState {}
+
 @bem('ButtonView', styles)
-export default class ButtonView extends React.PureComponent <IRNButtonViewProps, any>{
+export default class ButtonView extends React.PureComponent <IProps, IState>{
 
     render() {
         let RNButtonComponent;
@@ -34,18 +36,16 @@ export default class ButtonView extends React.PureComponent <IRNButtonViewProps,
                 break;
             case "ios":
             default:
-                // TODO
-                let undColor;
-                if (!this.props.outline) {
-                    undColor = color(this.props.bem.color(this.props.color)).darken(0.15).hex();
-                } else {
-                    undColor = color(this.props.bem.color(this.props.color)).lighten(0.8).hex();
-                }
+                let undColor = color(this.props.bem.color(this.props.color));
+                undColor = this.props.outline
+                    ? undColor.lighten(0.8)
+                    : undColor.darken(0.15);
+
                 RNButtonComponent = TouchableHighlight;
                 RNComponentProps = {
                     style: {flex: 1},
                     activeOpacity: 0.6,
-                    underlayColor: undColor
+                    underlayColor: undColor.hex()
                 }
         }
 
@@ -100,7 +100,7 @@ export default class ButtonView extends React.PureComponent <IRNButtonViewProps,
         const bem = this.props.bem;
         return (
             <View style={bem(bem.element('label'))}>
-                {this.props.isLoading &&(
+                {this.props.isLoading && (
                     <ActivityIndicator
                         style={bem(bem.element('preloader', {size: this.props.size}))}
                         color={this.textColor()}
@@ -109,14 +109,7 @@ export default class ButtonView extends React.PureComponent <IRNButtonViewProps,
                 )}
                 {this.props.icon && !this.props.isLoading && (
                     <Image
-                        style={bem(
-                            bem.element(
-                                'icon',
-                                {size: this.props.size},
-                                !this.props.label && 'without-label',
-                            ),
-                            'material-icons'
-                        )}
+                        style={bem(bem.element('icon', {size: this.props.size}))}
                         // @ts-ignore TODO remove ignore
                         source={this.props.icon}
                     />
@@ -139,11 +132,7 @@ export default class ButtonView extends React.PureComponent <IRNButtonViewProps,
     _getStyle(modifiers:any = {}) {
         const bem = this.props.bem;
         return bem(
-            !this.props.link && 'btn',
-            this.props.size && 'btn-' + this.props.size,
-            !this.props.link && 'btn-' + (this.props.outline ? 'outline-' : '') + this.props.color,
-            this.props.block && 'btn-block',
-            this.props.link && 'btn-link',
+            'bg-' + this.props.color,
 
             bem.block({
                 color: this.props.color,
@@ -155,6 +144,7 @@ export default class ButtonView extends React.PureComponent <IRNButtonViewProps,
                 ...modifiers,
             }),
 
+            this.props.outline ? {borderColor: this.textColor()} : {},
             this.props.style,
         );
     }

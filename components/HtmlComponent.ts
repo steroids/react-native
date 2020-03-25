@@ -23,7 +23,14 @@ export default class HtmlComponent {
     }
 
     addStyles(styles) {
-        this.classes = styles(this.variables, this.classes);
+        if (typeof styles === 'function') {
+            this.classes = styles(this.variables, this.classes);
+        } else {
+            this.classes = {
+                ...this.classes,
+                styles
+            };
+        }
     }
 
     _getColor(colorName) {

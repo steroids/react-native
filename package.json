@@ -1,6 +1,6 @@
 {
   "name": "@steroidsjs/native",
-  "version": "2.0.0-beta",
+  "version": "2.0.0-beta.2",
   "description": "",
   "main": "index.js",
   "author": "Vladimir Kozhin <hello@kozhindev.com>",
@@ -14,5 +14,6 @@
     "url": "https://github.com/steroids/react-native/issues"
   },
   "dependencies": {
+    "@steroidsjs/core": "*"
   }
 }

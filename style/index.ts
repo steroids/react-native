@@ -1,15 +1,8 @@
-import button from './button';
-import input from './input';
-import common from './common';
+import bgAndTextColors from "./generators/bgAndTextColors";
+import titles from "./generators/titles";
+import layout from "./generators/layout";
 
-import createVariables from './createVariables';
-
-export {
-    common,
-    input,
-    button,
-    createVariables,
-};
+import createVariables from './variables';
 
 export default function (customVariables, classes = {}) {
     const variables = createVariables(customVariables);
@@ -17,9 +10,9 @@ export default function (customVariables, classes = {}) {
     return {
         variables: variables,
         classes: {
-            ...common(variables, classes),
-            ...input(variables, classes),
-            ...button(variables, classes),
+            ...bgAndTextColors(variables),
+            ...titles(variables),
+            ...layout(variables),
         }
     }
 }

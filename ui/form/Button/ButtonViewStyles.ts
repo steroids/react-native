@@ -5,6 +5,12 @@ export default (variables, classes) => {
         'ButtonView': {
             flex: 1,
             flexDirection: 'row',
+            overflow: 'hidden',
+            justifyContent: 'center',
+
+            borderWidth: variables.inputBtnBorderWidth,
+            borderStyle: 'solid',
+            borderColor: 'transparent',
             minWidth: variables.btnMinWidth
         },
 
@@ -13,11 +19,10 @@ export default (variables, classes) => {
             borderWidth: 0
         },
         'ButtonView_outline': {
-            borderWidth: 2,
-            backgroundColor: 'transparent',
+            borderWidth: variables.btnOutlineBorderWidth,
+            backgroundColor: variables.btnOutlineBackgroundColor,
         },
 
-        // TODO border radius doesn't work
         'ButtonView_size_sm': {
             borderRadius: variables.borderRadiusSm
         },
@@ -37,12 +42,13 @@ export default (variables, classes) => {
 
         'ButtonView__label-text': {
             textTransform: 'uppercase',
-            fontWeight: 'bold'
+            fontWeight: 'bold',
+            fontFamily: variables.btnFontFamily,
         },
         'ButtonView__label-text_size_sm': {
             fontSize: variables.fontSizeBaseSm,
-            paddingVertical: 0.5 * variables.btnPaddingY,
-            paddingHorizontal: 0.5 * variables.btnPaddingX
+            paddingVertical: variables.btnPaddingYSm,
+            paddingHorizontal: variables.btnPaddingXSm
         },
         'ButtonView__label-text_size_md': {
             fontSize: variables.fontSizeBase,
@@ -51,22 +57,21 @@ export default (variables, classes) => {
         },
         'ButtonView__label-text_size_lg': {
             fontSize: variables.fontSizeBaseLg,
-            paddingVertical: 1.5 * variables.btnPaddingYLg,
-            paddingHorizontal: 1.5 * variables.btnPaddingXLg
+            paddingVertical: variables.btnPaddingYLg,
+            paddingHorizontal: variables.btnPaddingXLg
         },
 
-        // TODO adjust sizes, they are empirical
         'ButtonView__icon_size_sm': {
-            width: 10,
-            height: 10
+            width: variables.btnIconSizeSm,
+            height: variables.btnIconSizeSm
         },
         'ButtonView__icon_size_md': {
-            width: 20,
-            height: 20
+            width: variables.btnIconSize,
+            height: variables.btnIconSize
         },
         'ButtonView__icon_size_lg': {
-            width: 30,
-            height: 30
+            width: variables.btnIconSizeLg,
+            height: variables.btnIconSizeLg
         },
     };
 
