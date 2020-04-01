@@ -6,7 +6,7 @@ import {
     TouchableHighlight,
     TouchableNativeFeedback,
     Platform,
-    Image
+    Image, StyleProp
 } from 'react-native';
 import {bem} from '@steroidsjs/core/hoc';
 import color from 'color';
@@ -15,7 +15,7 @@ import {IBemHocOutput} from "@steroidsjs/core/hoc/bem";
 import styles from './ButtonViewStyles';
 
 interface IProps extends IButtonViewProps, IBemHocOutput {
-    style?: any,
+    style?: StyleProp<any>,
     textColor?: string,
 }
 
@@ -23,6 +23,17 @@ interface IState {}
 
 @bem('ButtonView', styles)
 export default class ButtonView extends React.PureComponent <IProps, IState>{
+
+    static defaultProps = {
+        isLoading: false,
+        url: null,
+        formId: null,
+        layout: 'default',
+        disabled: false,
+        onClick: null,
+        submitting: false,
+        color: 'primary',
+    };
 
     render() {
         let RNButtonComponent;
