@@ -1,17 +1,13 @@
 import * as React from 'react';
 import _isArray from 'lodash-es/isArray';
 import _isObject from 'lodash-es/isObject';
-import {createStackNavigator} from '@react-navigation/stack';
+import {createStackNavigator, StackNavigationProp} from '@react-navigation/stack';
 import {createDrawerNavigator} from '@react-navigation/drawer';
-import {
-    Provider as PaperProvider,
-    DefaultTheme as PaperLightTheme,
-    DarkTheme as PaperDarkTheme, Theme,
-} from 'react-native-paper';
 import {NavigationContainer} from '@react-navigation/native';
 import {IConnectHocOutput} from '@steroidsjs/core/hoc/connect';
 import {IRouteItem} from '@steroidsjs/core/ui/nav/Router/Router';
-import {Platform, StatusBar} from 'react-native';
+import {connect} from "../../react/hoc";
+import {initNavigation} from "../../react/actions/router";
 
 const Stack = createStackNavigator();
 const Drawer = createDrawerNavigator();
@@ -21,52 +17,37 @@ export interface INativeRouteItem extends IRouteItem {
 }
 
 export interface INativeRouterProps {
-    theme?: 'light' | 'dark' | Theme,
     routes: {
         drawer?: INativeRouteItem[] | { [key: string]: INativeRouteItem },
         items?: INativeRouteItem[] | { [key: string]: INativeRouteItem }
     }
 }
 
-interface INativeRouterPrivateProps extends IConnectHocOutput {
+interface INativeRouterPrivateProps extends IConnectHocOutput {}
 
-}
+interface NativeRouterState {}
 
-interface NativeRouterState {
-    theme: Theme
-}
-
+@connect()
 export default class NativeRouter extends React.PureComponent<INativeRouterProps & INativeRouterPrivateProps, NativeRouterState> {
 
-    static defaultProps = {
-        theme: 'light',
-    };
+    navigation: any;
 
     constructor(props) {
         super(props);
 
-        this.state = {
-            theme: this._prepareTheme(this.props.theme),
-        };
+        this.navigation = React.createRef();
     }
 
-    componentDidUpdate(prevProps: Readonly<INativeRouterProps & INativeRouterPrivateProps>): void {
-        if (prevProps.theme !== this.props.theme) {
-            this.setState({theme: this._prepareTheme(this.props.theme)});
-        }
+    componentDidMount(): void {
+        this.props.dispatch(initNavigation(this.navigation.current));
     }
 
     render() {
         return (
-            <PaperProvider theme={this.state.theme}>
-                {Platform.OS === 'ios' && (
-                    <StatusBar barStyle={this.state.theme.dark ? 'dark-content' : 'light-content'}/>
-                )}
-                <NavigationContainer>
-                    {this.renderDrawer(this.props.routes.drawer)}
-                    {this.renderScreens(this.props.routes.items)}
-                </NavigationContainer>
-            </PaperProvider>
+            <NavigationContainer ref={this.navigation}>
+                {this.renderDrawer(this.props.routes.drawer)}
+                {this.renderScreens(this.props.routes.items)}
+            </NavigationContainer>
         );
     }
 
@@ -117,21 +98,5 @@ export default class NativeRouter extends React.PureComponent<INativeRouterProps
                 ))}
             </Stack.Navigator>
         );
-    }
-
-    _prepareTheme(theme) {
-        switch (theme) {
-            case 'light':
-                return PaperLightTheme;
-
-            case 'dark':
-                return PaperDarkTheme;
-        }
-        return theme;
-    }
-
-    _renderItem(route, props) {
-        let Component = route.component;
-        return <Component {...props} {...route.componentProps} />;
     }
 }
