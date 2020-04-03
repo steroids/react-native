@@ -1,13 +1,13 @@
 import * as React from 'react';
 import _isArray from 'lodash-es/isArray';
 import _isObject from 'lodash-es/isObject';
-import {createStackNavigator, StackNavigationProp} from '@react-navigation/stack';
+import {createStackNavigator} from '@react-navigation/stack';
 import {createDrawerNavigator} from '@react-navigation/drawer';
 import {NavigationContainer} from '@react-navigation/native';
 import {IConnectHocOutput} from '@steroidsjs/core/hoc/connect';
 import {IRouteItem} from '@steroidsjs/core/ui/nav/Router/Router';
-import {connect} from "../../react/hoc";
-import {initNavigation} from "../../react/actions/router";
+import {components} from "@steroidsjs/core/hoc";
+import {NavigationContainerRef} from "@react-navigation/core/src/types";
 
 const Stack = createStackNavigator();
 const Drawer = createDrawerNavigator();
@@ -27,7 +27,7 @@ interface INativeRouterPrivateProps extends IConnectHocOutput {}
 
 interface NativeRouterState {}
 
-@connect()
+@components('store')
 export default class NativeRouter extends React.PureComponent<INativeRouterProps & INativeRouterPrivateProps, NativeRouterState> {
 
     navigation: any;
@@ -35,11 +35,11 @@ export default class NativeRouter extends React.PureComponent<INativeRouterProps
     constructor(props) {
         super(props);
 
-        this.navigation = React.createRef();
+        this.navigation = React.createRef<NavigationContainerRef>();
     }
 
     componentDidMount(): void {
-        this.props.dispatch(initNavigation(this.navigation.current));
+        this.props.store.navigationNative = this.navigation.current;
     }
 
     render() {
