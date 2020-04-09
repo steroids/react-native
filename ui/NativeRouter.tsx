@@ -8,6 +8,8 @@ import {IConnectHocOutput} from '@steroidsjs/core/hoc/connect';
 import {IRouteItem} from '@steroidsjs/core/ui/nav/Router/Router';
 import {components} from "@steroidsjs/core/hoc";
 import {NavigationContainerRef} from "@react-navigation/core/src/types";
+import {IComponentsHocOutput} from "../../react/hoc/components";
+import isEmpty from 'lodash/isEmpty';
 
 const Stack = createStackNavigator();
 const Drawer = createDrawerNavigator();
@@ -20,15 +22,17 @@ export interface INativeRouterProps {
     routes: {
         drawer?: INativeRouteItem[] | { [key: string]: INativeRouteItem },
         items?: INativeRouteItem[] | { [key: string]: INativeRouteItem }
-    }
+    },
+    auth: {
+        role: string,
+        [key: string]: any
+    },
 }
 
-interface INativeRouterPrivateProps extends IConnectHocOutput {}
-
-interface NativeRouterState {}
+interface INativeRouterPrivateProps extends IConnectHocOutput, IComponentsHocOutput {}
 
 @components('store')
-export default class NativeRouter extends React.PureComponent<INativeRouterProps & INativeRouterPrivateProps, NativeRouterState> {
+export default class NativeRouter extends React.PureComponent<INativeRouterProps & INativeRouterPrivateProps> {
 
     navigation: any;
 
@@ -42,21 +46,42 @@ export default class NativeRouter extends React.PureComponent<INativeRouterProps
         this.props.store.navigationNative = this.navigation.current;
     }
 
+    getRoutesByPermissions(routes) {
+        if (isEmpty(routes)) {
+            return null;
+        }
+
+        if (_isObject(routes) && !_isArray(routes)) {
+            routes = Object.keys(routes).map(id => ({
+                ...routes[id],
+                id,
+            }));
+        }
+
+        return routes.filter(route => {
+            const userRole = this.props.auth ? this.props.auth.role : null;
+            console.log("ROLES", route.id, route.roles, route.roles.includes(userRole));
+            return route.roles
+                ? route.roles.includes(userRole)
+                : true;
+        });
+    }
+
     render() {
+        const drawerRoutes = this.getRoutesByPermissions(this.props.routes.drawer);
+        const stackRoutes = this.getRoutesByPermissions(this.props.routes.items);
         return (
             <NavigationContainer ref={this.navigation}>
-                {this.renderDrawer(this.props.routes.drawer)}
-                {this.renderScreens(this.props.routes.items)}
+                {!isEmpty(drawerRoutes) && this.renderDrawer(drawerRoutes)}
+                {!isEmpty(stackRoutes) && this.renderScreens(stackRoutes)}
             </NavigationContainer>
         );
     }
 
     renderDrawer(drawer) {
-        if (!drawer) {
-            return null;
-        }
+        const initialRouteName = drawer.initialRouteName || drawer[0].id;
         return (
-            <Drawer.Navigator>
+            <Drawer.Navigator initialRouteName={initialRouteName}>
                 {drawer.map((item, index) => (
                     <Drawer.Screen
                         key={index}
@@ -76,16 +101,6 @@ export default class NativeRouter extends React.PureComponent<INativeRouterProps
     }
 
     renderScreens(routes) {
-        if (!routes) {
-            return null;
-        }
-        if (_isObject(routes) && !_isArray(routes)) {
-            routes = Object.keys(routes).map(id => ({
-                ...routes[id],
-                id,
-            }));
-        }
-
         return (
             <Stack.Navigator>
                 {routes.map((route, index) => (
