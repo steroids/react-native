@@ -1,6 +1,6 @@
 {
   "name": "@steroidsjs/native",
-  "version": "2.0.0-beta.6",
+  "version": "2.0.0-beta.7",
   "description": "",
   "main": "index.js",
   "author": "Vladimir Kozhin <hello@kozhindev.com>",
@@ -13,6 +13,9 @@
   "bugs": {
     "url": "https://github.com/steroids/react-native/issues"
   },
+  "peerDependencies": {
+    "expo": "^36.0.2"
+  },
   "dependencies": {
     "@steroidsjs/core": "*",
     "conditional-decorator": "^0.1.7",
@@ -24,6 +27,7 @@
     "react-native-reanimated": "~1.4.0",
     "react-native-safe-area-context": "0.6.0",
     "react-native-gesture-handler": "~1.5.0",
-    "@react-native-community/masked-view": "0.1.5"
+    "@react-native-community/masked-view": "0.1.5",
+    "expo-secure-store": "^8.1.0"
   }
 }
