@@ -13,6 +13,8 @@ import color from 'color';
 import {IButtonViewProps} from "@steroidsjs/core/ui/form/Button/Button";
 import {IBemHocOutput} from "@steroidsjs/core/hoc/bem";
 import styles from './ButtonViewStyles';
+import {goToRoute} from "../../../../react/actions/router";
+import {Linking} from "expo";
 
 interface IProps extends IButtonViewProps, IBemHocOutput {
     style?: StyleProp<any>,
@@ -34,6 +36,12 @@ export default class ButtonView extends React.PureComponent <IProps, IState>{
         submitting: false,
         color: 'primary',
     };
+
+    constructor(props) {
+        super(props);
+
+        this.onClick = this.onClick.bind(this);
+    }
 
     render() {
         let RNButtonComponent;
@@ -64,13 +72,21 @@ export default class ButtonView extends React.PureComponent <IProps, IState>{
             <View style={this._getStyle()}>
                 <RNButtonComponent
                     disabled={this.props.disabled}
-                    onPress={this.props.onClick}
+                    onPress={this.onClick}
                     {...RNComponentProps}
                 >
                     {this.renderLabel()}
                 </RNButtonComponent>
             </View>
         )
+    }
+
+    onClick(event) {
+        this.props.onClick(event);
+
+        if (this.props.url) {
+            Linking.openURL(this.props.url)
+        }
     }
 
     preloaderSize() {
@@ -121,21 +137,20 @@ export default class ButtonView extends React.PureComponent <IProps, IState>{
                 {this.props.icon && !this.props.isLoading && (
                     <Image
                         style={bem(bem.element('icon', {size: this.props.size}))}
-                        // @ts-ignore TODO remove ignore
                         source={this.props.icon}
                     />
                 )}
-                <Text
-                    numberOfLines={1}
-                    style={
-                        bem(
+                {React.Children.count(this.props.children) && (
+                    <Text
+                        numberOfLines={1}
+                        style={bem(
                             bem.element('label-text', {size: this.props.size}),
                             { color: this.textColor() }
-                        )
-                    }
-                >
-                    {this.props.children}
-                </Text>
+                        )}
+                    >
+                        {this.props.children}
+                    </Text>
+                ) || null}
             </View>
         );
     }

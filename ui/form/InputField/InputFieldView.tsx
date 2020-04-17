@@ -21,7 +21,8 @@ interface IRNInputFieldViewProps extends IInputFieldViewProps, IBemHocOutput {
     style?: StyleProp<any>,
     multiline?: number | false,
     editable?: boolean,
-    value?: string
+    value?: string,
+    autoFocus: boolean
 }
 
 interface IState {
@@ -53,7 +54,8 @@ export default class InputFieldView extends React.PureComponent<IRNInputFieldVie
         suffixElement: null,
         multiline: false,
         editable: true,
-        value: null
+        value: null,
+        autoFocus: false
     };
 
     renderSideElement(component: ImageSourcePropType | ReactNode) {
@@ -100,6 +102,7 @@ export default class InputFieldView extends React.PureComponent<IRNInputFieldVie
                         })
                     )}
                     {...this.props.inputProps}
+                    autoFocus={this.props.autoFocus}
                     autoCompleteType={this.props.autoCompleteType}
                     keyboardType={this.props.keyboardType}
                     placeholder={this.props.placeholder}

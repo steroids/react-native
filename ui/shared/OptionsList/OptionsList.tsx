@@ -1,7 +1,7 @@
 import {bem} from "@steroidsjs/core/hoc";
-import React from "react";
+import React, {ReactNode} from "react";
 import {
-    FlatList,
+    FlatList, ImageSourcePropType,
     KeyboardAvoidingView,
     Modal,
     Platform,
@@ -10,9 +10,9 @@ import {
     TouchableOpacity,
     View
 } from "react-native";
-import InputFieldView from "@steroidsjs/native/ui/form/InputField/InputFieldView";
-import ButtonView from "@steroidsjs/native/ui/form/Button/ButtonView";
-import styles from './DropDownOptionListViewStyles';
+import InputFieldView from "../../form/InputField/InputFieldView";
+import ButtonView from "../../form/Button/ButtonView";
+import styles from './OptionsListStyles';
 import {IBemHocOutput} from "@steroidsjs/core/hoc/bem";
 
 interface IProps extends IBemHocOutput {
@@ -32,35 +32,39 @@ interface IProps extends IBemHocOutput {
     searchInputProps: {
         type: string,
         name: string,
-        onChange: (e: Event) => void,
+        onChange: (value: string) => void,
         value: string | number,
         placeholder: string,
         disabled: string,
     },
     noResultsText: string,
     cancelButtonText: string
-    readyButtonText: string
+    readyButtonText: string,
+    inputFieldIcon: ImageSourcePropType | ReactNode,
+    selectRequired: boolean,
+    appearanceType: 'fade' | 'slide' | 'none',
+    focusInputOnOpen: boolean
 }
 
-interface IState {
-
-}
-
-@bem('DropDownOptionsList', styles)
-export default class DropDownOptionsListView extends React.PureComponent<IProps, IState> {
+@bem('OptionsList', styles)
+export default class OptionsList extends React.PureComponent<IProps> {
 
     static defaultProps = {
         placeholderText: __('Поиск...'),
         cancelButtonText: __('Отмена'),
         readyButtonText: __('Готово'),
         noResultsText: __('Нет совпадений'),
+        inputFieldIcon: null,
         visible: true,
         selectedItems: [],
         items: [],
+        selectRequired: true,
+        appearanceType: 'none',
+        focusInputOnOpen: false
     };
 
     static keyExtractor(item, index) {
-        return index.toString()
+        return index.toString();
     }
 
     render() {
@@ -71,6 +75,8 @@ export default class DropDownOptionsListView extends React.PureComponent<IProps,
             <Modal
                 onRequestClose={onClose}
                 supportedOrientations={['portrait', 'landscape']}
+                animationType={this.props.appearanceType}
+                transparent={true}
             >
                 <KeyboardAvoidingView
                     behavior="padding"
@@ -79,8 +85,8 @@ export default class DropDownOptionsListView extends React.PureComponent<IProps,
                 >
                     <SafeAreaView style={bem(bem.block())}>
                         {this.renderList()}
-                        <View style={bem(bem.element('cancel-container'))}>
-                            {this.renderCancelButton()}
+                        <View style={bem(bem.element('button-container'))}>
+                            {this.renderCloseButton()}
                         </View>
                     </SafeAreaView>
                 </KeyboardAvoidingView>
@@ -95,10 +101,12 @@ export default class DropDownOptionsListView extends React.PureComponent<IProps,
         const filter = (
             <View style={bem(bem.element('filter-container'))}>
                 <InputFieldView
+                    {...this.props.searchInputProps}
                     placeholder={placeholderText}
                     style={bem(bem.element('filter-text'))}
-                    suffixElement={require('../../../../assets/search-icon.png')}
+                    suffixElement={this.props.inputFieldIcon}
                     inputProps={this.props.searchInputProps}
+                    autoFocus={this.props.focusInputOnOpen}
                 />
             </View>
         );
@@ -115,21 +123,6 @@ export default class DropDownOptionsListView extends React.PureComponent<IProps,
         const {selectedItems, noResultsText, items} = this.props;
 
         const bem = this.props.bem;
-        if (!items.length) {
-            return (
-                <FlatList
-                    data={items}
-                    keyExtractor={this.constructor['keyExtractor']}
-                    renderItem={() => (
-                        <View style={bem(bem.element('no-results'))}>
-                            <Text style={bem(bem.element('no-results-text'))}>
-                                {noResultsText}
-                            </Text>
-                        </View>
-                    )}
-                />
-            )
-        }
         return (
             <FlatList
                 keyExtractor={this.constructor['keyExtractor']}
@@ -137,6 +130,13 @@ export default class DropDownOptionsListView extends React.PureComponent<IProps,
                 extraData={selectedItems}
                 renderItem={this.renderOption}
                 keyboardShouldPersistTaps={'never'}
+                ListEmptyComponent={
+                    <View style={bem(bem.element('no-results'))}>
+                        <Text style={bem(bem.element('no-results-text'))}>
+                            {noResultsText}
+                        </Text>
+                    </View>
+                }
             />
         )
     };
@@ -160,19 +160,19 @@ export default class DropDownOptionsListView extends React.PureComponent<IProps,
         )
     };
 
-    renderCancelButton = () => {
+    renderCloseButton = () => {
         const {cancelButtonText, readyButtonText} = this.props;
 
         const bem = this.props.bem;
+        const showCancel = !this.props.selectedItems.length && this.props.selectRequired;
         return (
             <ButtonView
                 onClick={this.props.onClose}
                 size={'md'}
-                outline={true}
-                color={'white'}
-                style={bem(bem.element('cancel'))}
+                color={showCancel ? 'gray' : 'primary'}
+                style={bem(bem.element('button'))}
             >
-                {!!this.props.selectedItems.length ? readyButtonText : cancelButtonText}
+                {showCancel ? cancelButtonText : readyButtonText}
             </ButtonView>
         )
     };

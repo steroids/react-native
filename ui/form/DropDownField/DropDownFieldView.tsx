@@ -2,8 +2,8 @@ import React from 'react';
 import {bem} from '@steroidsjs/core/hoc';
 import {IBemHocOutput} from "@steroidsjs/core/hoc/bem";
 import {IDropDownFieldViewProps} from "@steroidsjs/core/ui/form/DropDownField/DropDownField";
-import InputFieldView from "@steroidsjs/native/ui/form/InputField/InputFieldView";
-import DropDownOptionsListView from "@steroidsjs/native/ui/form/DropDownField/optionsList/DropDownOptionListView";
+import InputFieldView from "../../form/InputField/InputFieldView";
+import OptionsList from "../..//shared/OptionsList";
 
 import styles from './DropDownFieldViewStyles';
 import {
@@ -14,10 +14,8 @@ import {
 
 interface IProps extends IDropDownFieldViewProps, IBemHocOutput {}
 
-interface IState {}
-
 @bem('DropDownFieldView', styles)
-export default class DropDownFieldView extends React.PureComponent<IProps, IState> {
+export default class DropDownFieldView extends React.PureComponent<IProps> {
 
     static defaultProps = {
         label: null,
@@ -69,7 +67,11 @@ export default class DropDownFieldView extends React.PureComponent<IProps, IStat
                         <InputFieldView
                             editable={false}
                             placeholder={this.props.placeholder}
-                            suffixElement={this.props.selectedItems.length > 0 && this.props.showReset ? this.renderResetIcon() : this.renderArrowIcon()}
+                            suffixElement={
+                                this.props.selectedItems.length > 0 && this.props.showReset
+                                    ? this.renderResetIcon()
+                                    : this.renderArrowIcon()
+                            }
                             size={this.props.size}
                             value={this.props.selectedItems.map(item => item.label).join((' '))}
                             isInvalid={this.props.isInvalid}
@@ -80,12 +82,14 @@ export default class DropDownFieldView extends React.PureComponent<IProps, IStat
                 </TouchableWithoutFeedback>
 
                 {this.props.isOpened && (
-                    <DropDownOptionsListView
+                    <OptionsList
                         items={this.props.items}
                         selectedItems={this.props.selectedItems}
                         onClose={this.props.onClose}
                         onItemClick={item => this.props.onItemClick(item)}
                         searchInputProps={this.props.searchInputProps}
+                        inputFieldIcon={require('../../../assets/search-icon.png')}
+                        appearanceType={'fade'}
                     />
                 )}
             </View>

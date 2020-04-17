@@ -60,7 +60,6 @@ export default class NativeRouter extends React.PureComponent<INativeRouterProps
 
         return routes.filter(route => {
             const userRole = this.props.auth ? this.props.auth.role : null;
-            console.log("ROLES", route.id, route.roles, route.roles.includes(userRole));
             return route.roles
                 ? route.roles.includes(userRole)
                 : true;

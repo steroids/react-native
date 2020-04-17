@@ -5,12 +5,12 @@ export default (variables, classes) => {
     classes = {
         ...classes,
 
-        'DropDownOptionsList': {
+        'OptionsList': {
             flex: 1,
             borderRadius: variables.borderRadius
         },
 
-        'DropDownOptionsList__option': {
+        'OptionsList__option': {
             flex: 0,
             flexDirection: 'row',
             justifyContent: 'center',
@@ -20,16 +20,16 @@ export default (variables, classes) => {
             borderBottomWidth: 1,
             borderBottomColor: '#eee'
         },
-        'DropDownOptionsList__option_selected': {
+        'OptionsList__option_selected': {
             fontWeight: '700',
             backgroundColor: variables.themeColors.primary
         },
-        'DropDownOptionsList__option-text': {
+        'OptionsList__option-text': {
             flex: 1,
             textAlign: 'left',
         },
 
-        'DropDownOptionsList__overlay': {
+        'OptionsList__overlay': {
             position: 'absolute',
             top: 0,
             left: 0,
@@ -40,44 +40,42 @@ export default (variables, classes) => {
             alignItems: 'center'
         },
 
-        'DropDownOptionsList__filter': {
+        'OptionsList__filter': {
             padding: 15,
             flex: 0,
             height: 50
         },
-        'DropDownOptionsList__filter-container': {
+        'OptionsList__filter-container': {
             minHeight: 50,
             paddingHorizontal: 10,
             paddingVertical: 5,
         },
 
-        'DropDownOptionsList__no-results': {
+        'OptionsList__no-results': {
             flex: 0,
             justifyContent: 'center',
             alignItems: 'center',
             paddingVertical: 10,
             paddingHorizontal: 10
         },
-        'DropDownOptionsList__no-results-text': {
+        'OptionsList__no-results-text': {
             flex: 1,
             textAlign: 'center',
             color: '#ccc',
-            fontStyle: 'italic',
-            fontSize: 22
         },
 
-        'DropDownOptionsList__cancel': {
-        },
-        'DropDownOptionsList__cancel-text': {
-        },
-        'DropDownOptionsList__cancel-container': {
+        'OptionsList__button-container': {
             flex: 0,
             flexDirection: 'row',
             justifyContent: 'center',
             alignItems: 'center'
         },
 
-        'DropDownOptionsList__list-container': {
+        'OptionsList__button': {
+            width: 150
+        },
+
+        'OptionsList__list-container': {
             flex: 1,
             width: width * 0.8,
             maxHeight: height * 0.7,
