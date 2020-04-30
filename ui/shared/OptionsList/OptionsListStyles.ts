@@ -6,8 +6,8 @@ export default (variables, classes) => {
         ...classes,
 
         'OptionsList': {
-            flex: 1,
-            borderRadius: variables.borderRadius
+            borderRadius: variables.borderRadius,
+            zIndex: 300,
         },
 
         'OptionsList__option': {
@@ -29,15 +29,25 @@ export default (variables, classes) => {
             textAlign: 'left',
         },
 
-        'OptionsList__overlay': {
+        'OptionsList__overlay1': {
             position: 'absolute',
             top: 0,
             left: 0,
             right: 0,
             bottom: 0,
-            backgroundColor: 'rgba(0, 0, 0, 0.6)',
             justifyContent: 'center',
-            alignItems: 'center'
+            alignItems: 'center',
+            zIndex: 100,
+        },
+
+        'OptionsList__overlay2': {
+            position: 'absolute',
+            top: 0,
+            bottom: 0,
+            left: 0,
+            right: 0,
+            backgroundColor: 'rgba(0,0,0,0.5)',
+            zIndex: 200,
         },
 
         'OptionsList__filter': {

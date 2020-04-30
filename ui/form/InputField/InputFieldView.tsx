@@ -102,6 +102,7 @@ export default class InputFieldView extends React.PureComponent<IRNInputFieldVie
                         })
                     )}
                     {...this.props.inputProps}
+                    secureTextEntry={this.props.type === 'password'}
                     autoFocus={this.props.autoFocus}
                     autoCompleteType={this.props.autoCompleteType}
                     keyboardType={this.props.keyboardType}

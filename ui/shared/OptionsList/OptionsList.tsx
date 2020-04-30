@@ -7,7 +7,7 @@ import {
     Platform,
     SafeAreaView,
     Text,
-    TouchableOpacity,
+    TouchableOpacity, TouchableWithoutFeedback,
     View
 } from "react-native";
 import InputFieldView from "../../form/InputField/InputFieldView";
@@ -80,9 +80,14 @@ export default class OptionsList extends React.PureComponent<IProps> {
             >
                 <KeyboardAvoidingView
                     behavior="padding"
-                    style={bem(bem.element('overlay'))}
+                    style={bem(bem.element('overlay1'))}
                     enabled={Platform.OS === 'ios'}
                 >
+
+                    <TouchableWithoutFeedback onPress={onClose}>
+                        <View style={bem(bem.element('overlay2'))} />
+                    </TouchableWithoutFeedback>
+
                     <SafeAreaView style={bem(bem.block())}>
                         {this.renderList()}
                         <View style={bem(bem.element('button-container'))}>
@@ -132,8 +137,9 @@ export default class OptionsList extends React.PureComponent<IProps> {
                 keyboardShouldPersistTaps={'never'}
                 ListEmptyComponent={
                     <View style={bem(bem.element('no-results'))}>
+
                         <Text style={bem(bem.element('no-results-text'))}>
-                            {noResultsText}
+                            {!this.props.searchInputProps.value ? '' : noResultsText}
                         </Text>
                     </View>
                 }

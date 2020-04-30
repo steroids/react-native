@@ -56,7 +56,7 @@ export default class AutoCompleteFieldView extends React.PureComponent<IProps> {
                         onClose={this.props.onClose}
                         onItemClick={item => this.props.onItemClick(item)}
                         searchInputProps={this.props.inputProps}
-                        placeholderText={this.props.placeholder || __('Введите значение')}
+                        placeholderText={this.props.placeholder || __('Начните вводить название...')}
                         noResultsText={__('Нет совпадений, введите свое значение')}
                         selectRequired={false}
                         appearanceType={'fade'}

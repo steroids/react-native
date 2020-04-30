@@ -9,6 +9,12 @@ import styles from './DetailViewStyles';
 
 @bem('DetailView', styles)
 export default class DetailView extends React.PureComponent<IDetailViewProps & IBemHocOutput> {
+    renderSafely(value, attributes = {}) {
+        return !React.isValidElement(value)
+            ? <Text {...attributes}>{value}</Text>
+            : value;
+    }
+
     render() {
         const bem = this.props.bem;
         return (
@@ -19,10 +25,10 @@ export default class DetailView extends React.PureComponent<IDetailViewProps & I
                         style={bem(bem.element('field-container'), 'row', this.props.styles)}
                     >
                         <View style={bem('col-5')}>
-                            <Text style={bem(bem.element('field-label'))}>{item.label}</Text>
+                            {this.renderSafely(item.label, {style: bem(bem.element('field-label'))})}
                         </View>
                         <View style={bem('col-7')}>
-                            <Text>{item.value}</Text>
+                            {this.renderSafely(item.value)}
                         </View>
                     </View>
                 ))}

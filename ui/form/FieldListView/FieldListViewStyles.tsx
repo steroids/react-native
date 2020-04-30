@@ -10,8 +10,8 @@ export default (variables, classes) => {
 
 
         'FieldListItemView': {
-            justifyContent: 'center',
-            alignItems: 'center',
+            justifyContent: 'flex-start',
+            alignItems: 'flex-start',
             paddingBottom: 10,
         },
         'FieldListItemView__field': {
