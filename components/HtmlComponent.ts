@@ -1,5 +1,8 @@
 import {StyleSheet} from "react-native";
 import flatten from 'lodash/flatten';
+import _merge from 'lodash-es/merge';
+import {block} from "react-native-reanimated";
+import {string} from "prop-types";
 
 export default class HtmlComponent {
     namespace = '';
@@ -14,11 +17,29 @@ export default class HtmlComponent {
         this._styles = {};
     }
 
-    bem(blockName) {
+    bem(blockName, styles) {
+        let outerCustomStyles = {};
+        for (let styleProperty in styles) {
+            if (styles.hasOwnProperty(styleProperty) && styleProperty.includes(blockName)) {
+                outerCustomStyles[styleProperty] = styles[styleProperty];
+                delete styles[styleProperty];
+            }
+        }
+
         const bem = (...names) => this._toStyles(this._classNames(...names));
-        bem.block = modifiers => this._applyModifiers(blockName, modifiers);
-        bem.element = (elementName, modifiers) => this._applyModifiers(blockName + '__' + elementName, modifiers);
+
         bem.color = (colorName) => this._getColor(colorName);
+
+        bem.block = modifiers => this._applyCustomStyles(
+            this._classNames(this._applyModifiers(blockName, modifiers)),
+            outerCustomStyles
+        );
+
+        bem.element = (elementName, modifiers) => this._applyCustomStyles(
+            this._classNames(this._applyModifiers(blockName + '__' + elementName, modifiers)),
+            outerCustomStyles
+        );
+
         return bem;
     }
 
@@ -31,6 +52,24 @@ export default class HtmlComponent {
                 styles
             };
         }
+    }
+
+    _applyCustomStyles(classNames, customElementStyles) {
+        let customStyles = {};
+        classNames.map((className: string | object) => {
+            if (typeof className === 'string' && customElementStyles[className]) {
+                customStyles = {
+                    ...customStyles,
+                    ...customElementStyles[className]
+                };
+            }
+        });
+
+        let regularStyles = this._toStyles(classNames);
+
+        return customStyles
+            ? _merge(regularStyles, customStyles)
+            : regularStyles;
     }
 
     _getColor(colorName) {
@@ -81,10 +120,10 @@ export default class HtmlComponent {
                 };
             });
 
-            this._styles = StyleSheet.create({
+            this._styles = {
                 ...this._styles,
                 [names]: styles
-            });
+            };
         }
 
         return this._styles[names];
