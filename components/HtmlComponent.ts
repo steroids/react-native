@@ -1,8 +1,5 @@
-import {StyleSheet} from "react-native";
-import flatten from 'lodash/flatten';
+import _flatten from 'lodash-es/flatten';
 import _merge from 'lodash-es/merge';
-import {block} from "react-native-reanimated";
-import {string} from "prop-types";
 
 export default class HtmlComponent {
     namespace = '';
@@ -85,7 +82,7 @@ export default class HtmlComponent {
     }
 
     _classNames(...names) {
-        return flatten(
+        return _flatten(
             Array.prototype.slice
                 .call(names)
                 .filter(v => v)
