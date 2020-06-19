@@ -10,7 +10,7 @@ import styles from './DetailViewStyles';
 @bem('DetailView', styles)
 export default class DetailView extends React.PureComponent<IDetailViewProps & IBemHocOutput> {
     renderSafely(value, attributes = {}) {
-        return !React.isValidElement(value)
+        return !(React.isValidElement(value) || typeof value === 'function')
             ? <Text {...attributes}>{value}</Text>
             : value;
     }

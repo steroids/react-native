@@ -61,7 +61,7 @@ export default class InputFieldView extends React.PureComponent<IRNInputFieldVie
     renderSideElement(component: ImageSourcePropType | ReactNode) {
         const bem = this.props.bem;
 
-        if (React.isValidElement(component)) {
+        if (React.isValidElement(component) || typeof component === 'function') {
             return component;
         }
 

@@ -1,6 +1,6 @@
 {
   "name": "@steroidsjs/native",
-  "version": "2.0.0-beta.12",
+  "version": "2.0.0-beta.13",
   "description": "",
   "main": "index.js",
   "author": "Vladimir Kozhin <hello@kozhindev.com>",
@@ -14,10 +14,10 @@
     "url": "https://github.com/steroids/react-native/issues"
   },
   "peerDependencies": {
-    "expo": "^36.0.2"
+    "expo": "^36.0.2",
+    "@steroidsjs/core": "latest"
   },
   "dependencies": {
-    "@steroidsjs/core": "*",
     "conditional-decorator": "^0.1.7",
     "@react-native-community/datetimepicker": "^2.2.3",
     "@react-navigation/drawer": "^5.0.1",
