@@ -1,5 +1,5 @@
-import {Text} from "react-native";
-import React from "react";
+import {Text} from 'react-native';
+import React from 'react';
 
 interface IProps {
     value: string | number
