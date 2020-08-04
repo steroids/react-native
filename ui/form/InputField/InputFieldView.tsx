@@ -21,7 +21,7 @@ interface IRNInputFieldViewProps extends IInputFieldViewProps, IBemHocOutput {
     style?: StyleProp<any>,
     multiline?: number | false,
     editable?: boolean,
-    value?: string,
+    value?: string | number,
     autoFocus: boolean
 }
 
@@ -113,7 +113,7 @@ export default class InputFieldView extends React.PureComponent<IRNInputFieldVie
                     onChange={(e) => {
                         this.props.inputProps.onChange(e.nativeEvent.text);
                     }}
-                    value={this.props.value}
+                    value={this.props.value && String(this.props.value)}
                     numberOfLines={Number(this.props.multiline) || 1}
                     multiline={this.props.multiline && this.props.multiline > 1}
                 />

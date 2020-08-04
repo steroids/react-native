@@ -47,7 +47,8 @@ export default (variables, classes) => {
             width: '100%',
         },
         'InputFieldView__input_multiline': {
-            textAlignVertical: 'top'
+            textAlignVertical: 'top',
+            marginTop: 10
         },
         'InputFieldView__input_size_sm': {
             lineHeight: variables.inputLineHeightSm,

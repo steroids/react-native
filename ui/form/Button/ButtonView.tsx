@@ -13,7 +13,6 @@ import color from 'color';
 import {IButtonViewProps} from "@steroidsjs/core/ui/form/Button/Button";
 import {IBemHocOutput} from "@steroidsjs/core/hoc/bem";
 import styles from './ButtonViewStyles';
-import {goToRoute} from "../../../../react/actions/router";
 import {Linking} from "expo";
 
 interface IProps extends IButtonViewProps, IBemHocOutput {
@@ -140,7 +139,8 @@ export default class ButtonView extends React.PureComponent <IProps, IState>{
                         source={this.props.icon}
                     />
                 )}
-                {React.Children.count(this.props.children) && (
+                {React.Children.count(this.props.children)
+                && (this.props.showLabelOnLoading || !this.props.isLoading) && (
                     <Text
                         numberOfLines={1}
                         style={bem(
