@@ -4,7 +4,7 @@ import {IBemHocOutput} from "@steroidsjs/core/hoc/bem";
 import InputFieldView from "../../form/InputField/InputFieldView";
 import OptionsList from "../../shared/OptionsList";
 import {TouchableWithoutFeedback, View} from "react-native";
-import {IAutoCompleteFieldViewProps} from "../../../../react/ui/form/AutoCompleteField/AutoCompleteField";
+import {IAutoCompleteFieldViewProps} from "@steroidsjs/core/ui/form/AutoCompleteField/AutoCompleteField";
 
 import styles from './AutoCompleteFieldViewStyles';
 

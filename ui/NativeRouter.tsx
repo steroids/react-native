@@ -9,7 +9,7 @@ import {IConnectHocOutput} from '@steroidsjs/core/hoc/connect';
 import {IRouteItem} from '@steroidsjs/core/ui/nav/Router/Router';
 import {components} from "@steroidsjs/core/hoc";
 import {NavigationContainerRef} from "@react-navigation/core/src/types";
-import {IComponentsHocOutput} from "../../react/hoc/components";
+import {IComponentsHocOutput} from "@steroidsjs/core/hoc/components";
 import isEmpty from 'lodash/isEmpty';
 
 const Stack = createStackNavigator();

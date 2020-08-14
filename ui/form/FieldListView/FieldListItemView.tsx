@@ -1,8 +1,8 @@
 import React from "react";
 import {bem} from '@steroidsjs/core/hoc';
-import {Text, View} from "react-native";
-import {IBemHocOutput} from "../../../../react/hoc/bem";
-import {IFieldListItemViewProps} from "../../../../react/ui/form/FieldList/FieldList";
+import {View} from "react-native";
+import {IBemHocOutput} from "@steroidsjs/core/hoc/bem";
+import {IFieldListItemViewProps} from "@steroidsjs/core/ui/form/FieldList/FieldList";
 import ButtonView from "../Button";
 
 interface IProps extends IFieldListItemViewProps, IBemHocOutput {}

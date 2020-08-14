@@ -1,7 +1,7 @@
 import React from 'react';
 
 import {bem} from '@steroidsjs/core/hoc';
-import {IBemHocOutput} from "../../../../react/hoc/bem";
+import {IBemHocOutput} from "@steroidsjs/core/hoc/bem";
 import {StyleProp, View} from "react-native";
 
 import styles from './FormViewStyles';

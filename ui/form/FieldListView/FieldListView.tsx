@@ -4,8 +4,8 @@ import {Text, View} from "react-native";
 import ButtonView from "../Button";
 
 import styles from './FieldListViewStyles';
-import {IBemHocOutput} from "../../../../react/hoc/bem";
-import {IFieldListViewProps} from "../../../../react/ui/form/FieldList/FieldList";
+import {IBemHocOutput} from "@steroidsjs/core/hoc/bem";
+import {IFieldListViewProps} from "@steroidsjs/core/ui/form/FieldList/FieldList";
 
 interface IProps extends IFieldListViewProps, IBemHocOutput{
     label: string | boolean,
