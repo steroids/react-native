@@ -16,6 +16,12 @@ const Stack = createStackNavigator();
 const Drawer = createDrawerNavigator();
 const Tab = createBottomTabNavigator();
 
+interface ITabOptions {
+    tabBar?: any,
+    screenOptions?: object,
+    tabBarOptions?: object,
+}
+
 export interface INativeRouteItem extends IRouteItem {
     items?: INativeRouteItem[] | { [key: string]: INativeRouteItem }
 }
@@ -83,9 +89,10 @@ export default class NativeRouter extends React.PureComponent<INativeRouterProps
     renderNavigator(navigator) {
         const NavigatorType = this.getNavigatorComponent(navigator.type);
         const routes = this.getRoutesByPermissions(navigator.items);
+        const options = this.getNavigatorOptions(navigator);
 
         return !isEmpty(routes) && (
-            <NavigatorType.Navigator>
+            <NavigatorType.Navigator {...options}>
                 {routes.map((route, index) => {
                     return <NavigatorType.Screen
                         key={index}
@@ -96,6 +103,25 @@ export default class NativeRouter extends React.PureComponent<INativeRouterProps
                 })}
             </NavigatorType.Navigator>
         )
+    }
+
+    getNavigatorOptions(navigator) {
+        let options: ITabOptions = {};
+
+        if (navigator.tabBarView) {
+            const Bar = navigator.tabBarView;
+            options.tabBar = props => <Bar {...props}/>;
+        }
+
+        if (navigator.screenOptions) {
+            options.screenOptions = navigator.screenOptions;
+        }
+
+        if (navigator.tabBarOptions) {
+            options.tabBarOptions = navigator.tabBarOptions;
+        }
+
+        return options;
     }
 
     getNavigatorComponent(type) {
