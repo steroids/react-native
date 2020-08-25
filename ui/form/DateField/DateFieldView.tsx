@@ -3,6 +3,7 @@ import {bem} from '@steroidsjs/core/hoc';
 import {IBemHocOutput} from "@steroidsjs/core/hoc/bem";
 import InputFieldView from "../../form/InputField/InputFieldView";
 import DateTimePicker from '@react-native-community/datetimepicker';
+import {Platform} from 'react-native';
 
 import styles from './DateFieldViewStyles';
 import {
@@ -51,8 +52,10 @@ export default class DateFieldView extends React.PureComponent<IProps, IState> {
     }
 
     setDate(event, date) {
+        // this is a proper way to hide picker according to the package's docs
+        this.setState({showPicker: Platform.OS === 'ios'});
+
         if (event.type && event.type === 'set') {
-            this.setState({showPicker: false});
             this.props.onChange(date);
         }
     }
