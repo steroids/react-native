@@ -5,7 +5,7 @@ import {bem} from "../../../../react/hoc";
 import {IBemHocOutput} from "../../../../react/hoc/bem";
 import {INotificationsItemViewProps} from "../../../../react/ui/layout/Notifications/Notifications";
 import styles from './NotificationItemViewStyle'
-import {pickerColor} from "../../../utils/pickerColor";
+import getContrastColor from "../../../utils/getContrastColor";
 import Button from "../../../../react/ui/form/Button";
 
 interface INotificationsState  {
@@ -18,10 +18,10 @@ export default class NotificationItemView extends React.Component<INotifications
     render() {
         const bem = this.props.bem;
 
-        const bgColor = bem.color(this.props.level)
-        const lightColor = bem.color('white')
-        const darkColor = bem.color('gray700')
-        const colorText = pickerColor({bgColor, lightColor, darkColor})
+        const bgColor = bem.color(this.props.level);
+        const lightColor = bem.color('white');
+        const darkColor = bem.color('gray700');
+        const colorText = getContrastColor(bgColor, lightColor, darkColor);
 
         return (
             <View style={bem(bem.block(), 'bg-' + this.props.level)}>

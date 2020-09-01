@@ -2,7 +2,6 @@ export default (variables, classes) => {
     classes = {
         ...classes,
         'NotificationView': {
-            ...classes['NotificationView'],
             position: 'absolute',
             top: 0,
             left: 0,
@@ -12,7 +11,7 @@ export default (variables, classes) => {
             width: '100%',
             alignItems: 'center'
         }
-    }
+    };
     return classes;
 }
 
