@@ -14,6 +14,7 @@ import {IButtonViewProps} from "@steroidsjs/core/ui/form/Button/Button";
 import {IBemHocOutput} from "@steroidsjs/core/hoc/bem";
 import styles from './ButtonViewStyles';
 import {Linking} from "expo";
+import {pickerColor} from "../../../utils/pickerColor";
 
 interface IProps extends IButtonViewProps, IBemHocOutput {
     style?: StyleProp<any>,
@@ -112,11 +113,16 @@ export default class ButtonView extends React.PureComponent <IProps, IState>{
         } else if (this.props.outline) {
             textColor = bem.color(this.props.color);
         } else {
-            let isDark = this.props.color === 'transparent'
-                ? false
-                : !color(bem.color(this.props.color)).isLight();
 
-            textColor = isDark ? bem.color('white') : bem.color('gray700');
+            const bgColor = bem.color(this.props.color)
+            const lightColor = bem.color('white')
+            const darkColor = bem.color('gray700')
+            textColor = pickerColor({bgColor, lightColor, darkColor})
+            // let isDark = this.props.color === 'transparent'
+            //     ? false
+            //     : !color(bem.color(this.props.color)).isLight();
+            //
+            // textColor = isDark ? bem.color('white') : bem.color('gray700');
         }
 
         return color(textColor).hex();
