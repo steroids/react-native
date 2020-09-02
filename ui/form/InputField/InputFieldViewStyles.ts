@@ -12,7 +12,7 @@ export default (variables, classes) => {
             borderColor: variables.inputBorderColor,
         },
         'InputFieldView_with-suffix': {
-            paddingRight: 20,
+            paddingRight: 30,
         },
         'InputFieldView_with-prefix': {
             paddingLeft: 10,
