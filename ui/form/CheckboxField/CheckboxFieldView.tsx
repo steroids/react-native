@@ -5,6 +5,7 @@ import {bem} from "../../../../react/hoc";
 import {IBemHocOutput} from "../../../../react/hoc/bem";
 import {ICheckboxFieldProps} from "../../../../react/ui/form/CheckboxField/CheckboxField";
 import styles from './CheckboxFieldViewStyles'
+import Touchable from "../../../utils/Touchable/Touchable";
 
 @bem('CheckboxFieldView', styles)
 export default class CheckboxFieldView extends React.PureComponent <ICheckboxFieldProps & IBemHocOutput> {
@@ -18,7 +19,9 @@ export default class CheckboxFieldView extends React.PureComponent <ICheckboxFie
                     onValueChange={onChange}
                     tintColors={{true: '#0085FF', false: '#0085FF'}}
                 />
-                <Text style={bem.element('text')}>{this.props.label}</Text>
+                <Touchable onPress={onChange}>
+                    <Text style={bem.element('text')}>{this.props.label}</Text>
+                </Touchable>
             </View>
         )
     }
