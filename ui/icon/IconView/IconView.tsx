@@ -12,6 +12,10 @@ interface IIconViewInnerProps extends IIconViewProps, IBemHocOutput {
 @bem('IconView')
 export default class Icon extends React.PureComponent<IIconViewInnerProps> {
     render() {
+        if (!this.props.icon) {
+            throw new Error('Not found icon with name "' + name + '"');
+        }
+
         const Icon = React.isValidElement(this.props.icon) || typeof this.props.icon === 'function'
             ? this.props.icon
             : null;

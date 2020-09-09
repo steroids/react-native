@@ -28,11 +28,9 @@ export default class NotificationItemView extends React.Component<INotifications
                 <Text style={bem(bem.element('text'), {color: colorText})}>{this.props.message}</Text>
                 <Button
                     size='sm'
-                     color={this.props.level}
+                    color={this.props.level}
                     onClick={this.props.onClose}
-                >
-                    X
-                </Button>
+                />
             </View>
         )
     }

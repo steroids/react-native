@@ -15,6 +15,7 @@ import {IBemHocOutput} from "@steroidsjs/core/hoc/bem";
 import styles from './ButtonViewStyles';
 import {Linking} from "expo";
 import getContrastColor from "../../../utils/getContrastColor";
+import Icon from "../../../../react/ui/icon/Icon";
 
 interface IProps extends IButtonViewProps, IBemHocOutput {
     style?: StyleProp<any>,
@@ -134,12 +135,17 @@ export default class ButtonView extends React.PureComponent <IProps, IState>{
                         size={this.preloaderSize()}
                     />
                 )}
-                {this.props.icon && !this.props.isLoading && (
-                    <Image
+                {this.props.icon && !this.props.isLoading &&
+                    <Icon
+                        name={this.props.icon}
                         style={bem(bem.element('icon', {size: this.props.size}))}
-                        source={this.props.icon}
-                    />
-                )}
+                    />}
+                {/*{this.props.icon && !this.props.isLoading && (*/}
+                {/*    <Image*/}
+                {/*        style={bem(bem.element('icon', {size: this.props.size}))}*/}
+                {/*        source={this.props.icon}*/}
+                {/*    />*/}
+                {/*)}*/}
                 {React.Children.count(this.props.children)
                 && (this.props.showLabelOnLoading || !this.props.isLoading) && (
                     <Text

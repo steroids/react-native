@@ -2,6 +2,7 @@ export default (variables, classes) => {
     classes = {
         ...classes,
         'NotificationItemView': {
+            width: '100%',
             flexDirection: 'row',
             marginBottom: 2,
             justifyContent: 'space-around',
