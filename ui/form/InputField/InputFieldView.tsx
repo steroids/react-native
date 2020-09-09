@@ -101,6 +101,7 @@ export default class InputFieldView extends React.PureComponent<IRNInputFieldVie
                             multiline: Boolean(this.props.multiline)
                         })
                     )}
+                    placeholderTextColor={bem.variables('placeholderTextColor')}
                     {...this.props.inputProps}
                     secureTextEntry={this.props.type === 'password'}
                     autoFocus={this.props.autoFocus}
