@@ -27,6 +27,8 @@ export default class HtmlComponent {
 
         bem.color = (colorName) => this._getColor(colorName);
 
+        bem.variables = (variablesName) => this._getVariables(variablesName);
+
         bem.block = modifiers => this._applyCustomStyles(
             this._classNames(this._applyModifiers(blockName, modifiers)),
             outerCustomStyles
@@ -79,6 +81,12 @@ export default class HtmlComponent {
         }
 
         return this.variables.themeColors.primary;
+    }
+
+    _getVariables(variablesName) {
+        if (variablesName) {
+            return this.variables[variablesName]
+        }
     }
 
     _classNames(...names) {

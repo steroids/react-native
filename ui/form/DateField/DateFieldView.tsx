@@ -12,6 +12,7 @@ import {
     View
 } from "react-native";
 import {IDateFieldViewProps} from "@steroidsjs/core/ui/form/DateField/DateField";
+import Icon from "../../../../react/ui/icon/Icon";
 
 interface IProps extends IDateFieldViewProps, IBemHocOutput {
     required: boolean,
@@ -19,7 +20,8 @@ interface IProps extends IDateFieldViewProps, IBemHocOutput {
     disabled: boolean,
     isInvalid: boolean,
     style?: StyleProp<any>,
-    placeholder?: string
+    placeholder?: string,
+    inputProps: any,
 }
 
 interface IState {
@@ -72,12 +74,12 @@ export default class DateFieldView extends React.PureComponent<IProps, IState> {
                         <InputFieldView
                             editable={false}
                             placeholder={this.props.placeholder}
-                            suffixElement={require("../../../assets/calendar-icon.png")}
+                            suffixElement={<Icon name='calendarIcon' />}
                             size={this.props.size}
                             value={this.props.formatDate(this.props.input.value)}
                             isInvalid={this.props.isInvalid}
                             disabled={this.props.disabled}
-                            inputProps={null}
+                            inputProps={this.props.inputProps}
                         />
                     </View>
                 </TouchableWithoutFeedback>

@@ -228,6 +228,7 @@ export default custom => {
         inputLineHeightSm: 0.6 * variables.lineHeightBase,
         inputLineHeightLg: 1.2 * variables.lineHeightBase,
 
+        placeholderTextColor: '#000000',
         // $input-padding-y-sm:                    $input-btn-padding-y-sm !default;
         // $input-padding-x-sm:                    $input-btn-padding-x-sm !default;
         // $input-line-height-sm:                  $input-btn-line-height-sm !default;
