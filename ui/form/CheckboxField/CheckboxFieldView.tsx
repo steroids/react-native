@@ -17,10 +17,15 @@ export default class CheckboxFieldView extends React.PureComponent <ICheckboxFie
                 <CheckBox
                     value={checked}
                     onValueChange={onChange}
-                    tintColors={{true: '#0085FF', false: '#0085FF'}}
+                    tintColors={{
+                        true: bem.variable('checkboxSelectedBg'),
+                        false: bem.variable('checkboxSelectedBg')
+                    }}
                 />
                 <Touchable onPress={onChange}>
-                    <Text style={bem.element('label')}>{this.props.label}</Text>
+                    <Text style={bem.element('label')}>
+                        {this.props.label}
+                    </Text>
                 </Touchable>
             </View>
         )

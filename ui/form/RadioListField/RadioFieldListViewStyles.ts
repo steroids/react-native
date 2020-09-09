@@ -4,16 +4,19 @@ export default (variables, classes) => {
         'RadioListFieldView': {
             flexDirection: 'row',
             borderRadius: 10,
-            backgroundColor: 'rgba(255, 255, 255, 0.1)'
+            backgroundColor: variables.radioBg,
+        },
+        'RadioListFieldView__item_selected': {
+            backgroundColor: variables.radioSelectedBg,
         },
         'RadioListFieldView__item': {
             borderRadius: 10,
             paddingVertical: 11,
             paddingHorizontal: 8,
         },
-        'RadioListFieldView__text': {
+        'RadioListFieldView__label': {
             fontSize: 12,
-            color: '#ffffff',
+            color: variables.radioLabelTextColor,
         }
     };
 

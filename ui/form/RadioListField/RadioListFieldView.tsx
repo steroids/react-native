@@ -15,7 +15,7 @@ export default class RadioListFieldView extends React.PureComponent <IRadioListF
                 {this.props.items.map(item => (
                     <Touchable onPress={() => this.props.onItemClick(item)}>
                         <View style={bem(bem.element('item'), item.isSelected && {backgroundColor: '#0084FF'})}>
-                            <Text style={bem.element('text')}>{item.label}</Text>
+                            <Text style={bem.element('label')}>{item.label}</Text>
                         </View>
                     </Touchable>
                 ))}

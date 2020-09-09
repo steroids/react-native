@@ -11,13 +11,15 @@ export default (variables, classes) => {
             paddingVertical: 11,
             alignItems: 'center',
             justifyContent: 'center',
-            backgroundColor: variables.colors.white,
-            opacity: 0.1,
+            backgroundColor: variables.checkboxBg,
             borderRadius: 10,
+        },
+        'CheckboxListFieldView__item_selected': {
+            backgroundColor: variables.checkboxSelectedBg,
         },
         'CheckboxListFieldView__label': {
             fontSize: 12,
-            color: variables.colors.white
+            color: variables.checkboxLabelTextColor
         }
     };
 
