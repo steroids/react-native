@@ -10,7 +10,7 @@ import styles from './CheckboxFieldViewStyles'
 export default class CheckboxFieldView extends React.PureComponent <ICheckboxFieldProps & IBemHocOutput> {
     render() {
         const bem = this.props.bem;
-        const {onChange, checked} = this.props.inputProps
+        const {onChange, checked} = this.props.inputProps;
         return (
             <View style={bem.block()}>
                 <CheckBox
@@ -18,7 +18,9 @@ export default class CheckboxFieldView extends React.PureComponent <ICheckboxFie
                     onValueChange={onChange}
                     tintColors={{true: '#0085FF', false: '#0085FF'}}
                 />
-                <Text style={bem.element('text')}>{this.props.label}</Text>
+                <Text style={bem.element('label')}>
+                    {this.props.label}
+                </Text>
             </View>
         )
     }

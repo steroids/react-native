@@ -5,9 +5,9 @@ export default (variables, classes) => {
             flexDirection: 'row',
             alignItems: 'center'
         },
-        'CheckboxFieldView__text': {
+        'CheckboxFieldView__label': {
             fontSize: 12,
-            color: '#ffffff'
+            color: variables.colors.white
         },
     };
 
