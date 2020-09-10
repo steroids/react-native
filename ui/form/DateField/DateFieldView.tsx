@@ -74,7 +74,12 @@ export default class DateFieldView extends React.PureComponent<IProps, IState> {
                         <InputFieldView
                             editable={false}
                             placeholder={this.props.placeholder}
-                            suffixElement={<Icon name='calendarIcon' />}
+                            suffixElement={
+                                <Icon
+                                    name='calendarIcon'
+                                    style={bem(bem.element('side-element', {size: this.props.size}))}
+                                />
+                            }
                             size={this.props.size}
                             value={this.props.formatDate(this.props.input.value)}
                             isInvalid={this.props.isInvalid}
@@ -86,7 +91,7 @@ export default class DateFieldView extends React.PureComponent<IProps, IState> {
 
                 {this.state.showPicker && (
                     <DateTimePicker
-                        value={new Date()}
+                        value={this.props.input.value ? new Date(this.props.input.value) : new Date()}
                         mode={'date'}
                         display="default"
                         onChange={this.setDate}

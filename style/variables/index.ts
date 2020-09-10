@@ -117,7 +117,7 @@ export default custom => {
         labelTextColor: variables.colors.gray600,
 
         inputIconSize: 20,
-        inputIconSizeSm: 10,
+        inputIconSizeSm: 15,
         inputIconSizeLg: 25,
 
         ...custom,

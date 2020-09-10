@@ -14,8 +14,10 @@ export default class CheckboxListFieldView extends React.PureComponent <ICheckbo
             <View style={bem.block()}>
                 {this.props.items.map(item => (
                     <Touchable onPress={() => this.props.onItemClick(item)}>
-                        <View style={bem(bem.element('item'), item.isSelected && {backgroundColor: '#0085FF'})}>
-                            <Text style={bem.element('text')}>{item.label}</Text>
+                        <View style={bem.element('item', {selected: item.isSelected})}>
+                            <Text style={bem.element('label')}>
+                                {item.label}
+                            </Text>
                         </View>
                     </Touchable>
                 ))}

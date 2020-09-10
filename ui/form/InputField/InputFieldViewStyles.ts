@@ -12,7 +12,7 @@ export default (variables, classes) => {
             borderColor: variables.inputBorderColor,
         },
         'InputFieldView_with-suffix': {
-            paddingRight: 20,
+            paddingRight: 'auto',
         },
         'InputFieldView_with-prefix': {
             paddingLeft: 10,
@@ -43,8 +43,9 @@ export default (variables, classes) => {
         },
 
         'InputFieldView__input': {
+            flex: 1,
             color: variables.inputColor,
-            width: '100%',
+            // width: '100%',
         },
         'InputFieldView__input_multiline': {
             textAlignVertical: 'top',
@@ -63,7 +64,7 @@ export default (variables, classes) => {
             fontSize: variables.fontSizeBaseLg,
         },
         'InputFieldView__input_with-suffix': {
-            paddingRight: 10,
+            // paddingRight: 10,
         },
         'InputFieldView__input_with-prefix': {
             paddingLeft: 10,
