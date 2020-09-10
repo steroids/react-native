@@ -7,6 +7,7 @@ import {INotificationsItemViewProps} from "../../../../react/ui/layout/Notificat
 import styles from './NotificationItemViewStyle'
 import getContrastColor from "../../../utils/getContrastColor";
 import Button from "../../../../react/ui/form/Button";
+import Icon from "../../../../react/ui/icon/Icon";
 
 interface INotificationsState  {
     isShow: boolean
@@ -27,9 +28,12 @@ export default class NotificationItemView extends React.Component<INotifications
             <View style={bem(bem.block(), 'bg-' + this.props.level)}>
                 <Text style={bem(bem.element('text'), {color: colorText})}>{this.props.message}</Text>
                 <Button
+                    style={bem.element('button', {color: colorText})}
                     size='sm'
                     color={this.props.level}
                     onClick={this.props.onClose}
+                    icon='closeIcon'
+                    iconProps={{tintColor: colorText}}
                 />
             </View>
         )

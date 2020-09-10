@@ -3,7 +3,6 @@ import {
     View,
     Text,
     ActivityIndicator,
-    TouchableHighlight,
     TouchableNativeFeedback,
     Platform,
     Image, StyleProp
@@ -15,7 +14,8 @@ import {IBemHocOutput} from "@steroidsjs/core/hoc/bem";
 import styles from './ButtonViewStyles';
 import {Linking} from "expo";
 import getContrastColor from "../../../utils/getContrastColor";
-import Icon from "../../../../react/ui/icon/Icon";
+import Touchable from "../../../utils/Touchable";
+import Icon from '../../../../react/ui/icon/Icon/Icon';
 
 interface IProps extends IButtonViewProps, IBemHocOutput {
     style?: StyleProp<any>,
@@ -45,12 +45,10 @@ export default class ButtonView extends React.PureComponent <IProps, IState>{
     }
 
     render() {
-        let RNButtonComponent;
-        let RNComponentProps;
+        let touchableProps;
         switch (Platform.OS) {
             case "android":
-                RNButtonComponent = TouchableNativeFeedback;
-                RNComponentProps = {
+                touchableProps = {
                     background: TouchableNativeFeedback.SelectableBackground()
                 };
                 break;
@@ -61,8 +59,7 @@ export default class ButtonView extends React.PureComponent <IProps, IState>{
                     ? undColor.lighten(0.8)
                     : undColor.darken(0.15);
 
-                RNButtonComponent = TouchableHighlight;
-                RNComponentProps = {
+                touchableProps = {
                     style: {flex: 1},
                     activeOpacity: 0.6,
                     underlayColor: undColor.hex()
@@ -71,13 +68,13 @@ export default class ButtonView extends React.PureComponent <IProps, IState>{
 
         return (
             <View style={this._getStyle()}>
-                <RNButtonComponent
+                <Touchable
                     disabled={this.props.disabled}
                     onPress={this.onClick}
-                    {...RNComponentProps}
+                    {...touchableProps}
                 >
                     {this.renderLabel()}
-                </RNButtonComponent>
+                </Touchable>
             </View>
         )
     }
@@ -137,6 +134,7 @@ export default class ButtonView extends React.PureComponent <IProps, IState>{
                 )}
                 {this.props.icon && !this.props.isLoading &&
                     <Icon
+                        iconProps={this.props.iconProps}
                         name={this.props.icon}
                         style={bem(bem.element('icon', {size: this.props.size}))}
                     />}

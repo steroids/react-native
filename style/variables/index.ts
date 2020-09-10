@@ -227,8 +227,6 @@ export default custom => {
         inputLineHeight: variables.lineHeightBase,
         inputLineHeightSm: 0.6 * variables.lineHeightBase,
         inputLineHeightLg: 1.2 * variables.lineHeightBase,
-
-        placeholderTextColor: '#000000',
         // $input-padding-y-sm:                    $input-btn-padding-y-sm !default;
         // $input-padding-x-sm:                    $input-btn-padding-x-sm !default;
         // $input-line-height-sm:                  $input-btn-line-height-sm !default;
@@ -268,6 +266,15 @@ export default custom => {
         inputHeightBorder: variables.inputBorderWidth * 2,
 
         dateTimeFieldsOffset: 8,
+
+        checkboxBg: variables.colors.gray700,
+        checkboxSelectedBg: variables.themeColors.primary,
+        checkboxLabelTextColor: variables.colors.white,
+
+        radioBg: variables.colors.gray700,
+        radioSelectedBg: variables.themeColors.primary,
+        radioLabelTextColor: variables.colors.white,
+
 
         // $input-height-inner:                    ($font-size-base * $input-btn-line-height) + ($input-btn-padding-y * 2) !default;
         // $input-height:                          calc(#{$input-height-inner} + #{$input-height-border}) !default;

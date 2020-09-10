@@ -14,6 +14,12 @@ export default (variables, classes) => {
         },
         'NotificationItemView__text': {
             fontSize: 14,
+        },
+        'NotificationItemView__button': {
+            position: 'absolute',
+            right: 0,
+            height: 40,
+            width: 40
         }
     }
     return classes;
