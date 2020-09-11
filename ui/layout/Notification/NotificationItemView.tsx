@@ -1,13 +1,13 @@
 import React from 'react'
 import {View, Text} from 'react-native'
 
-import {bem} from "../../../../react/hoc";
-import {IBemHocOutput} from "../../../../react/hoc/bem";
-import {INotificationsItemViewProps} from "../../../../react/ui/layout/Notifications/Notifications";
+import {bem} from "@steroidsjs/core/hoc";
+import {IBemHocOutput} from "@steroidsjs/core/hoc/bem";
+import {INotificationsItemViewProps} from "@steroidsjs/core/ui/layout/Notifications/Notifications";
 import styles from './NotificationItemViewStyle'
 import getContrastColor from "../../../utils/getContrastColor";
-import Button from "../../../../react/ui/form/Button";
-import Icon from "../../../../react/ui/icon/Icon";
+import Button from "@steroidsjs/core/ui/form/Button";
+import Icon from "@steroidsjs/core/ui/icon/Icon";
 
 interface INotificationsState  {
     isShow: boolean

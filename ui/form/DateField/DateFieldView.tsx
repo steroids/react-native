@@ -12,7 +12,7 @@ import {
     View
 } from "react-native";
 import {IDateFieldViewProps} from "@steroidsjs/core/ui/form/DateField/DateField";
-import Icon from "../../../../react/ui/icon/Icon";
+import Icon from "@steroidsjs/core/ui/icon/Icon";
 
 interface IProps extends IDateFieldViewProps, IBemHocOutput {
     required: boolean,

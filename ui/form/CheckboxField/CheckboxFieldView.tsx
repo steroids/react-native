@@ -1,9 +1,9 @@
 import React from "react";
 import {Text, View} from "react-native";
 import CheckBox from "@react-native-community/checkbox";
-import {bem} from "../../../../react/hoc";
-import {IBemHocOutput} from "../../../../react/hoc/bem";
-import {ICheckboxFieldProps} from "../../../../react/ui/form/CheckboxField/CheckboxField";
+import {bem} from "@steroidsjs/core/hoc";
+import {IBemHocOutput} from "@steroidsjs/core/hoc/bem";
+import {ICheckboxFieldProps} from "@steroidsjs/core/ui/form/CheckboxField/CheckboxField";
 import styles from './CheckboxFieldViewStyles'
 import Touchable from "../../../utils/Touchable/Touchable";
 

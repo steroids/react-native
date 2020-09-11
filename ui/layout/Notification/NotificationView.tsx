@@ -1,10 +1,10 @@
 import React from 'react'
 
 import {View} from 'react-native'
-import {bem} from "../../../../react/hoc";
-import {IConnectHocOutput} from "../../../../react/hoc/connect";
-import {INotificationsViewProps} from "../../../../react/ui/layout/Notifications/Notifications";
-import {IBemHocOutput} from "../../../../react/hoc/bem";
+import {bem} from "@steroidsjs/core/hoc";
+import {IConnectHocOutput} from "@steroidsjs/core/hoc/connect";
+import {INotificationsViewProps} from "@steroidsjs/core/ui/layout/Notifications/Notifications";
+import {IBemHocOutput} from "@steroidsjs/core/hoc/bem";
 import styles from './NotificationViewStyles'
 
 

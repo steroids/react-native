@@ -4,7 +4,7 @@ import {bem} from '@steroidsjs/core/hoc';
 import {IInputFieldViewProps} from "@steroidsjs/core/ui/form/InputField/InputField";
 import {IBemHocOutput} from "@steroidsjs/core/hoc/bem";
 import styles from './InputFieldViewStyles';
-import Icon from "../../../../react/ui/icon/Icon";
+import Icon from "@steroidsjs/core/ui/icon/Icon";
 
 type KeyboardTypes = 'default' | 'number-pad' | 'decimal-pad' | 'numeric' | 'email-address' | 'phone-pad';
 type AutoCompleteTypes = 'off' | 'username' | 'password' | 'email' | 'name' | 'tel' | 'street-address' |

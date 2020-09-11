@@ -15,7 +15,7 @@ import styles from './ButtonViewStyles';
 import {Linking} from "expo";
 import getContrastColor from "../../../utils/getContrastColor";
 import Touchable from "../../../utils/Touchable";
-import Icon from '../../../../react/ui/icon/Icon/Icon';
+import Icon from '@steroidsjs/core/ui/icon/Icon/Icon';
 
 interface IProps extends IButtonViewProps, IBemHocOutput {
     style?: StyleProp<any>,
