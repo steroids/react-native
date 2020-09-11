@@ -137,13 +137,8 @@ export default class ButtonView extends React.PureComponent <IProps, IState>{
                         iconProps={this.props.iconProps}
                         name={this.props.icon}
                         style={bem(bem.element('icon', {size: this.props.size}))}
-                    />}
-                {/*{this.props.icon && !this.props.isLoading && (*/}
-                {/*    <Image*/}
-                {/*        style={bem(bem.element('icon', {size: this.props.size}))}*/}
-                {/*        source={this.props.icon}*/}
-                {/*    />*/}
-                {/*)}*/}
+                    />
+                }
                 {React.Children.count(this.props.children)
                 && (this.props.showLabelOnLoading || !this.props.isLoading) && (
                     <Text

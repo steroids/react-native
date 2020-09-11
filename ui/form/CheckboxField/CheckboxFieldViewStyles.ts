@@ -7,7 +7,7 @@ export default (variables, classes) => {
         },
         'CheckboxFieldView__label': {
             fontSize: 12,
-            color: variables.colors.white
+            color: variables.checkboxLabelTextColor
         },
     };
 

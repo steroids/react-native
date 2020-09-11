@@ -63,9 +63,7 @@ export default (variables, classes) => {
             lineHeight: variables.inputLineHeightLg,
             fontSize: variables.fontSizeBaseLg,
         },
-        'InputFieldView__input_with-suffix': {
-            // paddingRight: 10,
-        },
+        'InputFieldView__input_with-suffix': {},
         'InputFieldView__input_with-prefix': {
             paddingLeft: 10,
         },
