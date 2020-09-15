@@ -8,8 +8,8 @@ import {IBemHocOutput} from "@steroidsjs/core/hoc/bem";
 import styles from './NotificationViewStyles'
 
 
-@bem('NotificationView', styles)
-export default class NotificationView extends React.PureComponent<IConnectHocOutput & INotificationsViewProps & IBemHocOutput>{
+@bem('NotificationsView', styles)
+export default class NotificationsView extends React.PureComponent<IConnectHocOutput & INotificationsViewProps & IBemHocOutput>{
     render() {
         const bem = this.props.bem;
         return (

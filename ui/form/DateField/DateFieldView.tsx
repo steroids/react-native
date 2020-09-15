@@ -77,7 +77,7 @@ export default class DateFieldView extends React.PureComponent<IProps, IState> {
                             suffixElement={
                                 <Icon
                                     name='calendarIcon'
-                                    style={bem(bem.element('side-element', {size: this.props.size}))}
+                                    style={bem.element('side-element', {size: this.props.size})}
                                 />
                             }
                             size={this.props.size}

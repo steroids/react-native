@@ -1,10 +1,11 @@
 export default (variables, classes) => {
     classes = {
         ...classes,
-        'NotificationView': {
+        'NotificationsView': {
             position: 'absolute',
-            height: '100%',
-            width: '100%',
+            top: 5,
+            left: 5,
+            right: 5,
         }
     };
     return classes;

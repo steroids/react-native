@@ -7,14 +7,9 @@ import {INotificationsItemViewProps} from "@steroidsjs/core/ui/layout/Notificati
 import styles from './NotificationItemViewStyle'
 import getContrastColor from "../../../utils/getContrastColor";
 import Button from "@steroidsjs/core/ui/form/Button";
-import Icon from "@steroidsjs/core/ui/icon/Icon";
-
-interface INotificationsState  {
-    isShow: boolean
-}
 
 @bem('NotificationItemView', styles)
-export default class NotificationItemView extends React.Component<INotificationsItemViewProps & IBemHocOutput, INotificationsState> {
+export default class NotificationItemView extends React.Component<INotificationsItemViewProps & IBemHocOutput> {
 
     render() {
         const bem = this.props.bem;

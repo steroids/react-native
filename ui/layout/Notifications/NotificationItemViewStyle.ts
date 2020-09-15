@@ -19,8 +19,9 @@ export default (variables, classes) => {
             position: 'absolute',
             right: 0,
             height: 40,
-            width: 40
+            width: 40,
+            minWidth: 20
         }
-    }
+    };
     return classes;
 }

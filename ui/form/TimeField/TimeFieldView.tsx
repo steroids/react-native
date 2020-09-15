@@ -4,9 +4,11 @@ import {IBemHocOutput} from "@steroidsjs/core/hoc/bem";
 import InputFieldView from "../../form/InputField/InputFieldView";
 import DateTimePicker from '@react-native-community/datetimepicker';
 import moment from 'moment';
+import Icon from "@steroidsjs/core/ui/icon/Icon";
 
 import styles from './TimeFieldViewStyles';
 import {
+    Platform,
     StyleProp,
     TouchableWithoutFeedback,
     View
@@ -53,9 +55,11 @@ export default class TimeFieldView extends React.PureComponent<IProps, IState> {
     }
 
     setTime(event, date) {
+        // this is a proper way to hide picker according to the package's docs
+        this.setState({showPicker: Platform.OS === 'ios'});
+
         if (event.type && event.type === 'set') {
             let time = moment(date).format(this.props.timeFormat);
-            this.setState({showPicker: false});
             this.props.input.onChange(time);
         }
     }
@@ -72,7 +76,12 @@ export default class TimeFieldView extends React.PureComponent<IProps, IState> {
                         <InputFieldView
                             editable={false}
                             placeholder={this.props.placeholder}
-                            suffixElement={require("../../../assets/clock-icon.png")}
+                            suffixElement={
+                                <Icon
+                                    name='clockIcon'
+                                    style={bem.element('side-element', {size: this.props.size})}
+                                />
+                            }
                             size={this.props.size}
                             value={this.props.input.value}
                             isInvalid={this.props.isInvalid}
