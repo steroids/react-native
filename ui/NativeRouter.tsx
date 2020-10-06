@@ -86,13 +86,26 @@ export default class NativeRouter extends React.PureComponent<INativeRouterProps
 
         return !isEmpty(routes) && (
             <NavigatorType.Navigator {...navigator.options}>
-                {routes.map((route, index) => {
+                {routes.map(route => {
+                    const Component = route.component;
+
                     return <NavigatorType.Screen
-                        key={index}
+                        key={route.id}
                         name={route.id}
-                        component={route.navigator ? () => this.renderNavigator(route.navigator) : route.component}
-                        {...route}
-                    />
+                        options={route.options}
+                    >
+                        {route.navigator
+                            ? () => this.renderNavigator(route.navigator)
+                            : props => (
+                                <Component
+                                    {...props}
+                                    {...route}
+                                    name={route.id}
+                                    options={route.options}
+                                />
+                            )
+                        }
+                    </NavigatorType.Screen>
                 })}
             </NavigatorType.Navigator>
         )
