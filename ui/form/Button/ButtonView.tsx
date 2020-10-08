@@ -16,6 +16,7 @@ import {Linking} from "expo";
 import getContrastColor from "../../../utils/getContrastColor";
 import Touchable from "../../../utils/Touchable";
 import Icon from '@steroidsjs/core/ui/icon/Icon/Icon';
+import safeRender from "../../../utils/safeRender";
 
 interface IProps extends IButtonViewProps, IBemHocOutput {
     style?: StyleProp<any>,
