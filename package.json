@@ -19,6 +19,7 @@
   },
   "dependencies": {
     "conditional-decorator": "^0.1.7",
+    "@react-native-community/checkbox": "^0.5.0",
     "@react-native-community/datetimepicker": "^2.2.3",
     "@react-navigation/drawer": "^5.0.1",
     "@react-navigation/native": "^5.0.1",
