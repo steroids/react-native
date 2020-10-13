@@ -142,15 +142,21 @@ export default class ButtonView extends React.PureComponent <IProps, IState>{
                 }
                 {React.Children.count(this.props.children)
                 && (this.props.showLabelOnLoading || !this.props.isLoading) && (
-                    <Text
-                        numberOfLines={1}
-                        style={bem(
-                            bem.element('label-text', {size: this.props.size}),
-                            { color: this.textColor() }
-                        )}
-                    >
-                        {this.props.children}
-                    </Text>
+                    // <Text
+                    //     numberOfLines={1}
+                    //     style={bem(
+                    //         bem.element('label-text', {size: this.props.size}),
+                    //         { color: this.textColor() }
+                    //     )}
+                    // >
+                    //     {this.props.children}
+                    // </Text>
+                safeRender(this.props.children, {
+                    numberOfLines: 1,
+                    style: bem(bem.element('label-text', {size: this.props.size}),
+                            {color: this.textColor()}
+                        )
+                })
                 ) || null}
             </View>
         );
