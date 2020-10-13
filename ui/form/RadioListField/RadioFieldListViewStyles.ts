@@ -3,6 +3,7 @@ export default (variables, classes) => {
         ...classes,
         'RadioListFieldView': {
             flexDirection: 'row',
+            flexWrap: 'wrap',
             borderRadius: 10,
             backgroundColor: variables.radioBg,
         },

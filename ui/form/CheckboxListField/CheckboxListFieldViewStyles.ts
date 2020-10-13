@@ -3,6 +3,7 @@ export default (variables, classes) => {
         ...classes,
         'CheckboxListFieldView': {
             flexDirection: 'row',
+            flexWrap: 'wrap',
             alignItems: 'center'
         },
         'CheckboxListFieldView__item': {
