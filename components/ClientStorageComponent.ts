@@ -1,33 +1,22 @@
 import * as SecureStore from 'expo-secure-store';
 import AsyncStorage from '@react-native-community/async-storage';
 
+export const STORAGE_SECURE = 'secure';
+export const STORAGE_ASYNC = 'async';
+
 export default class ClientStorageComponent {
-    STORAGE_SECURE_MOBILE: any;
-    STORAGE_ASYNC_MOBILE: any;
-
-    secureMobileStorageAvailable: boolean;
-
-    constructor(components) {
-        this.secureMobileStorageAvailable = process.env.PLATFORM === 'mobile';
-
-        this.STORAGE_SECURE_MOBILE = 'mobile-secure';
-        this.STORAGE_ASYNC_MOBILE = 'mobile-async';
-    }
 
     /**
      * @param {string} name
      * @param {string} [storageName]
      * @returns {*}
      */
-    async get(name, storageName) {
-        // TODO storageName = storageName || this.STORAGE_SECURE_MOBILE;
-        storageName = this.STORAGE_SECURE_MOBILE;
-
-        if (this.secureMobileStorageAvailable && storageName === this.STORAGE_SECURE_MOBILE) {
+    async get(name, storageName = STORAGE_SECURE) {
+        if (storageName === STORAGE_SECURE) {
             return await SecureStore.getItemAsync(name);
         }
 
-        if (this.secureMobileStorageAvailable && storageName === this.STORAGE_ASYNC_MOBILE) {
+        if (storageName === STORAGE_ASYNC) {
             try {
                 return await AsyncStorage.getItem(name)
             } catch(e) {
@@ -45,15 +34,12 @@ export default class ClientStorageComponent {
      * @param {number|null} [expires]
      * TODO expires isn't supported by SecureStore
      */
-    async set(name, value, storageName, expires = null) {
-        // TODO storageName = storageName || this.STORAGE_SECURE_MOBILE;
-        storageName = this.STORAGE_SECURE_MOBILE;
-
-        if (this.secureMobileStorageAvailable && storageName === this.STORAGE_SECURE_MOBILE) {
+    async set(name, value, storageName = STORAGE_SECURE, expires = null) {
+        if (storageName === STORAGE_SECURE) {
             await SecureStore.setItemAsync(name, value);
         }
 
-        if (this.secureMobileStorageAvailable && storageName === this.STORAGE_ASYNC_MOBILE) {
+        if (storageName === STORAGE_ASYNC) {
             try {
                 await AsyncStorage.setItem(name, value)
             } catch(e) {
@@ -66,15 +52,12 @@ export default class ClientStorageComponent {
      * @param {string} name
      * @param {string} [storageName]
      */
-    async remove(name, storageName) {
-        // TODO storageName = storageName || this.STORAGE_SECURE_MOBILE;
-        storageName = this.STORAGE_SECURE_MOBILE;
-
-        if (this.secureMobileStorageAvailable && storageName === this.STORAGE_SECURE_MOBILE) {
+    async remove(name, storageName = STORAGE_SECURE) {
+        if (storageName === STORAGE_SECURE) {
             await SecureStore.deleteItemAsync(name);
         }
 
-        if (this.secureMobileStorageAvailable && storageName === this.STORAGE_ASYNC_MOBILE) {
+        if (storageName === STORAGE_ASYNC) {
             try {
                 await AsyncStorage.removeItem(name)
             } catch(e) {
