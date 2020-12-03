@@ -265,18 +265,18 @@ export default custom => {
 
         inputHeightBorder: variables.inputBorderWidth * 2,
 
+        inputAddonBackgroundColor: variables.colors.gray700,
+
         dateTimeFieldsOffset: 8,
 
-        checkboxBg: variables.colors.gray700,
-        checkboxSelectedBg: variables.themeColors.primary,
-        checkboxLabelTextColor: variables.colors.white,
+        checkboxListBg: variables.colors.gray700,
+        checkboxListSelectedBg: variables.themeColors.primary,
+        checkboxListLabelTextColor: variables.colors.white,
 
-        trackSelectedFalseBg: variables.themeColors.primary,
-        trackSelectedTrueBg: variables.themeColors.primary,
-        thumbSelectedTrueBg: variables.colors.white,
-        thumbSelectedFalseBg: variables.colors.white,
-
-        addonBackgroundColor: variables.colors.gray700,
+        checkboxTrackSelectedFalseBg: variables.themeColors.primary,
+        checkboxTrackSelectedTrueBg: variables.themeColors.primary,
+        checkboxThumbSelectedTrueBg: variables.colors.white,
+        checkboxThumbSelectedFalseBg: variables.colors.white,
 
         radioBg: variables.colors.gray700,
         radioSelectedBg: variables.themeColors.primary,

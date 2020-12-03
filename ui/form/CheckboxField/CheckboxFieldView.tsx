@@ -19,10 +19,10 @@ export default class CheckboxFieldView extends React.PureComponent <IProps> {
             <View style={bem(bem.block(), this.props.stylesContainer)}>
                 <Switch
                     trackColor={{
-                        false: bem.variable('trackSelectedFalseBg'),
-                        true: bem.variable('trackSelectedTrueBg')
+                        false: bem.variable('checkboxTrackSelectedFalseBg'),
+                        true: bem.variable('checkboxTrackSelectedTrueBg')
                     }}
-                    thumbColor={checked ? bem.variable('thumbSelectedTrueBg') : bem.variable('thumbSelectedFalseBg')}
+                    thumbColor={checked ? bem.variable('checkboxThumbSelectedTrueBg') : bem.variable('checkboxThumbSelectedFalseBg')}
                     onValueChange={onChange}
                     value={checked}
                 />

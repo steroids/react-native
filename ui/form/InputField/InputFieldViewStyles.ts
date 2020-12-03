@@ -87,7 +87,7 @@ export default (variables, classes) => {
             height: variables.inputIconSizeLg,
         },
         'InputFieldView__addon_element_before': {
-            backgroundColor: variables.addonBackgroundColor,
+            backgroundColor: variables.inputAddonBackgroundColor,
             justifyContent: 'center',
             padding: 0,
             borderRightWidth: variables.inputBorderWidth,
@@ -106,7 +106,7 @@ export default (variables, classes) => {
             paddingVertical: variables.inputPaddingYLg,
         },
         'InputFieldView__addon_element_after': {
-            backgroundColor: variables.addonBackgroundColor,
+            backgroundColor: variables.inputAddonBackgroundColor,
             justifyContent: 'center',
             padding: 0,
             borderLeftWidth: variables.inputBorderWidth,
