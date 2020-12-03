@@ -2,7 +2,6 @@ import React from 'react';
 import {bem} from '@steroidsjs/core/hoc';
 import {View, Text} from "react-native";
 import {IBemHocOutput} from "@steroidsjs/core/hoc/bem";
-import styles from "./FieldLayoutViewStyles";
 
 interface IProps extends IBemHocOutput{
     label: string | boolean;
@@ -17,7 +16,7 @@ interface IProps extends IBemHocOutput{
 
 interface IState {}
 
-@bem('FieldLayoutView', styles)
+@bem('FieldLayoutView')
 export default class FieldLayoutView extends React.PureComponent <IProps, IState> {
 
     static defaultProps = {

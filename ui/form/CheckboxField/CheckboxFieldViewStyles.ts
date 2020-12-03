@@ -6,6 +6,7 @@ export default (variables, classes) => {
             alignItems: 'center'
         },
         'CheckboxFieldView__label': {
+            marginLeft: 8,
             fontSize: 12,
             color: variables.checkboxLabelTextColor
         },

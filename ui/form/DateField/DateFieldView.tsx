@@ -5,7 +5,6 @@ import InputFieldView from "../../form/InputField/InputFieldView";
 import DateTimePicker from '@react-native-community/datetimepicker';
 import {Platform} from 'react-native';
 
-import styles from './DateFieldViewStyles';
 import {
     StyleProp,
     TouchableWithoutFeedback,
@@ -28,7 +27,7 @@ interface IState {
     showPicker: boolean
 }
 
-@bem('DateFieldView', styles)
+@bem('DateFieldView')
 export default class DateFieldView extends React.PureComponent<IProps, IState> {
     constructor (props) {
         super(props);

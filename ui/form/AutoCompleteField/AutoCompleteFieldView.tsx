@@ -6,11 +6,9 @@ import OptionsList from "../../shared/OptionsList";
 import {TouchableWithoutFeedback, View} from "react-native";
 import {IAutoCompleteFieldViewProps} from "@steroidsjs/core/ui/form/AutoCompleteField/AutoCompleteField";
 
-import styles from './AutoCompleteFieldViewStyles';
-
 interface IProps extends IAutoCompleteFieldViewProps, IBemHocOutput {}
 
-@bem('AutoCompleteFieldView', styles)
+@bem('AutoCompleteFieldView')
 export default class AutoCompleteFieldView extends React.PureComponent<IProps> {
 
     static defaultProps = {

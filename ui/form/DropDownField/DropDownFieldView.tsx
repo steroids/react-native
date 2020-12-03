@@ -5,7 +5,6 @@ import {IDropDownFieldViewProps} from "@steroidsjs/core/ui/form/DropDownField/Dr
 import InputFieldView from "../../form/InputField/InputFieldView";
 import OptionsList from "../..//shared/OptionsList";
 
-import styles from './DropDownFieldViewStyles';
 import {
     Image, TouchableNativeFeedback,
     TouchableWithoutFeedback,
@@ -14,7 +13,7 @@ import {
 
 interface IProps extends IDropDownFieldViewProps, IBemHocOutput {}
 
-@bem('DropDownFieldView', styles)
+@bem('DropDownFieldView')
 export default class DropDownFieldView extends React.PureComponent<IProps> {
 
     static defaultProps = {

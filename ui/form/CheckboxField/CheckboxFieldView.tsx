@@ -1,26 +1,25 @@
 import React from "react";
-import {Text, View} from "react-native";
-import CheckBox from "@react-native-community/checkbox";
+import {Text, View, Switch} from "react-native";
 import {bem} from "@steroidsjs/core/hoc";
 import {IBemHocOutput} from "@steroidsjs/core/hoc/bem";
 import {ICheckboxFieldProps} from "@steroidsjs/core/ui/form/CheckboxField/CheckboxField";
-import styles from './CheckboxFieldViewStyles'
 import Touchable from "../../../utils/Touchable/Touchable";
 
-@bem('CheckboxFieldView', styles)
+@bem('CheckboxFieldView')
 export default class CheckboxFieldView extends React.PureComponent <ICheckboxFieldProps & IBemHocOutput> {
     render() {
         const bem = this.props.bem;
         const {onChange, checked} = this.props.inputProps;
-        return (
+        return  (
             <View style={bem.block()}>
-                <CheckBox
-                    value={checked}
-                    onValueChange={onChange}
-                    tintColors={{
-                        true: bem.variable('checkboxSelectedBg'),
-                        false: bem.variable('checkboxSelectedBg')
+                <Switch
+                    trackColor={{
+                        false: bem.variable('trackSelectedFalseBg'),
+                        true: bem.variable('trackSelectedTrueBg')
                     }}
+                    thumbColor={checked ? bem.variable('thumbSelectedTrueBg') : bem.variable('thumbSelectedFalseBg')}
+                    onValueChange={onChange}
+                    value={checked}
                 />
                 <Touchable onPress={onChange}>
                     <Text style={bem.element('label')}>
@@ -28,6 +27,6 @@ export default class CheckboxFieldView extends React.PureComponent <ICheckboxFie
                     </Text>
                 </Touchable>
             </View>
-        )
+            )
     }
 }
