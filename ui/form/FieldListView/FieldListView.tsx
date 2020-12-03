@@ -3,7 +3,6 @@ import {bem} from '@steroidsjs/core/hoc';
 import {Text, View} from "react-native";
 import ButtonView from "../Button";
 
-import styles from './FieldListViewStyles';
 import {IBemHocOutput} from "@steroidsjs/core/hoc/bem";
 import {IFieldListViewProps} from "@steroidsjs/core/ui/form/FieldList/FieldList";
 
@@ -36,7 +35,7 @@ interface IProps extends IFieldListViewProps, IBemHocOutput{
     className: string,
 }
 
-@bem('FieldListView', styles)
+@bem('FieldListView')
 export default class FieldListView extends React.PureComponent<IProps> {
     render() {
         const bem = this.props.bem;

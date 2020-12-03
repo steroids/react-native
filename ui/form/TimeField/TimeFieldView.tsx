@@ -6,7 +6,6 @@ import DateTimePicker from '@react-native-community/datetimepicker';
 import moment from 'moment';
 import Icon from "@steroidsjs/core/ui/icon/Icon";
 
-import styles from './TimeFieldViewStyles';
 import {
     Platform,
     StyleProp,
@@ -29,7 +28,7 @@ interface IState {
     showPicker: boolean
 }
 
-@bem('TimeFieldView', styles)
+@bem('TimeFieldView')
 export default class TimeFieldView extends React.PureComponent<IProps, IState> {
     constructor (props) {
         super(props);

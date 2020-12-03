@@ -3,10 +3,9 @@ import {Text, View} from "react-native";
 import {IBemHocOutput} from "@steroidsjs/core/hoc/bem";
 import {ICheckboxListFieldViewProps} from "@steroidsjs/core/ui/form/CheckboxListField/CheckboxListField";
 import {bem} from "@steroidsjs/core/hoc";
-import styles from './CheckboxListFieldViewStyles'
 import Touchable from "../../../utils/Touchable";
 
-@bem('CheckboxListFieldView', styles)
+@bem('CheckboxListFieldView')
 export default class CheckboxListFieldView extends React.PureComponent <ICheckboxListFieldViewProps & IBemHocOutput> {
     render() {
         const bem = this.props.bem;

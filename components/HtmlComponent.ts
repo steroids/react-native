@@ -1,5 +1,6 @@
 import _flatten from 'lodash-es/flatten';
 import _merge from 'lodash-es/merge';
+import _isArray from 'lodash-es/isArray';
 
 export default class HtmlComponent {
     namespace = '';
@@ -43,6 +44,10 @@ export default class HtmlComponent {
     }
 
     addStyles(styles) {
+        if (_isArray(styles)) {
+            styles.map(style => this.addStyles(style));
+        }
+
         if (typeof styles === 'function') {
             this.classes = styles(this.variables, this.classes);
         } else {

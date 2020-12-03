@@ -4,7 +4,6 @@ export default (variables, classes) => {
 
         'InputFieldView': {
             flexDirection: 'row',
-            alignItems: 'center',
             overflow: 'hidden',
 
             backgroundColor: variables.inputBg,
@@ -28,22 +27,21 @@ export default (variables, classes) => {
         },
         'InputFieldView_size_sm': {
             borderRadius: variables.inputBorderRadiusSm,
-            paddingHorizontal: variables.inputPaddingXSm,
-            paddingVertical: variables.inputPaddingYSm,
+            // paddingHorizontal: variables.inputPaddingXSm,
+            // paddingVertical: variables.inputPaddingYSm,
         },
         'InputFieldView_size_md': {
             borderRadius: variables.inputBorderRadius,
-            paddingHorizontal: variables.inputPaddingX,
-            paddingVertical: variables.inputPaddingY,
+            // paddingHorizontal: variables.inputPaddingX,
+            // paddingVertical: variables.inputPaddingY,
         },
         'InputFieldView_size_lg': {
             borderRadius: variables.inputBorderRadiusLg,
-            paddingHorizontal: variables.inputPaddingXLg,
-            paddingVertical: variables.inputPaddingYLg,
+            // paddingHorizontal: variables.inputPaddingXLg,
+            // paddingVertical: variables.inputPaddingYLg,
         },
 
         'InputFieldView__input': {
-            flex: 1,
             color: variables.inputColor,
             // width: '100%',
         },
@@ -52,15 +50,15 @@ export default (variables, classes) => {
             marginTop: 10
         },
         'InputFieldView__input_size_sm': {
-            lineHeight: variables.inputLineHeightSm,
+            // lineHeight: variables.inputLineHeightSm,
             fontSize: variables.fontSizeBaseSm,
         },
         'InputFieldView__input_size_md': {
-            lineHeight: variables.inputLineHeight,
+            // lineHeight: variables.inputLineHeight,
             fontSize: variables.fontSizeBase,
         },
         'InputFieldView__input_size_lg': {
-            lineHeight: variables.inputLineHeightLg,
+            // lineHeight: variables.inputLineHeightLg,
             fontSize: variables.fontSizeBaseLg,
         },
         'InputFieldView__input_with-suffix': {},
@@ -87,6 +85,60 @@ export default (variables, classes) => {
         'InputFieldView__side-element_size_lg': {
             width: variables.inputIconSizeLg,
             height: variables.inputIconSizeLg,
+        },
+        'InputFieldView__addon_element_before': {
+            backgroundColor: variables.addonBackgroundColor,
+            justifyContent: 'center',
+            padding: 0,
+            borderRightWidth: variables.inputBorderWidth,
+            borderColor: variables.inputBorderColor,
+        },
+        'InputFieldView__addon_size_sm': {
+            paddingHorizontal: variables.inputPaddingXSm / 2,
+            paddingVertical: variables.inputPaddingYSm,
+        },
+        'InputFieldView__addon_size_md': {
+            paddingHorizontal: variables.inputPaddingX / 2,
+            paddingVertical: variables.inputPaddingY,
+        },
+        'InputFieldView__addon_size_lg': {
+            paddingHorizontal: variables.inputPaddingXLg / 2,
+            paddingVertical: variables.inputPaddingYLg,
+        },
+        'InputFieldView__addon_element_after': {
+            backgroundColor: variables.addonBackgroundColor,
+            justifyContent: 'center',
+            padding: 0,
+            borderLeftWidth: variables.inputBorderWidth,
+            borderColor: variables.inputBorderColor,
+        },
+        'InputFieldView__addon_size_sm': {
+            paddingHorizontal: variables.inputPaddingXSm / 2,
+            paddingVertical: variables.inputPaddingYSm,
+        },
+        'InputFieldView__addon_size_md': {
+            paddingHorizontal: variables.inputPaddingX / 2,
+            paddingVertical: variables.inputPaddingY,
+        },
+        'InputFieldView__addon_size_lg': {
+            paddingHorizontal: variables.inputPaddingXLg / 2,
+            paddingVertical: variables.inputPaddingYLg,
+        },
+        'InputFieldView__input-text': {
+            justifyContent: 'center',
+            flex: 1,
+        },
+        'InputFieldView__input-text_size_sm': {
+            paddingHorizontal: variables.inputPaddingXSm,
+            paddingVertical: variables.inputPaddingYSm,
+        },
+        'InputFieldView__input-text_size_md': {
+            paddingHorizontal: variables.inputPaddingX,
+            paddingVertical: variables.inputPaddingY,
+        },
+        'InputFieldView__input-text_size_lg': {
+            paddingHorizontal: variables.inputPaddingXLg,
+            paddingVertical: variables.inputPaddingYLg,
         },
     };
 

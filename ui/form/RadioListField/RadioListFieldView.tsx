@@ -6,7 +6,7 @@ import {IRadioListFieldViewProps} from "@steroidsjs/core/ui/form/RadioListField/
 import styles from './RadioFieldListViewStyles'
 import Touchable from "../../../utils/Touchable";
 
-@bem('RadioListFieldView', styles)
+@bem('RadioListFieldView')
 export default class RadioListFieldView extends React.PureComponent <IRadioListFieldViewProps & IBemHocOutput> {
     render() {
         const bem = this.props.bem;

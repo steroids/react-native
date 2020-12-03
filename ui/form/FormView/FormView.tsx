@@ -4,8 +4,6 @@ import {bem} from '@steroidsjs/core/hoc';
 import {IBemHocOutput} from "@steroidsjs/core/hoc/bem";
 import {StyleProp, View} from "react-native";
 
-import styles from './FormViewStyles';
-
 interface IProps extends IBemHocOutput{
     label: boolean | string,
     hint: boolean | string,
@@ -17,7 +15,7 @@ interface IProps extends IBemHocOutput{
     style?: StyleProp<any>
 }
 
-@bem('FormView', styles)
+@bem('FormView')
 export default class FormView extends React.PureComponent<IProps> {
     render() {
         const bem = this.props.bem;

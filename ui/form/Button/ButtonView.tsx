@@ -11,7 +11,6 @@ import {bem} from '@steroidsjs/core/hoc';
 import color from 'color';
 import {IButtonViewProps} from "@steroidsjs/core/ui/form/Button/Button";
 import {IBemHocOutput} from "@steroidsjs/core/hoc/bem";
-import styles from './ButtonViewStyles';
 import {Linking} from "expo";
 import getContrastColor from "../../../utils/getContrastColor";
 import Touchable from "../../../utils/Touchable";
@@ -24,7 +23,7 @@ interface IProps extends IButtonViewProps, IBemHocOutput {
 
 interface IState {}
 
-@bem('ButtonView', styles)
+@bem('ButtonView')
 export default class ButtonView extends React.PureComponent <IProps, IState>{
 
     static defaultProps = {
