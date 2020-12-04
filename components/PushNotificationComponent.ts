@@ -75,7 +75,7 @@ export default class PushNotificationComponent {
         const storedPushToken = await this._components.clientStorage.get(PUSH_TOKEN_STORAGE_KEY);
 
         if (storedPushToken && !this.forceGettingTokenAgain) {
-            return storedPushToken.token;
+            return storedPushToken;
         }
 
         const token = await Notifications.getExpoPushTokenAsync();
