@@ -66,10 +66,6 @@ export default (variables, classes) => {
             paddingLeft: 10,
         },
 
-        'InputFieldView__input_invalid': {
-            backgroundColor: variables.inputInvalidColor,
-        },
-
         'InputFieldView__input_disabled': {
             backgroundColor: variables.inputDisabledBg,
         },
