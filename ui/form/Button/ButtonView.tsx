@@ -15,6 +15,7 @@ import {Linking} from "expo";
 import getContrastColor from "../../../utils/getContrastColor";
 import Touchable from "../../../utils/Touchable";
 import Icon from '@steroidsjs/core/ui/icon/Icon/Icon';
+import safeRender from "../../../utils/safeRender";
 
 interface IProps extends IButtonViewProps, IBemHocOutput {
     style?: StyleProp<any>,
@@ -140,15 +141,21 @@ export default class ButtonView extends React.PureComponent <IProps, IState>{
                 }
                 {React.Children.count(this.props.children)
                 && (this.props.showLabelOnLoading || !this.props.isLoading) && (
-                    <Text
-                        numberOfLines={1}
-                        style={bem(
-                            bem.element('label-text', {size: this.props.size}),
-                            { color: this.textColor() }
-                        )}
-                    >
-                        {this.props.children}
-                    </Text>
+                    // <Text
+                    //     numberOfLines={1}
+                    //     style={bem(
+                    //         bem.element('label-text', {size: this.props.size}),
+                    //         { color: this.textColor() }
+                    //     )}
+                    // >
+                    //     {this.props.children}
+                    // </Text>
+                safeRender(this.props.children, {
+                    numberOfLines: 1,
+                    style: bem(bem.element('label-text', {size: this.props.size}),
+                            {color: this.textColor()}
+                        )
+                })
                 ) || null}
             </View>
         );

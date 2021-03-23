@@ -53,7 +53,7 @@ export default class FieldLayoutView extends React.PureComponent <IProps, IState
                         <Text style={bem(bem.element('label-text'))}>
                             {this.props.label + ':'}
                             {this.props.required &&
-                                <Text style={bem('text-danger')}>*</Text>
+                                <Text style={bem('text-error')}>*</Text>
                             }
                         </Text>
                     </View>
@@ -69,7 +69,7 @@ export default class FieldLayoutView extends React.PureComponent <IProps, IState
                     {this.props.errors && (
                         <View style={bem(bem.element('invalid-feedback'))}>
                             {[].concat(this.props.errors).map((error, index) => (
-                                <Text key={index} style={bem('text-danger w-100')}>{error}</Text>
+                                <Text key={index} style={bem('text-error w-100')}>{error}</Text>
                             ))}
                         </View>
                     )}

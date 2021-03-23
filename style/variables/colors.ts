@@ -22,39 +22,44 @@ export default custom => {
             yellow: '#ffc107',
             green: '#28a745',
             indigo: '#6610f2',
-            pyrple: '#6f42c1',
+            purple: '#6f42c1',
             pink: '#e83e8c',
             orange: '#fd7e14',
             teal: '#20c997',
 
-            ...customColors
+            ...customColors,
         },
-        themeColors: {}
+        themeColors: {},
     };
-    
-    palette.colors = {
-        ...palette.colors,
 
-        grays: {
-            '100': palette.colors.gray100,
-            '200': palette.colors.gray200,
-            '300': palette.colors.gray300,
-            '400': palette.colors.gray400,
-            '500': palette.colors.gray500,
-            '600': palette.colors.gray600,
-            '700': palette.colors.gray700,
-            '800': palette.colors.gray800,
-            '900': palette.colors.gray900,
-        },
-        primary: palette.colors.blue,
-        secondary: palette.colors.gray600,
-        success: palette.colors.green,
-        info: palette.colors.cyan,
-        warning: palette.colors.yellow,
-        danger: palette.colors.red,
-        light: palette.colors.gray100,
-        dark: palette.colors.gray800,
-    };
+    palette.colors = {
+        error: palette.colors.red,
+        ...palette.colors,
+    },
+
+        palette.colors = {
+            ...palette.colors,
+
+            grays: {
+                '100': palette.colors.gray100,
+                '200': palette.colors.gray200,
+                '300': palette.colors.gray300,
+                '400': palette.colors.gray400,
+                '500': palette.colors.gray500,
+                '600': palette.colors.gray600,
+                '700': palette.colors.gray700,
+                '800': palette.colors.gray800,
+                '900': palette.colors.gray900,
+            },
+            primary: palette.colors.blue,
+            secondary: palette.colors.gray600,
+            success: palette.colors.green,
+            info: palette.colors.cyan,
+            warning: palette.colors.yellow,
+            danger: palette.colors.red,
+            light: palette.colors.gray100,
+            dark: palette.colors.gray800,
+        };
 
     palette.themeColors = {
         primary: palette.colors.primary,
@@ -66,7 +71,7 @@ export default custom => {
         light: palette.colors.light,
         dark: palette.colors.dark,
 
-        ...customThemeColors
+        ...customThemeColors,
     };
 
     return palette;

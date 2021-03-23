@@ -66,6 +66,10 @@ export default (variables, classes) => {
             paddingLeft: 10,
         },
 
+        'InputFieldView__input_invalid': {
+            backgroundColor: variables.inputInvalidColor,
+        },
+
         'InputFieldView__input_disabled': {
             backgroundColor: variables.inputDisabledBg,
         },
@@ -83,7 +87,7 @@ export default (variables, classes) => {
             height: variables.inputIconSizeLg,
         },
         'InputFieldView__addon_element_before': {
-            backgroundColor: variables.inputAddonBackgroundColor,
+            backgroundColor: variables.addonBackgroundColor,
             justifyContent: 'center',
             padding: 0,
             borderRightWidth: variables.inputBorderWidth,
@@ -102,7 +106,7 @@ export default (variables, classes) => {
             paddingVertical: variables.inputPaddingYLg,
         },
         'InputFieldView__addon_element_after': {
-            backgroundColor: variables.inputAddonBackgroundColor,
+            backgroundColor: variables.addonBackgroundColor,
             justifyContent: 'center',
             padding: 0,
             borderLeftWidth: variables.inputBorderWidth,

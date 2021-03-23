@@ -278,6 +278,13 @@ export default custom => {
         checkboxThumbSelectedTrueBg: variables.colors.white,
         checkboxThumbSelectedFalseBg: variables.colors.white,
 
+        trackSelectedFalseBg: variables.themeColors.primary,
+        trackSelectedTrueBg: variables.themeColors.primary,
+        thumbSelectedTrueBg: variables.colors.white,
+        thumbSelectedFalseBg: variables.colors.white,
+
+        addonBackgroundColor: variables.colors.gray700,
+
         radioBg: variables.colors.gray700,
         radioSelectedBg: variables.themeColors.primary,
         radioLabelTextColor: variables.colors.white,
