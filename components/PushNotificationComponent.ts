@@ -1,31 +1,34 @@
 import {IComponents} from '@steroidsjs/core/hoc/components';
 import * as Permissions from "expo-permissions";
-import {Notifications} from "expo";
+import * as Notifications from "expo-notifications";
 import { EventSubscription } from 'fbemitter';
 import {Platform} from "react-native";
-import { Notification, Channel } from 'expo/build/Notifications/Notifications.types';
 
 const PUSH_TOKEN_STORAGE_KEY = 'expo-push-token';
 
 export default class PushNotificationComponent {
-    onMessage: (notification: Notification, components: IComponents) => {};
+    onReceive: (notification: Notifications.Notification, components: IComponents) => {};
+    onInteract: (notification: Notifications.NotificationResponse, components: IComponents) => {};
     saveTokenHandler: (token: string, components: IComponents) => {};
-    androidChannels: Channel[];
+    androidChannels: Array<Notifications.NotificationChannel>;
     forceGettingTokenAgain: boolean;
 
     _components: IComponents;
-    _subscription: EventSubscription;
+    _receiveSubscription: EventSubscription;
+    _interactSubscription: EventSubscription;
 
     constructor(components, config) {
-        this.onMessage = config.onMessage || null;
+        this.onReceive = config.onReceive || null;
+        this.onInteract = config.onInteract || null;
         this.saveTokenHandler = config.saveTokenHandler || null;
         this.forceGettingTokenAgain = config.forceGettingTokenAgain || false;
         this.androidChannels = config.androidChannels || [
             {
                 name: 'default',
-                sound: true,
-                priority: 'max',
-                vibrate: [0, 250, 250, 250],
+                importance: Notifications.AndroidImportance.MAX,
+                vibrationPattern: [0, 250, 250, 250],
+                lightColor: '#FFFFFF',
+                sound: 'default'
             }
         ];
 
@@ -38,7 +41,8 @@ export default class PushNotificationComponent {
     }
 
     unsubscribe() {
-        this._subscription.remove();
+        Notifications.removeNotificationSubscription(this._interactSubscription);
+        Notifications.removeNotificationSubscription(this._receiveSubscription);
     }
 
     async subscribe() {
@@ -50,13 +54,21 @@ export default class PushNotificationComponent {
 
         if (Platform.OS === 'android') {
             this.androidChannels.map(async (channel) => {
-                await Notifications.createChannelAndroidAsync(channel.name, channel);
+                await Notifications.setNotificationChannelAsync(channel.name, channel);
             })
         }
 
-        this._subscription = Notifications.addListener(
-            (notification: Notification) => this.onMessage(notification, this._components)
-        );
+        if (this.onReceive) {
+            Notifications.addNotificationReceivedListener(notification => {
+                this.onReceive(notification, this._components);
+            });
+        }
+
+        if (this.onInteract) {
+            Notifications.addNotificationResponseReceivedListener(notification => {
+                this.onInteract(notification, this._components);
+            });
+        }
     }
 
     async _getPermission() {
@@ -75,13 +87,13 @@ export default class PushNotificationComponent {
         const storedPushToken = await this._components.clientStorage.get(PUSH_TOKEN_STORAGE_KEY);
 
         if (storedPushToken && !this.forceGettingTokenAgain) {
-            return storedPushToken;
+            return storedPushToken.token;
         }
 
-        const token = await Notifications.getExpoPushTokenAsync();
+        const token:Notifications.ExpoPushToken = await Notifications.getExpoPushTokenAsync();
 
         if (this.saveTokenHandler) {
-            this.saveTokenHandler(token, this._components);
+            this.saveTokenHandler(token.data, this._components);
         }
 
         await this._components.clientStorage.set(PUSH_TOKEN_STORAGE_KEY, token);
