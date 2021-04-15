@@ -87,13 +87,15 @@ export default class PushNotificationComponent {
         const storedPushToken = await this._components.clientStorage.get(PUSH_TOKEN_STORAGE_KEY);
 
         if (storedPushToken && !this.forceGettingTokenAgain) {
-            return storedPushToken.token;
+            return storedPushToken;
         }
 
-        const token:Notifications.ExpoPushToken = await Notifications.getExpoPushTokenAsync();
+        const expoToken:Notifications.ExpoPushToken = await Notifications.getExpoPushTokenAsync();
+        const token = expoToken.data;
+
 
         if (this.saveTokenHandler) {
-            this.saveTokenHandler(token.data, this._components);
+            this.saveTokenHandler(token, this._components);
         }
 
         await this._components.clientStorage.set(PUSH_TOKEN_STORAGE_KEY, token);
