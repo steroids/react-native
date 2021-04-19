@@ -31,7 +31,7 @@ export default class FieldListItemView extends React.PureComponent<IProps> {
                         {(!this.props.required || this.props.rowIndex > 0) && (
                             <ButtonView
                                 style={bem(bem.element('remove-btn'))}
-                                icon={require('../../../assets/close-icon.png')}
+                                icon='closeIcon'
                                 onClick={() => this.props.onRemove(this.props.rowIndex)}
                                 color={'transparent'}
                                 size={'sm'}
