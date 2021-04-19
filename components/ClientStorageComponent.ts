@@ -1,5 +1,5 @@
 import * as SecureStore from 'expo-secure-store';
-import AsyncStorage from '@react-native-community/async-storage';
+import AsyncStorage from '@react-native-async-storage/async-storage';
 
 export const STORAGE_SECURE = 'secure';
 export const STORAGE_ASYNC = 'async';
