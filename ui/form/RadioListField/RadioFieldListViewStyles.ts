@@ -2,6 +2,9 @@ export default (variables, classes) => {
     classes = {
         ...classes,
         'RadioListFieldView': {
+            alignItems: 'flex-start',
+        },
+        'RadioListFieldView__group': {
             flexDirection: 'row',
             flexWrap: 'wrap',
             borderRadius: 10,
@@ -18,7 +21,7 @@ export default (variables, classes) => {
         'RadioListFieldView__label': {
             fontSize: 12,
             color: variables.radioLabelTextColor,
-        }
+        },
     };
 
     return classes;

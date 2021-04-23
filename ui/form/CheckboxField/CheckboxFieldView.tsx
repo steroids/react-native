@@ -1,9 +1,9 @@
-import React from "react";
-import {Text, View, Switch, StyleProp} from "react-native";
-import {bem} from "@steroidsjs/core/hoc";
-import {IBemHocOutput} from "@steroidsjs/core/hoc/bem";
-import {ICheckboxFieldProps} from "@steroidsjs/core/ui/form/CheckboxField/CheckboxField";
-import Touchable from "../../../utils/Touchable/Touchable";
+import React from 'react';
+import { Switch, Text, View } from 'react-native';
+import { bem } from '@steroidsjs/core/hoc';
+import { IBemHocOutput } from '@steroidsjs/core/hoc/bem';
+import { ICheckboxFieldProps } from '@steroidsjs/core/ui/form/CheckboxField/CheckboxField';
+import Touchable from '../../../utils/Touchable/Touchable';
 
 interface IProps extends ICheckboxFieldProps, IBemHocOutput {
     stylesContainer: any
@@ -15,12 +15,13 @@ export default class CheckboxFieldView extends React.PureComponent <IProps> {
     render() {
         const bem = this.props.bem;
         const {onChange, checked} = this.props.inputProps;
-        return  (
+        return (
             <View style={bem(bem.block(), this.props.stylesContainer)}>
                 <Switch
+                    disabled={this.props.disabled}
                     trackColor={{
                         false: bem.variable('trackSelectedFalseBg'),
-                        true: bem.variable('trackSelectedTrueBg')
+                        true: bem.variable('trackSelectedTrueBg'),
                     }}
                     thumbColor={checked ? bem.variable('thumbSelectedTrueBg') : bem.variable('thumbSelectedFalseBg')}
                     onValueChange={onChange}
@@ -32,6 +33,6 @@ export default class CheckboxFieldView extends React.PureComponent <IProps> {
                     </Text>
                 </Touchable>
             </View>
-            )
+        );
     }
 }
