@@ -28,8 +28,8 @@ export default class CheckboxFieldView extends React.PureComponent <IProps> {
                     onValueChange={onChange}
                     value={checked}
                 />
-                <Touchable {...this.props.textProps} onPress={onChange}>
-                    <Text style={bem(bem.element('label'), this.props.stylesText)}>
+                <Touchable onPress={onChange}>
+                    <Text {...this.props.textProps} style={bem(bem.element('label'), this.props.stylesText)}>
                         {this.props.label}
                     </Text>
                 </Touchable>
