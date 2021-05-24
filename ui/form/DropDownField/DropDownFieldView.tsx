@@ -1,17 +1,19 @@
 import React from 'react';
-import {bem} from '@steroidsjs/core/hoc';
-import {IBemHocOutput} from "@steroidsjs/core/hoc/bem";
-import {IDropDownFieldViewProps} from "@steroidsjs/core/ui/form/DropDownField/DropDownField";
-import InputFieldView from "../../form/InputField/InputFieldView";
-import OptionsList from "../..//shared/OptionsList";
+import { bem } from '@steroidsjs/core/hoc';
+import { IBemHocOutput } from '@steroidsjs/core/hoc/bem';
+import { IDropDownFieldViewProps } from '@steroidsjs/core/ui/form/DropDownField/DropDownField';
+import InputFieldView from '../../form/InputField/InputFieldView';
+import OptionsList from '../..//shared/OptionsList';
 
 import {
-    Image, TouchableNativeFeedback,
+    Image, TextInputProps, TouchableNativeFeedback,
     TouchableWithoutFeedback,
-    View
-} from "react-native";
+    View,
+} from 'react-native';
 
-interface IProps extends IDropDownFieldViewProps, IBemHocOutput {}
+interface IProps extends IDropDownFieldViewProps, IBemHocOutput {
+    inputProps: TextInputProps,
+}
 
 @bem('DropDownFieldView')
 export default class DropDownFieldView extends React.PureComponent<IProps> {
@@ -30,6 +32,7 @@ export default class DropDownFieldView extends React.PureComponent<IProps> {
         searchAutoFocus: false,
         multiple: false,
         autoComplete: false,
+        inputProps: null,
     };
 
     renderArrowIcon() {
@@ -75,7 +78,7 @@ export default class DropDownFieldView extends React.PureComponent<IProps> {
                             value={this.props.selectedItems.map(item => item.label).join((' '))}
                             isInvalid={this.props.isInvalid}
                             disabled={this.props.disabled}
-                            inputProps={null}
+                            inputProps={this.props.inputProps}
                         />
                     </View>
                 </TouchableWithoutFeedback>

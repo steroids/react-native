@@ -1,12 +1,16 @@
-import React from "react";
-import {Text, View} from "react-native";
-import {IBemHocOutput} from "@steroidsjs/core/hoc/bem";
-import {ICheckboxListFieldViewProps} from "@steroidsjs/core/ui/form/CheckboxListField/CheckboxListField";
-import {bem} from "@steroidsjs/core/hoc";
-import Touchable from "../../../utils/Touchable";
+import React from 'react';
+import { Text, TextProps, View } from 'react-native';
+import { IBemHocOutput } from '@steroidsjs/core/hoc/bem';
+import { ICheckboxListFieldViewProps } from '@steroidsjs/core/ui/form/CheckboxListField/CheckboxListField';
+import { bem } from '@steroidsjs/core/hoc';
+import Touchable from '../../../utils/Touchable';
+
+interface IProps extends ICheckboxListFieldViewProps, IBemHocOutput {
+    textProps: TextProps,
+}
 
 @bem('CheckboxListFieldView')
-export default class CheckboxListFieldView extends React.PureComponent <ICheckboxListFieldViewProps & IBemHocOutput> {
+export default class CheckboxListFieldView extends React.PureComponent <IProps> {
     render() {
         const bem = this.props.bem;
         return (
@@ -17,13 +21,13 @@ export default class CheckboxListFieldView extends React.PureComponent <ICheckbo
                         onPress={() => this.props.onItemClick(item)}
                     >
                         <View style={bem.element('item', {selected: item.isSelected})}>
-                            <Text style={bem.element('label')}>
+                            <Text {...this.props.textProps} style={bem.element('label')}>
                                 {item.label}
                             </Text>
                         </View>
                     </Touchable>
                 ))}
             </View>
-        )
+        );
     }
 }

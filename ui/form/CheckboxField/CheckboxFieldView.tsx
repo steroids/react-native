@@ -1,5 +1,5 @@
 import React from 'react';
-import { Switch, Text, View } from 'react-native';
+import { Switch, Text, View, TextProps } from 'react-native';
 import { bem } from '@steroidsjs/core/hoc';
 import { IBemHocOutput } from '@steroidsjs/core/hoc/bem';
 import { ICheckboxFieldProps } from '@steroidsjs/core/ui/form/CheckboxField/CheckboxField';
@@ -8,6 +8,7 @@ import Touchable from '../../../utils/Touchable/Touchable';
 interface IProps extends ICheckboxFieldProps, IBemHocOutput {
     stylesContainer: any
     stylesText: any
+    textProps: TextProps,
 }
 
 @bem('CheckboxFieldView')
@@ -27,7 +28,7 @@ export default class CheckboxFieldView extends React.PureComponent <IProps> {
                     onValueChange={onChange}
                     value={checked}
                 />
-                <Touchable onPress={onChange}>
+                <Touchable {...this.props.textProps} onPress={onChange}>
                     <Text style={bem(bem.element('label'), this.props.stylesText)}>
                         {this.props.label}
                     </Text>
