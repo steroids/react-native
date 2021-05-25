@@ -65,4 +65,37 @@ export default class ClientStorageComponent {
             }
         }
     }
+
+    /**
+     * @param {string} [storageName]
+     * @param {string} [clearKeys]
+     * TODO SecureStore API doesn't include clear all method
+     */
+    async clear(storageName = STORAGE_SECURE, clearKeys = []) {
+        if (storageName === STORAGE_SECURE) {
+            if (clearKeys.length) {
+                clearKeys.forEach(key => {
+                    this.remove(key);
+                });
+            } else {
+                //
+                console.warn('No keys were found for the cleaning all keys');
+            }
+            return;
+        }
+
+        if (storageName === STORAGE_ASYNC) {
+            if (clearKeys.length) {
+                clearKeys.forEach(key => {
+                    this.remove(key, STORAGE_ASYNC);
+                });
+            } else {
+                try {
+                    await AsyncStorage.clear()
+                } catch(e) {
+                    // clear error
+                }
+            }
+        }
+    }
 }
