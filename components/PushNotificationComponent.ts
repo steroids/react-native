@@ -102,4 +102,8 @@ export default class PushNotificationComponent {
 
         return token;
     }
+
+    deleteToken() {
+        this._components.clientStorage.remove(PUSH_TOKEN_STORAGE_KEY);
+    }
 }
