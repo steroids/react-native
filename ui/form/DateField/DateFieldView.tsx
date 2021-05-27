@@ -48,16 +48,29 @@ export default class DateFieldView extends React.PureComponent<IProps, IState> {
         disabled: false,
     };
 
-    showPicker() {
-        this.setState({showPicker: true});
+    togglePicker() {
+        this.setState(state => ({showPicker: !state.showPicker}));
     }
 
     setDate(event, date) {
-        // this is a proper way to hide picker according to the package's docs
-        this.setState({showPicker: Platform.OS === 'ios'});
+        // IOS doesn't include "event.type" field.
+        // IOS date field view can be different. Spinner or Compact(ios > 14). So "setDate" has different behavior
 
-        if (event.type && event.type === 'set') {
+        if (Platform.OS === 'ios') {
+            // https://github.com/react-native-datetimepicker/datetimepicker#display-optional
+            const isCompactViewByPlatform = Number.parseFloat(Platform.Version) >= 14;
+            const isDefaultDisplay =
+                typeof this.props.pickerProps.display === 'undefined' || this.props.pickerProps.display === 'default';
+            if (isCompactViewByPlatform && isDefaultDisplay) {
+                this.setState({showPicker: false});
+            }
             this.props.onChange(date);
+        } else {
+            this.setState({showPicker: false});
+
+            if (event.type && event.type === 'set') {
+                this.props.onChange(date);
+            }
         }
     }
 
@@ -67,7 +80,7 @@ export default class DateFieldView extends React.PureComponent<IProps, IState> {
             <View style={bem(bem.block(), this.props.style)}>
                 <TouchableWithoutFeedback
                     style={bem(bem.element('input'))}
-                    onPress={() => !this.props.disabled && this.showPicker()}
+                    onPress={() => !this.props.disabled && this.togglePicker()}
                 >
                     <View>
                         <InputFieldView
