@@ -7,11 +7,11 @@ import {Platform} from 'react-native';
 
 import {
     StyleProp,
+    TouchableWithoutFeedback,
     View
 } from "react-native";
 import {IDateFieldViewProps} from "@steroidsjs/core/ui/form/DateField/DateField";
 import Icon from "@steroidsjs/core/ui/icon/Icon";
-import Touchable from '../../../utils/Touchable';
 
 interface IProps extends IDateFieldViewProps, IBemHocOutput {
     required: boolean,
@@ -78,11 +78,11 @@ export default class DateFieldView extends React.PureComponent<IProps, IState> {
         const bem = this.props.bem;
         return (
             <View style={bem(bem.block(), this.props.style)}>
-                <Touchable
+                <TouchableWithoutFeedback
                     style={bem(bem.element('input'))}
                     onPress={() => !this.props.disabled && this.togglePicker()}
                 >
-                    <View pointerEvents='none'>
+                    <View pointerEvents='box-only'>
                         <InputFieldView
                             editable={false}
                             placeholder={this.props.placeholder}
@@ -99,7 +99,7 @@ export default class DateFieldView extends React.PureComponent<IProps, IState> {
                             inputProps={this.props.inputProps}
                         />
                     </View>
-                </Touchable>
+                </TouchableWithoutFeedback>
 
                 {this.state.showPicker && (
                     <DateTimePicker
