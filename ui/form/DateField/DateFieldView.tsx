@@ -53,18 +53,9 @@ export default class DateFieldView extends React.PureComponent<IProps, IState> {
         this.setState(state => ({showPicker: !state.showPicker}));
     }
 
-    setDate(event, date) {
-        // IOS doesn't include "event.type" field.
-        if (Platform.OS === 'ios') {
-            this.setState({showPicker: false});
-            this.props.onChange(date);
-        } else {
-            this.setState({showPicker: false});
-
-            if (event.type && event.type === 'set') {
-                this.props.onChange(date);
-            }
-        }
+    setDate(date) {
+        this.togglePicker();
+        this.props.onChange(date);
     }
 
     render() {
@@ -99,7 +90,7 @@ export default class DateFieldView extends React.PureComponent<IProps, IState> {
                     mode='date'
                     onConfirm={this.setDate}
                     onCancel={this.togglePicker}
-                    display={'spinner'}
+                    display={'default'}
                     cancelTextIOS={__('Закрыть')}
                     confirmTextIOS={__('Подтвердить')}
                     {...this.props.pickerProps}
