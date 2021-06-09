@@ -2,7 +2,7 @@ import React from 'react';
 import {bem} from '@steroidsjs/core/hoc';
 import {IBemHocOutput} from "@steroidsjs/core/hoc/bem";
 import InputFieldView from "../../form/InputField/InputFieldView";
-import DateTimePicker from '@react-native-community/datetimepicker';
+import DateTimePickerModal from "react-native-modal-datetime-picker";
 import {Platform} from 'react-native';
 
 import {
@@ -33,6 +33,7 @@ export default class DateFieldView extends React.PureComponent<IProps, IState> {
         super(props);
 
         this.setDate = this.setDate.bind(this);
+        this.togglePicker = this.togglePicker.bind(this);
 
         this.state = {
             showPicker: false,
@@ -54,16 +55,8 @@ export default class DateFieldView extends React.PureComponent<IProps, IState> {
 
     setDate(event, date) {
         // IOS doesn't include "event.type" field.
-        // IOS date field view can be different. Spinner or Compact(ios > 14). So "setDate" has different behavior
-
         if (Platform.OS === 'ios') {
-            // https://github.com/react-native-datetimepicker/datetimepicker#display-optional
-            const isCompactViewByPlatform = Number.parseFloat(Platform.Version) >= 14;
-            const isDefaultDisplay =
-                typeof this.props.pickerProps.display === 'undefined' || this.props.pickerProps.display === 'default';
-            if (isCompactViewByPlatform && isDefaultDisplay) {
-                this.setState({showPicker: false});
-            }
+            this.setState({showPicker: false});
             this.props.onChange(date);
         } else {
             this.setState({showPicker: false});
@@ -100,16 +93,17 @@ export default class DateFieldView extends React.PureComponent<IProps, IState> {
                         />
                     </View>
                 </TouchableWithoutFeedback>
-
-                {this.state.showPicker && (
-                    <DateTimePicker
-                        value={this.props.input.value ? new Date(this.props.input.value) : new Date()}
-                        mode={'date'}
-                        display="default"
-                        onChange={this.setDate}
-                        {...this.props.pickerProps}
-                    />
-                )}
+                <DateTimePickerModal
+                    value={this.props.input.value ? new Date(this.props.input.value) : new Date()}
+                    isVisible={this.state.showPicker}
+                    mode='date'
+                    onConfirm={this.setDate}
+                    onCancel={this.togglePicker}
+                    display={'spinner'}
+                    cancelTextIOS={__('Закрыть')}
+                    confirmTextIOS={__('Подтвердить')}
+                    {...this.props.pickerProps}
+                />
             </View>
         );
     }

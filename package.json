@@ -1,6 +1,6 @@
 {
   "name": "@steroidsjs/native",
-  "version": "2.0.0-beta.42",
+  "version": "2.0.0-beta.43",
   "description": "",
   "main": "index.js",
   "author": "Vladimir Kozhin <hello@kozhindev.com>",
@@ -32,6 +32,7 @@
     "expo-permissions": "~8.0.0",
     "expo-secure-store": "^8.1.0",
     "react-native-gesture-handler": "^1.10.3",
+    "react-native-modal-datetime-picker": "^10.0.0",
     "react-native-paper": "^3.6.0",
     "react-native-reanimated": "~2.1.0",
     "react-native-safe-area-context": "3.2.0"
