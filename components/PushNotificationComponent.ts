@@ -10,8 +10,10 @@ export default class PushNotificationComponent {
     onReceive: (notification: Notifications.Notification, components: IComponents) => {};
     onInteract: (notification: Notifications.NotificationResponse, components: IComponents) => {};
     saveTokenHandler: (token: string, components: IComponents) => {};
+    onUnsubscribe: (components: IComponents) => {};
     androidChannels: Array<Notifications.NotificationChannel>;
     forceGettingTokenAgain: boolean;
+    expoExperienceId: string;
 
     _components: IComponents;
     _receiveSubscription: EventSubscription;
@@ -22,6 +24,7 @@ export default class PushNotificationComponent {
         this.onInteract = config.onInteract || null;
         this.saveTokenHandler = config.saveTokenHandler || null;
         this.forceGettingTokenAgain = config.forceGettingTokenAgain || false;
+        this.expoExperienceId = config.expoExperienceId || false;
         this.androidChannels = config.androidChannels || [
             {
                 name: 'default',
@@ -40,9 +43,15 @@ export default class PushNotificationComponent {
         this._components = components;
     }
 
-    unsubscribe() {
+    async unsubscribe() {
         Notifications.removeNotificationSubscription(this._interactSubscription);
         Notifications.removeNotificationSubscription(this._receiveSubscription);
+
+        await this._components.clientStorage.remove(PUSH_TOKEN_STORAGE_KEY);
+
+        if (this.onUnsubscribe) {
+            this.onUnsubscribe(this._components);
+        }
     }
 
     async subscribe() {
@@ -90,7 +99,15 @@ export default class PushNotificationComponent {
             return storedPushToken;
         }
 
-        const expoToken:Notifications.ExpoPushToken = await Notifications.getExpoPushTokenAsync();
+        let params = {};
+
+        if (this.expoExperienceId) {
+            params = {
+                experienceId: this.expoExperienceId
+            }
+        }
+
+        const expoToken:Notifications.ExpoPushToken = await Notifications.getExpoPushTokenAsync(params);
         const token = expoToken.data;
 
 
@@ -101,9 +118,5 @@ export default class PushNotificationComponent {
         await this._components.clientStorage.set(PUSH_TOKEN_STORAGE_KEY, token);
 
         return token;
-    }
-
-    deleteToken() {
-        this._components.clientStorage.remove(PUSH_TOKEN_STORAGE_KEY);
     }
 }
