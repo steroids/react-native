@@ -25,6 +25,7 @@ export default class PushNotificationComponent {
         this.saveTokenHandler = config.saveTokenHandler || null;
         this.forceGettingTokenAgain = config.forceGettingTokenAgain || false;
         this.expoExperienceId = config.expoExperienceId || false;
+        this.onUnsubscribe = config.onUnsubscribe || false;
         this.androidChannels = config.androidChannels || [
             {
                 name: 'default',
