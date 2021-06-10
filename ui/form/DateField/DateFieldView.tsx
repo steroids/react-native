@@ -86,6 +86,7 @@ export default class DateFieldView extends React.PureComponent<IProps, IState> {
                 </TouchableWithoutFeedback>
                 <DateTimePickerModal
                     value={this.props.input.value ? new Date(this.props.input.value) : new Date()}
+                    date={this.props.input.value ? new Date(this.props.input.value) : new Date()} // initial date
                     isVisible={this.state.showPicker}
                     mode='date'
                     onConfirm={this.setDate}
