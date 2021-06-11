@@ -69,13 +69,13 @@ export default class PushNotificationComponent {
         }
 
         if (this.onReceive) {
-            Notifications.addNotificationReceivedListener(notification => {
+            this._interactSubscription = Notifications.addNotificationReceivedListener(notification => {
                 this.onReceive(notification, this._components);
             });
         }
 
         if (this.onInteract) {
-            Notifications.addNotificationResponseReceivedListener(notification => {
+            this._receiveSubscription = Notifications.addNotificationResponseReceivedListener(notification => {
                 this.onInteract(notification, this._components);
             });
         }
