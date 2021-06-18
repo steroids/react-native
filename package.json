@@ -1,6 +1,6 @@
 {
   "name": "@steroidsjs/native",
-  "version": "2.0.0-beta.45",
+  "version": "2.0.0-beta.46",
   "description": "",
   "main": "index.js",
   "author": "Vladimir Kozhin <hello@kozhindev.com>",
@@ -21,7 +21,7 @@
   "dependencies": {
     "@react-native-async-storage/async-storage": "^1.15.2",
     "@react-native-community/checkbox": "^0.5.0",
-    "@react-native-community/datetimepicker": "^2.2.3",
+    "@react-native-community/datetimepicker": "3.5.2",
     "@react-native-community/masked-view": "0.1.5",
     "@react-navigation/bottom-tabs": "5.11.11",
     "@react-navigation/drawer": "^5.12.5",
