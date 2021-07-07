@@ -1278,10 +1278,10 @@
   resolved "https://registry.yarnpkg.com/@react-native-community/checkbox/-/checkbox-0.5.5.tgz#2d980e9df794130b57b0637a787c945f78dea711"
   integrity sha512-EeP6w9z9sUvmaSAWQa+Wd+hTmGwxyJ5NHQ9LJ234kPNdplCNEQWPGv5BLezVICDkAw/iwHmHwBxUYKpX6LveRA==
 
-"@react-native-community/datetimepicker@^2.2.3":
-  version "2.3.0"
-  resolved "https://registry.yarnpkg.com/@react-native-community/datetimepicker/-/datetimepicker-2.3.0.tgz#fd3e430ef608a92af77f841f2a4593d8f03693c4"
-  integrity sha512-kEmhnvkVm0/WJxle2Oze1Wu5pSO65jeP6vdVJzglgQDI3X9bHUlId0JTKZPpDAB9nFUM8cp5X5RSR0KW0SbFsA==
+"@react-native-community/datetimepicker@3.5.2":
+  version "3.5.2"
+  resolved "https://registry.yarnpkg.com/@react-native-community/datetimepicker/-/datetimepicker-3.5.2.tgz#8e6feb30f2620e5abdf565d5fe74c0c04edcf6ae"
+  integrity sha512-TWRuAtr/DnrEcRewqvXMLea2oB+YF+SbtuYLHguALLxNJQLl/RFB7aTNZeF+OoH75zKFqtXECXV1/uxQUpA+sg==
   dependencies:
     invariant "^2.2.4"
 
