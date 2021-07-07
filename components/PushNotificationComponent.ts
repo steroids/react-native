@@ -1,8 +1,8 @@
 import {IComponents} from '@steroidsjs/core/hoc/components';
-import * as Permissions from "expo-permissions";
 import * as Notifications from "expo-notifications";
 import { EventSubscription } from 'fbemitter';
 import {Platform} from "react-native";
+import Constants from 'expo-constants';
 
 const PUSH_TOKEN_STORAGE_KEY = 'expo-push-token';
 
@@ -56,7 +56,9 @@ export default class PushNotificationComponent {
     }
 
     async subscribe() {
-        if (!this._getPermission()) {
+        const hasNotificationsPermission = await this._getPermission();
+
+        if (!hasNotificationsPermission) {
             return;
         }
 
@@ -82,15 +84,20 @@ export default class PushNotificationComponent {
     }
 
     async _getPermission() {
-        let permissionState = await Permissions.getAsync(Permissions.NOTIFICATIONS);
-        let {canAskAgain, status} = permissionState.permissions[Permissions.NOTIFICATIONS];
+        // push notifications only work on a physical device
+        if (Constants.isDevice) {
+            const { status: existingStatus } = await Notifications.getPermissionsAsync();
+            let finalStatus = existingStatus;
 
-        if (status !== 'granted' && canAskAgain) {
-            permissionState = await Permissions.askAsync(Permissions.NOTIFICATIONS);
-            status = permissionState.permissions[Permissions.NOTIFICATIONS].status;
+            if (existingStatus !== 'granted') {
+                const { status } = await Notifications.requestPermissionsAsync();
+                finalStatus = status;
+            }
+
+            return finalStatus === 'granted';
+        } else {
+            return false;
         }
-
-        return status === 'granted';
     }
 
     async _getAndSaveToken() {
