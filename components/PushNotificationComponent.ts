@@ -45,8 +45,13 @@ export default class PushNotificationComponent {
     }
 
     async unsubscribe() {
-        Notifications.removeNotificationSubscription(this._interactSubscription);
-        Notifications.removeNotificationSubscription(this._receiveSubscription);
+        if (this._interactSubscription) {
+            Notifications.removeNotificationSubscription(this._interactSubscription);
+        }
+
+        if (this._receiveSubscription) {
+            Notifications.removeNotificationSubscription(this._receiveSubscription);
+        }
 
         await this._components.clientStorage.remove(PUSH_TOKEN_STORAGE_KEY);
 
