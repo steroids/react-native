@@ -6,6 +6,10 @@ export default (variables, classes) => {
             alignItems: 'center'
         },
 
+        'CheckboxFieldView__text-wrapper': {
+            padding: 8,
+        },
+
         'CheckboxFieldView__label': {
             marginLeft: 8,
         },
