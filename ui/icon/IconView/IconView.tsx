@@ -1,4 +1,4 @@
-import React from 'react';
+import * as React from 'react';
 
 import {IIconViewProps} from '@steroidsjs/core/ui/icon/Icon';
 import {bem} from '@steroidsjs/core/hoc';

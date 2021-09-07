@@ -1,4 +1,4 @@
-import React from 'react';
+import * as React from 'react';
 import { bem } from '@steroidsjs/core/hoc';
 import { View, Text, TextProps } from 'react-native';
 import { IBemHocOutput } from '@steroidsjs/core/hoc/bem';

@@ -1,4 +1,4 @@
-import React from 'react';
+import * as React from 'react';
 import { Text, TextProps, View } from 'react-native';
 import { IBemHocOutput } from '@steroidsjs/core/hoc/bem';
 import { ICheckboxListFieldViewProps } from '@steroidsjs/core/ui/form/CheckboxListField/CheckboxListField';
