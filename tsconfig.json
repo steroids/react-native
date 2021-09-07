@@ -7,11 +7,6 @@
     "declaration": true,
     "isolatedModules": true,
     "outDir": "./dist",
-    "paths": {
-      "@steroidsjs/core/*": [
-        "../react/src/*"
-      ],
-    },
     "lib": [
       "DOM",
       "ES2016"
@@ -22,6 +17,5 @@
   },
   "include": [
     "src/**/*",
-    "node_modules/@steroidsjs/core/index.d.ts"
   ],
 }
