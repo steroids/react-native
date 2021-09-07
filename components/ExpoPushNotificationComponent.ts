@@ -6,7 +6,7 @@ import Constants from 'expo-constants';
 
 const PUSH_TOKEN_STORAGE_KEY = 'expo-push-token';
 
-export default class PushNotificationComponent {
+export default class ExpoPushNotificationComponent {
     onReceive: (notification: Notifications.Notification, components: IComponents) => {};
     onInteract: (notification: Notifications.NotificationResponse, components: IComponents) => {};
     saveTokenHandler: (token: string, components: IComponents) => {};
