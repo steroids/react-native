@@ -1,13 +1,13 @@
 import * as React from 'react';
 
-import bem from '../../../hoc/bemNative';
-import { IBemHocOutput } from '@steroidsjs/core/hoc/bem';
+import bem, { IBemHocOutput } from '../../../hoc/bemNative';
 import { Text, View } from 'react-native';
 
 import styles from './DetailViewStyles';
 
 interface IProps extends IBemHocOutput {
     styles: any,
+    items?: any,
 }
 
 @bem('DetailView', styles)
@@ -22,7 +22,7 @@ export default class DetailView extends React.PureComponent<IProps> {
         const bem = this.props.bem;
         return (
             <View style={bem(bem.block(), this.props.styles)}>
-                {this.props.items.map((item, index) => (
+                {this.props.items && this.props.items.map((item, index) => (
                     <View
                         key={item.attribute || index}
                         style={bem(bem.element('field-container'), 'row', this.props.styles)}

@@ -1,6 +1,5 @@
 import * as React from 'react';
-import bem from '../../../hoc/bemNative';
-import { IBemHocOutput } from '@steroidsjs/core/hoc/bem';
+import bem, { IBemHocOutput } from '../../../hoc/bemNative';
 import { IDropDownFieldViewProps } from '@steroidsjs/core/ui/form/DropDownField/DropDownField';
 import InputFieldView from '../InputField/InputFieldView';
 import OptionsList from '../..//shared/OptionsList';

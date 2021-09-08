@@ -1,16 +1,16 @@
 import * as React from 'react';
 import { Text, View, TextProps } from 'react-native';
-import bem from '../../../hoc/bemNative';
-import { IBemHocOutput } from '@steroidsjs/core/hoc/bem';
+import bem, { IBemHocOutput } from '../../../hoc/bemNative';
 import { IRadioListFieldViewProps } from '@steroidsjs/core/ui/form/RadioListField/RadioListField';
 import styles from './RadioFieldListViewStyles';
 import Touchable from '../../../utils/Touchable';
 
 interface IProps extends IRadioListFieldViewProps, IBemHocOutput {
     textProps: TextProps,
+    onItemClick: (item: any) => void,
 }
 
-@bem('RadioListFieldView')
+@bem('RadioListFieldView', styles)
 export default class RadioListFieldView extends React.PureComponent <IProps> {
     render() {
         const bem = this.props.bem;

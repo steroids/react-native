@@ -1,12 +1,12 @@
 import * as React from 'react';
 import { Text, TextProps, View } from 'react-native';
-import { IBemHocOutput } from '@steroidsjs/core/hoc/bem';
 import { ICheckboxListFieldViewProps } from '@steroidsjs/core/ui/form/CheckboxListField/CheckboxListField';
-import bem from '../../../hoc/bemNative';
+import bem, { IBemHocOutput } from '../../../hoc/bemNative';
 import Touchable from '../../../utils/Touchable';
 
 interface IProps extends ICheckboxListFieldViewProps, IBemHocOutput {
     textProps: TextProps,
+    onItemClick: (item: any) => void,
 }
 
 @bem('CheckboxListFieldView')

@@ -1,11 +1,11 @@
-import React from "react";
+import React from 'react';
 
-import bem from '../../../hoc/bemNative';
-import {IBemHocOutput} from "@steroidsjs/core/hoc/bem";
-import {IDateTimeFieldViewProps} from "@steroidsjs/core/ui/form/DateTimeField/DateTimeField";
-import {View} from "react-native";
+import bem, { IBemHocOutput } from '../../../hoc/bemNative';
+import { IDateTimeFieldViewProps } from '@steroidsjs/core/ui/form/DateTimeField/DateTimeField';
+import { View } from 'react-native';
 
 interface IProps extends IDateTimeFieldViewProps, IBemHocOutput {}
+
 interface IState {}
 
 @bem('DateTimeFieldView')

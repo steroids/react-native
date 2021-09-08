@@ -1,11 +1,12 @@
 import React from 'react';
-import bem from '../../../hoc/bemNative';
+import bem, { IBemHocOutput } from '../../../hoc/bemNative';
 import { View } from 'react-native';
-import { IBemHocOutput } from '@steroidsjs/core/hoc/bem';
 import { IFieldListItemViewProps } from '@steroidsjs/core/ui/form/FieldList/FieldList';
 import ButtonView from '../Button';
 
-interface IProps extends IFieldListItemViewProps, IBemHocOutput {}
+interface IProps extends IFieldListItemViewProps, IBemHocOutput {
+    renderField: any;
+}
 
 @bem('FieldListItemView')
 export default class FieldListItemView extends React.PureComponent<IProps> {

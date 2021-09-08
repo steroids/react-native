@@ -1,7 +1,6 @@
 import * as React from 'react';
-import bem from '../../../hoc/bemNative';
+import bem, { IBemHocOutput } from '../../../hoc/bemNative';
 import { View, Text, TextProps } from 'react-native';
-import { IBemHocOutput } from '@steroidsjs/core/hoc/bem';
 
 interface IProps extends IBemHocOutput {
     label: string | boolean;

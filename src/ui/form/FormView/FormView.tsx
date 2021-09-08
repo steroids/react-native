@@ -1,10 +1,9 @@
 import * as React from 'react';
 
-import bem from '../../../hoc/bemNative';
-import {IBemHocOutput} from "@steroidsjs/core/hoc/bem";
-import {StyleProp, View} from "react-native";
+import bem, { IBemHocOutput } from '../../../hoc/bemNative';
+import { StyleProp, View } from 'react-native';
 
-interface IProps extends IBemHocOutput{
+interface IProps extends IBemHocOutput {
     label: boolean | string,
     hint: boolean | string,
     required: boolean,

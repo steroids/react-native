@@ -1,17 +1,15 @@
 import * as React from 'react';
-import bem from '../../../hoc/bemNative';
-import {IBemHocOutput} from "@steroidsjs/core/hoc/bem";
-import InputFieldView from "../InputField/InputFieldView";
-import DateTimePickerModal from "react-native-modal-datetime-picker";
-import {Platform} from 'react-native';
+import bem, { IBemHocOutput } from '../../../hoc/bemNative';
+import InputFieldView from '../InputField/InputFieldView';
+import DateTimePickerModal from 'react-native-modal-datetime-picker';
 
 import {
     StyleProp,
     TouchableWithoutFeedback,
-    View
-} from "react-native";
-import {IDateFieldViewProps} from "@steroidsjs/core/ui/form/DateField/DateField";
-import Icon from "@steroidsjs/core/ui/icon/Icon";
+    View,
+} from 'react-native';
+import { IDateFieldViewProps } from '@steroidsjs/core/ui/form/DateField/DateField';
+import Icon from '@steroidsjs/core/ui/icon/Icon';
 
 interface IProps extends IDateFieldViewProps, IBemHocOutput {
     required: boolean,
@@ -24,12 +22,12 @@ interface IProps extends IDateFieldViewProps, IBemHocOutput {
 }
 
 interface IState {
-    showPicker: boolean
+    showPicker: boolean;
 }
 
 @bem('DateFieldView')
 export default class DateFieldView extends React.PureComponent<IProps, IState> {
-    constructor (props) {
+    constructor(props) {
         super(props);
 
         this.setDate = this.setDate.bind(this);
@@ -66,14 +64,14 @@ export default class DateFieldView extends React.PureComponent<IProps, IState> {
                     style={bem(bem.element('input'))}
                     onPress={() => !this.props.disabled && this.togglePicker()}
                 >
-                    <View pointerEvents='box-only'>
+                    <View pointerEvents="box-only">
                         <InputFieldView
                             autoFocus={false}
                             editable={false}
                             placeholder={this.props.placeholder}
                             suffixElement={
                                 <Icon
-                                    name='calendarIcon'
+                                    name="calendarIcon"
                                     style={bem.element('side-element', {size: this.props.size})}
                                 />
                             }
@@ -89,7 +87,7 @@ export default class DateFieldView extends React.PureComponent<IProps, IState> {
                     value={this.props.input.value ? new Date(this.props.input.value) : new Date()}
                     date={this.props.input.value ? new Date(this.props.input.value) : new Date()} // initial date
                     isVisible={this.state.showPicker}
-                    mode='date'
+                    mode="date"
                     onConfirm={this.setDate}
                     onCancel={this.togglePicker}
                     display={'default'}

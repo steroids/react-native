@@ -1,18 +1,17 @@
 import * as React from 'react';
-import bem from '../../../hoc/bemNative';
-import {IBemHocOutput} from "@steroidsjs/core/hoc/bem";
-import InputFieldView from "../InputField/InputFieldView";
+import bem, { IBemHocOutput } from '../../../hoc/bemNative';
+import InputFieldView from '../InputField/InputFieldView';
 import DateTimePicker from '@react-native-community/datetimepicker';
 import moment from 'moment';
-import Icon from "@steroidsjs/core/ui/icon/Icon";
+import Icon from '@steroidsjs/core/ui/icon/Icon';
 
 import {
     Platform,
     StyleProp,
     TouchableWithoutFeedback,
-    View
-} from "react-native";
-import {ITimeFieldViewProps} from "@steroidsjs/core/ui/form/TimeField/TimeField";
+    View,
+} from 'react-native';
+import { ITimeFieldViewProps } from '@steroidsjs/core/ui/form/TimeField/TimeField';
 
 interface IProps extends ITimeFieldViewProps, IBemHocOutput {
     required: boolean,
@@ -25,12 +24,12 @@ interface IProps extends ITimeFieldViewProps, IBemHocOutput {
 }
 
 interface IState {
-    showPicker: boolean
+    showPicker: boolean;
 }
 
 @bem('TimeFieldView')
 export default class TimeFieldView extends React.PureComponent<IProps, IState> {
-    constructor (props) {
+    constructor(props) {
         super(props);
 
         this.setTime = this.setTime.bind(this);
@@ -78,7 +77,7 @@ export default class TimeFieldView extends React.PureComponent<IProps, IState> {
                             placeholder={this.props.placeholder}
                             suffixElement={
                                 <Icon
-                                    name='clockIcon'
+                                    name="clockIcon"
                                     style={bem.element('side-element', {size: this.props.size})}
                                 />
                             }
