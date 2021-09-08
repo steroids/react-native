@@ -2,7 +2,7 @@ import * as React from 'react';
 import { bem } from '@steroidsjs/core/hoc';
 import { IBemHocOutput } from '@steroidsjs/core/hoc/bem';
 import { IDropDownFieldViewProps } from '@steroidsjs/core/ui/form/DropDownField/DropDownField';
-import InputFieldView from '../../form/InputField/InputFieldView';
+import InputFieldView from '../InputField/InputFieldView';
 import OptionsList from '../..//shared/OptionsList';
 
 import {
