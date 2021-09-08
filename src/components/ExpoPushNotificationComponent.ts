@@ -1,8 +1,11 @@
 import { IComponents } from '@steroidsjs/core/hooks/useComponents';
 import * as Notifications from 'expo-notifications';
-import { Subscription } from '@unimodules/core';
 import { Platform } from 'react-native';
 import Constants from 'expo-constants';
+
+type Subscription = {
+    remove: () => void;
+};
 
 const PUSH_TOKEN_STORAGE_KEY = 'expo-push-token';
 
