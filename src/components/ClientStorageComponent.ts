@@ -1,4 +1,4 @@
-import * as SecureStore from 'expo-secure-store';
+// import * as SecureStore from 'expo-secure-store';
 import AsyncStorage from '@react-native-async-storage/async-storage';
 
 export const STORAGE_SECURE = 'secure';
@@ -12,9 +12,9 @@ export default class ClientStorageComponent {
      * @returns {*}
      */
     async get(name, storageName = STORAGE_SECURE) {
-        if (storageName === STORAGE_SECURE) {
-            return await SecureStore.getItemAsync(name);
-        }
+        // if (storageName === STORAGE_SECURE) {
+        //     return await SecureStore.getItemAsync(name);
+        // }
 
         if (storageName === STORAGE_ASYNC) {
             try {
@@ -35,9 +35,9 @@ export default class ClientStorageComponent {
      * TODO expires isn't supported by SecureStore
      */
     async set(name, value, storageName = STORAGE_SECURE, expires = null) {
-        if (storageName === STORAGE_SECURE) {
-            await SecureStore.setItemAsync(name, value);
-        }
+        // if (storageName === STORAGE_SECURE) {
+        //     await SecureStore.setItemAsync(name, value);
+        // }
 
         if (storageName === STORAGE_ASYNC) {
             try {
@@ -53,9 +53,9 @@ export default class ClientStorageComponent {
      * @param {string} [storageName]
      */
     async remove(name, storageName = STORAGE_SECURE) {
-        if (storageName === STORAGE_SECURE) {
-            await SecureStore.deleteItemAsync(name);
-        }
+        // if (storageName === STORAGE_SECURE) {
+        //     await SecureStore.deleteItemAsync(name);
+        // }
 
         if (storageName === STORAGE_ASYNC) {
             try {
