@@ -1,20 +1,19 @@
 {
   "compilerOptions": {
-    "jsx": "react",
+    "allowSyntheticDefaultImports": true,
+    "jsx": "react-native",
+    "resolveJsonModule": true,
+    "skipLibCheck": true,
     "experimentalDecorators": true,
     "esModuleInterop": true,
     "baseUrl": ".",
     "declaration": true,
     "isolatedModules": true,
     "outDir": "./dist",
-    "paths": {
-      "@steroidsjs/core/*": [
-        "../react/src/*"
-      ],
-    },
+    "noEmit": true,
     "lib": [
       "DOM",
-      "ES2016"
+      "ESNext"
     ],
     "types": [
       "node"
@@ -23,5 +22,6 @@
   "include": [
     "src/**/*",
     "node_modules/@steroidsjs/core/index.d.ts"
-  ],
+  ]
 }
+
