@@ -86,7 +86,6 @@ export default class DropDownFieldView extends React.PureComponent<IProps> {
                 </TouchableWithoutFeedback>
 
                 {this.props.isOpened && (
-                    // @ts-ignore
                     <OptionsList
                         items={this.props.items}
                         selectedItems={this.props.selectedItems}

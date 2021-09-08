@@ -55,7 +55,6 @@ export default class AutoCompleteFieldView extends React.PureComponent<IProps> {
                 </TouchableWithoutFeedback>
 
                 {this.props.isOpened && (
-                    // @ts-ignore
                     <OptionsList
                         items={itemsFormatted}
                         selectedItems={this.props.selectedItems}

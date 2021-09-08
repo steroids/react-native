@@ -47,7 +47,7 @@ interface IProps extends IBemHocOutput {
 }
 
 @bem('OptionsList', styles)
-export default class OptionsList extends React.PureComponent<IProps> {
+export default class OptionsList extends React.PureComponent<any> {
 
     static defaultProps = {
         placeholderText: __('Поиск...'),
