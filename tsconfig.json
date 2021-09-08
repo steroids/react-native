@@ -1,7 +1,8 @@
 {
   "compilerOptions": {
-    "allowSyntheticDefaultImports": true,
     "jsx": "react-native",
+    "outDir": "./dist",
+    "allowSyntheticDefaultImports": true,
     "resolveJsonModule": true,
     "skipLibCheck": true,
     "experimentalDecorators": true,
@@ -9,8 +10,6 @@
     "baseUrl": ".",
     "declaration": true,
     "isolatedModules": true,
-    "outDir": "./dist",
-    "noEmit": true,
     "lib": [
       "DOM",
       "ESNext"
