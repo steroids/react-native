@@ -1,5 +1,5 @@
 import * as React from 'react';
-import { bem } from '@steroidsjs/core/hoc';
+import bem from '../../../hoc/bemNative';
 import { IBemHocOutput } from '@steroidsjs/core/hoc/bem';
 import { IDropDownFieldViewProps } from '@steroidsjs/core/ui/form/DropDownField/DropDownField';
 import InputFieldView from '../InputField/InputFieldView';
@@ -13,6 +13,7 @@ import {
 
 interface IProps extends IDropDownFieldViewProps, IBemHocOutput {
     inputProps: TextInputProps,
+    items: any,
 }
 
 @bem('DropDownFieldView')
@@ -67,6 +68,7 @@ export default class DropDownFieldView extends React.PureComponent<IProps> {
                 >
                     <View>
                         <InputFieldView
+                            autoFocus={false}
                             editable={false}
                             placeholder={this.props.placeholder}
                             suffixElement={
@@ -84,6 +86,7 @@ export default class DropDownFieldView extends React.PureComponent<IProps> {
                 </TouchableWithoutFeedback>
 
                 {this.props.isOpened && (
+                    // @ts-ignore
                     <OptionsList
                         items={this.props.items}
                         selectedItems={this.props.selectedItems}

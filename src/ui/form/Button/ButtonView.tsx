@@ -1,16 +1,14 @@
 import * as React from 'react';
 import {
     View,
-    Text,
     ActivityIndicator,
     TouchableNativeFeedback,
     Platform,
-    Image, StyleProp
+    StyleProp
 } from 'react-native';
-import {bem} from '@steroidsjs/core/hoc';
+import bem, {IBemHocOutput} from '../../../hoc/bemNative';
 import color from 'color';
 import {IButtonViewProps} from "@steroidsjs/core/ui/form/Button/Button";
-import {IBemHocOutput} from "@steroidsjs/core/hoc/bem";
 import {Linking} from "expo";
 import getContrastColor from "../../../utils/getContrastColor";
 import Touchable from "../../../utils/Touchable";

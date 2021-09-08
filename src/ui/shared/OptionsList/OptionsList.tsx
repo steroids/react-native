@@ -1,5 +1,5 @@
-import {bem} from "@steroidsjs/core/hoc";
-import React, {ReactNode} from "react";
+import bem from '../../../hoc/bemNative';
+import React, { ReactNode } from 'react';
 import {
     FlatList, ImageSourcePropType,
     KeyboardAvoidingView,
@@ -8,12 +8,12 @@ import {
     SafeAreaView,
     Text,
     TouchableOpacity, TouchableWithoutFeedback,
-    View
-} from "react-native";
-import InputFieldView from "../../form/InputField/InputFieldView";
-import ButtonView from "../../form/Button/ButtonView";
+    View,
+} from 'react-native';
+import InputFieldView from '../../form/InputField/InputFieldView';
+import ButtonView from '../../form/Button/ButtonView';
 import styles from './OptionsListStyles';
-import {IBemHocOutput} from "@steroidsjs/core/hoc/bem";
+import { IBemHocOutput } from '@steroidsjs/core/hoc/bem';
 
 interface IProps extends IBemHocOutput {
     items: {
@@ -26,8 +26,8 @@ interface IProps extends IBemHocOutput {
         id: number | string | boolean,
         label?: string
     }[];
-    onClose: () => void,
-    onItemClick: (item: any) => void,
+    onClose?: () => void,
+    onItemClick?: (item: any) => void,
     placeholderText: string,
     searchInputProps: {
         type: string,
@@ -35,7 +35,7 @@ interface IProps extends IBemHocOutput {
         onChange: (value: string) => void,
         value: string | number,
         placeholder: string,
-        disabled: string,
+        disabled: boolean,
     },
     noResultsText: string,
     cancelButtonText: string
@@ -60,7 +60,7 @@ export default class OptionsList extends React.PureComponent<IProps> {
         items: [],
         selectRequired: true,
         appearanceType: 'none',
-        focusInputOnOpen: false
+        focusInputOnOpen: false,
     };
 
     static keyExtractor(item, index) {
@@ -85,7 +85,7 @@ export default class OptionsList extends React.PureComponent<IProps> {
                 >
 
                     <TouchableWithoutFeedback onPress={onClose}>
-                        <View style={bem(bem.element('overlay2'))} />
+                        <View style={bem(bem.element('overlay2'))}/>
                     </TouchableWithoutFeedback>
 
                     <SafeAreaView style={bem(bem.block())}>
@@ -96,7 +96,7 @@ export default class OptionsList extends React.PureComponent<IProps> {
                     </SafeAreaView>
                 </KeyboardAvoidingView>
             </Modal>
-        )
+        );
     }
 
     renderList = () => {
@@ -121,7 +121,7 @@ export default class OptionsList extends React.PureComponent<IProps> {
                 {filter}
                 {this.renderOptionList()}
             </View>
-        )
+        );
     };
 
     renderOptionList = () => {
@@ -144,14 +144,14 @@ export default class OptionsList extends React.PureComponent<IProps> {
                     </View>
                 }
             />
-        )
+        );
     };
 
     isSelected(checkingItem) {
         return Boolean(this.props.selectedItems.find(item => item.id === checkingItem.id));
     }
 
-    renderOption = ({ item }) => {
+    renderOption = ({item}) => {
         const bem = this.props.bem;
         return (
             <TouchableOpacity
@@ -163,7 +163,7 @@ export default class OptionsList extends React.PureComponent<IProps> {
                     {item.label}
                 </Text>
             </TouchableOpacity>
-        )
+        );
     };
 
     renderCloseButton = () => {
@@ -173,6 +173,7 @@ export default class OptionsList extends React.PureComponent<IProps> {
         const showCancel = !this.props.selectedItems.length && this.props.selectRequired;
         return (
             <ButtonView
+                showLabelOnLoading
                 onClick={this.props.onClose}
                 size={'md'}
                 color={showCancel ? 'gray' : 'primary'}
@@ -180,6 +181,6 @@ export default class OptionsList extends React.PureComponent<IProps> {
             >
                 {showCancel ? cancelButtonText : readyButtonText}
             </ButtonView>
-        )
+        );
     };
 }

@@ -1,8 +1,7 @@
-import React, {ReactNode} from 'react';
-import {Image, ImageSourcePropType, StyleProp, TextInput, View} from 'react-native';
-import {bem} from '@steroidsjs/core/hoc';
-import {IInputFieldViewProps} from "@steroidsjs/core/ui/form/InputField/InputField";
-import {IBemHocOutput} from "@steroidsjs/core/hoc/bem";
+import React, { ReactNode } from 'react';
+import { Image, ImageSourcePropType, StyleProp, TextInput, View } from 'react-native';
+import bem, { IBemHocOutput } from '../../../hoc/bemNative';
+import { IInputFieldViewProps } from '@steroidsjs/core/ui/form/InputField/InputField';
 import styles from './InputFieldViewStyles';
 
 type KeyboardTypes = 'default' | 'number-pad' | 'decimal-pad' | 'numeric' | 'email-address' | 'phone-pad';
@@ -23,20 +22,21 @@ interface IRNInputFieldViewProps extends IInputFieldViewProps, IBemHocOutput {
     editable?: boolean,
     value?: string | number,
     autoFocus: boolean
+    inputProps: any,
 }
 
 interface IState {
-    focused: Boolean
+    focused: Boolean;
 }
 
-@bem('InputFieldView')
+@bem('InputFieldView', styles)
 export default class InputFieldView extends React.PureComponent<IRNInputFieldViewProps, IState> {
 
     constructor(props: any) {
         super(props);
 
         this.state = {
-            focused: false
+            focused: false,
         };
     }
 
@@ -44,8 +44,8 @@ export default class InputFieldView extends React.PureComponent<IRNInputFieldVie
         type: 'text',
         disabled: false,
         required: false,
-        className: "",
-        placeholder: "",
+        className: '',
+        placeholder: '',
         errors: [],
         size: 'md',
         keyboardType: 'default',
@@ -55,7 +55,7 @@ export default class InputFieldView extends React.PureComponent<IRNInputFieldVie
         multiline: false,
         editable: true,
         value: null,
-        autoFocus: false
+        autoFocus: false,
     };
 
     renderSideAddonElement(component: ImageSourcePropType | ReactNode, element: 'before' | 'after') {
@@ -66,7 +66,7 @@ export default class InputFieldView extends React.PureComponent<IRNInputFieldVie
                 <View style={bem.element('addon', {element, size: this.props.size})}>
                     {component}
                 </View>
-            )
+            );
         }
 
         return (
@@ -76,7 +76,7 @@ export default class InputFieldView extends React.PureComponent<IRNInputFieldVie
                     source={component as ImageSourcePropType}
                 />
             </View>
-        )
+        );
     }
 
     renderSideTextElement(component: ImageSourcePropType | ReactNode) {
@@ -91,7 +91,7 @@ export default class InputFieldView extends React.PureComponent<IRNInputFieldVie
                 style={bem(bem.element('side-element', {size: this.props.size}))}
                 source={component as ImageSourcePropType}
             />
-        )
+        );
     }
 
     render() {
@@ -105,7 +105,7 @@ export default class InputFieldView extends React.PureComponent<IRNInputFieldVie
                         disabled: this.props.disabled,
                         focused: this.state.focused,
                     }),
-                    this.props.style
+                    this.props.style,
                 )}
             >
                 {this.props.addonBefore && this.renderSideAddonElement(this.props.addonBefore, 'before')}
@@ -117,10 +117,10 @@ export default class InputFieldView extends React.PureComponent<IRNInputFieldVie
                                 invalid: this.props.isInvalid,
                                 disabled: this.props.disabled,
                                 size: this.props.size,
-                                multiline: Boolean(this.props.multiline)
-                            })
+                                multiline: Boolean(this.props.multiline),
+                            }),
                         )}
-                        placeholderTextColor={bem.variable('inputPlaceholderColor')}
+                        placeholderTextColor={bem.variables('inputPlaceholderColor')}
                         {...this.props.inputProps}
                         secureTextEntry={this.props.type === 'password'}
                         autoFocus={this.props.autoFocus}

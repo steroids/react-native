@@ -1,7 +1,7 @@
-import {IComponents} from '@steroidsjs/core/hoc/components';
-import * as Notifications from "expo-notifications";
-import { EventSubscription } from 'fbemitter';
-import {Platform} from "react-native";
+import { IComponents } from '@steroidsjs/core/hooks/useComponents';
+import * as Notifications from 'expo-notifications';
+import { Subscription } from '@unimodules/core';
+import { Platform } from 'react-native';
 import Constants from 'expo-constants';
 
 const PUSH_TOKEN_STORAGE_KEY = 'expo-push-token';
@@ -16,8 +16,8 @@ export default class ExpoPushNotificationComponent {
     expoExperienceId: string;
 
     _components: IComponents;
-    _receiveSubscription: EventSubscription;
-    _interactSubscription: EventSubscription;
+    _receiveSubscription: Subscription;
+    _interactSubscription: Subscription;
 
     constructor(components, config) {
         this.onReceive = config.onReceive || null;
@@ -32,8 +32,8 @@ export default class ExpoPushNotificationComponent {
                 importance: Notifications.AndroidImportance.MAX,
                 vibrationPattern: [0, 250, 250, 250],
                 lightColor: '#FFFFFF',
-                sound: 'default'
-            }
+                sound: 'default',
+            },
         ];
 
         this._getPermission = this._getPermission.bind(this);
@@ -72,7 +72,7 @@ export default class ExpoPushNotificationComponent {
         if (Platform.OS === 'android') {
             this.androidChannels.map(async (channel) => {
                 await Notifications.setNotificationChannelAsync(channel.name, channel);
-            })
+            });
         }
 
         if (this.onReceive) {
@@ -91,11 +91,11 @@ export default class ExpoPushNotificationComponent {
     async _getPermission() {
         // push notifications only work on a physical device
         if (Constants.isDevice) {
-            const { status: existingStatus } = await Notifications.getPermissionsAsync();
+            const {status: existingStatus} = await Notifications.getPermissionsAsync();
             let finalStatus = existingStatus;
 
             if (existingStatus !== 'granted') {
-                const { status } = await Notifications.requestPermissionsAsync();
+                const {status} = await Notifications.requestPermissionsAsync();
                 finalStatus = status;
             }
 
@@ -116,11 +116,11 @@ export default class ExpoPushNotificationComponent {
 
         if (this.expoExperienceId) {
             params = {
-                experienceId: this.expoExperienceId
-            }
+                experienceId: this.expoExperienceId,
+            };
         }
 
-        const expoToken:Notifications.ExpoPushToken = await Notifications.getExpoPushTokenAsync(params);
+        const expoToken: Notifications.ExpoPushToken = await Notifications.getExpoPushTokenAsync(params);
         const token = expoToken.data;
 
 

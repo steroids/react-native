@@ -1,12 +1,11 @@
-import React from 'react'
-import {View, Text} from 'react-native'
+import React from 'react';
+import { View, Text } from 'react-native';
 
-import {bem} from "@steroidsjs/core/hoc";
-import {IBemHocOutput} from "@steroidsjs/core/hoc/bem";
-import {INotificationsItemViewProps} from "@steroidsjs/core/ui/layout/Notifications/Notifications";
-import styles from './NotificationItemViewStyle'
-import getContrastColor from "../../../utils/getContrastColor";
-import Button from "@steroidsjs/core/ui/form/Button";
+import bem, { IBemHocOutput } from '../../../hoc/bemNative';
+import { INotificationsItemViewProps } from '@steroidsjs/core/ui/layout/Notifications/Notifications';
+import styles from './NotificationItemViewStyle';
+import getContrastColor from '../../../utils/getContrastColor';
+import Button from '@steroidsjs/core/ui/form/Button';
 
 @bem('NotificationItemView', styles)
 export default class NotificationItemView extends React.Component<INotificationsItemViewProps & IBemHocOutput> {
@@ -24,13 +23,13 @@ export default class NotificationItemView extends React.Component<INotifications
                 <Text style={bem(bem.element('text'), {color: colorText})}>{this.props.message}</Text>
                 <Button
                     style={bem.element('button', {color: colorText})}
-                    size='sm'
+                    size="sm"
                     color={this.props.level}
                     onClick={this.props.onClose}
-                    icon='closeIcon'
+                    icon="closeIcon"
                     iconProps={{tintColor: colorText}}
                 />
             </View>
-        )
+        );
     }
 }

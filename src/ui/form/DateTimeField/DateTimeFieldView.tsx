@@ -1,6 +1,6 @@
 import React from "react";
 
-import {bem} from '@steroidsjs/core/hoc';
+import bem from '../../../hoc/bemNative';
 import {IBemHocOutput} from "@steroidsjs/core/hoc/bem";
 import {IDateTimeFieldViewProps} from "@steroidsjs/core/ui/form/DateTimeField/DateTimeField";
 import {View} from "react-native";

@@ -1,13 +1,14 @@
 import * as React from 'react';
 
-import {IIconViewProps} from '@steroidsjs/core/ui/icon/Icon';
-import {bem} from '@steroidsjs/core/hoc';
-import {IBemHocOutput} from '@steroidsjs/core/hoc/bem';
-import {Image, StyleProp} from "react-native";
+import { IIconViewProps } from '@steroidsjs/core/ui/icon/Icon/Icon';
+import bem from '../../../hoc/bemNative';
+import { IBemHocOutput } from '@steroidsjs/core/hoc/bem';
+import { Image, StyleProp } from 'react-native';
 
 interface IIconViewInnerProps extends IIconViewProps, IBemHocOutput {
     style?: StyleProp<any>;
     iconProps: any;
+    icon: any,
 }
 
 @bem('IconView')

@@ -1,14 +1,17 @@
 import * as React from 'react';
 
-import {bem} from '@steroidsjs/core/hoc';
-import {IBemHocOutput} from '@steroidsjs/core/hoc/bem';
-import {IDetailViewProps} from '@steroidsjs/core/ui/list/Detail/Detail';
-import {Text, View} from "react-native";
+import bem from '../../../hoc/bemNative';
+import { IBemHocOutput } from '@steroidsjs/core/hoc/bem';
+import { Text, View } from 'react-native';
 
 import styles from './DetailViewStyles';
 
+interface IProps extends IBemHocOutput {
+    styles: any,
+}
+
 @bem('DetailView', styles)
-export default class DetailView extends React.PureComponent<IDetailViewProps & IBemHocOutput> {
+export default class DetailView extends React.PureComponent<IProps> {
     renderSafely(value, attributes = {}) {
         return !(React.isValidElement(value) || typeof value === 'function')
             ? <Text {...attributes}>{value}</Text>

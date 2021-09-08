@@ -1,5 +1,5 @@
 import * as React from 'react';
-import { bem } from '@steroidsjs/core/hoc';
+import bem from '../../../hoc/bemNative';
 import { View, Text, TextProps } from 'react-native';
 import { IBemHocOutput } from '@steroidsjs/core/hoc/bem';
 
@@ -8,7 +8,7 @@ interface IProps extends IBemHocOutput {
     hint: string | boolean;
     errors: string | string[] | false;
     required: boolean;
-    layout: FormLayout;
+    layout: any;
     layoutProps: any;
     size: Size;
     layoutstyle: string | false;

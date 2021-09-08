@@ -2,7 +2,7 @@ import * as React from 'react';
 import { Text, TextProps, View } from 'react-native';
 import { IBemHocOutput } from '@steroidsjs/core/hoc/bem';
 import { ICheckboxListFieldViewProps } from '@steroidsjs/core/ui/form/CheckboxListField/CheckboxListField';
-import { bem } from '@steroidsjs/core/hoc';
+import bem from '../../../hoc/bemNative';
 import Touchable from '../../../utils/Touchable';
 
 interface IProps extends ICheckboxListFieldViewProps, IBemHocOutput {
@@ -17,7 +17,6 @@ export default class CheckboxListFieldView extends React.PureComponent <IProps> 
             <View style={bem.block()}>
                 {this.props.items.map(item => (
                     <Touchable
-                        key={item.id}
                         onPress={() => this.props.onItemClick(item)}
                     >
                         <View style={bem.element('item', {selected: item.isSelected})}>

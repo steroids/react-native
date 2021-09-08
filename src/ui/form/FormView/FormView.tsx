@@ -1,6 +1,6 @@
 import * as React from 'react';
 
-import {bem} from '@steroidsjs/core/hoc';
+import bem from '../../../hoc/bemNative';
 import {IBemHocOutput} from "@steroidsjs/core/hoc/bem";
 import {StyleProp, View} from "react-native";
 

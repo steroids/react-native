@@ -1,12 +1,9 @@
-import React, {ReactNode} from "react";
-import {bem} from '@steroidsjs/core/hoc';
-import {Text, View} from "react-native";
-import ButtonView from "../Button";
+import React, { ReactNode } from 'react';
+import bem, { IBemHocOutput } from '../../../hoc/bemNative';
+import { Text, View } from 'react-native';
+import ButtonView from '../Button';
 
-import {IBemHocOutput} from "@steroidsjs/core/hoc/bem";
-import {IFieldListViewProps} from "@steroidsjs/core/ui/form/FieldList/FieldList";
-
-interface IProps extends IFieldListViewProps, IBemHocOutput{
+interface IProps extends IBemHocOutput {
     label: string | boolean,
     hint: string,
     size: Size,
@@ -29,10 +26,11 @@ interface IProps extends IFieldListViewProps, IBemHocOutput{
     }[],
     showAdd: boolean,
     showRemove: boolean,
-    onAdd: () => void,
+    onAdd: (e: any) => void,
     renderField: () => void,
     disabled: boolean,
     className: string,
+    style: any;
 }
 
 @bem('FieldListView')
@@ -48,7 +46,7 @@ export default class FieldListView extends React.PureComponent<IProps> {
                                 key={rowIndex}
                                 style={bem(
                                     bem.element('table-cell-header'),
-                                    field.headerClassName
+                                    field.headerClassName,
                                 )}
                             >
                                 <Text>{field.label}</Text>
@@ -61,8 +59,9 @@ export default class FieldListView extends React.PureComponent<IProps> {
                 </View>
                 {this.props.showAdd && !this.props.disabled && (
                     <ButtonView
+                        showLabelOnLoading
                         style={bem.element('add-btn')}
-                        onClick={e => {
+                        onClick={(e) => {
                             e.preventDefault();
                             this.props.onAdd(e);
                         }}

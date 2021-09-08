@@ -1,5 +1,5 @@
 import * as React from 'react';
-import {bem} from '@steroidsjs/core/hoc';
+import bem from '../../../hoc/bemNative';
 import {IBemHocOutput} from "@steroidsjs/core/hoc/bem";
 import InputFieldView from "../InputField/InputFieldView";
 import DateTimePickerModal from "react-native-modal-datetime-picker";
@@ -68,6 +68,7 @@ export default class DateFieldView extends React.PureComponent<IProps, IState> {
                 >
                     <View pointerEvents='box-only'>
                         <InputFieldView
+                            autoFocus={false}
                             editable={false}
                             placeholder={this.props.placeholder}
                             suffixElement={

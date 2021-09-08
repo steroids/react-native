@@ -1,12 +1,16 @@
 import * as React from 'react';
-import {bem} from '@steroidsjs/core/hoc';
+import bem from '../../../hoc/bemNative';
 import {IBemHocOutput} from "@steroidsjs/core/hoc/bem";
 import InputFieldView from "../InputField/InputFieldView";
 import OptionsList from "../../shared/OptionsList";
 import {TouchableWithoutFeedback, View} from "react-native";
 import {IAutoCompleteFieldViewProps} from "@steroidsjs/core/ui/form/AutoCompleteField/AutoCompleteField";
 
-interface IProps extends IAutoCompleteFieldViewProps, IBemHocOutput {}
+interface IProps extends IAutoCompleteFieldViewProps, IBemHocOutput {
+    style: any;
+    items: any;
+    inputProps: any;
+}
 
 @bem('AutoCompleteFieldView')
 export default class AutoCompleteFieldView extends React.PureComponent<IProps> {
@@ -27,6 +31,8 @@ export default class AutoCompleteFieldView extends React.PureComponent<IProps> {
         });
 
         const bem = this.props.bem;
+        // @ts-ignore
+        // @ts-ignore
         return (
             <View style={bem(bem.block(), this.props.style)}>
                 <TouchableWithoutFeedback
@@ -35,6 +41,7 @@ export default class AutoCompleteFieldView extends React.PureComponent<IProps> {
                 >
                     <View>
                         <InputFieldView
+                            autoFocus={false}
                             {...this.props.inputProps}
                             placeholder={this.props.placeholder}
                             disabled={this.props.disabled}
@@ -48,6 +55,7 @@ export default class AutoCompleteFieldView extends React.PureComponent<IProps> {
                 </TouchableWithoutFeedback>
 
                 {this.props.isOpened && (
+                    // @ts-ignore
                     <OptionsList
                         items={itemsFormatted}
                         selectedItems={this.props.selectedItems}

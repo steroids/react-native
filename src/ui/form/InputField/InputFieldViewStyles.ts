@@ -112,18 +112,6 @@ export default (variables, classes) => {
             borderLeftWidth: variables.inputBorderWidth,
             borderColor: variables.inputBorderColor,
         },
-        'InputFieldView__addon_size_sm': {
-            paddingHorizontal: variables.inputPaddingXSm / 2,
-            paddingVertical: variables.inputPaddingYSm,
-        },
-        'InputFieldView__addon_size_md': {
-            paddingHorizontal: variables.inputPaddingX / 2,
-            paddingVertical: variables.inputPaddingY,
-        },
-        'InputFieldView__addon_size_lg': {
-            paddingHorizontal: variables.inputPaddingXLg / 2,
-            paddingVertical: variables.inputPaddingYLg,
-        },
         'InputFieldView__input-text': {
             justifyContent: 'center',
             flex: 1,

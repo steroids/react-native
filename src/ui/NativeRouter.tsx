@@ -45,7 +45,7 @@ export default class NativeRouter extends React.PureComponent<INativeRouterProps
     constructor(props) {
         super(props);
 
-        this.navigation = React.createRef<NavigationContainerRef>();
+        this.navigation = React.createRef();
     }
 
     componentDidMount(): void {

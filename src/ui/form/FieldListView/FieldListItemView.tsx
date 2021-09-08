@@ -1,9 +1,9 @@
-import React from "react";
-import {bem} from '@steroidsjs/core/hoc';
-import {View} from "react-native";
-import {IBemHocOutput} from "@steroidsjs/core/hoc/bem";
-import {IFieldListItemViewProps} from "@steroidsjs/core/ui/form/FieldList/FieldList";
-import ButtonView from "../Button";
+import React from 'react';
+import bem from '../../../hoc/bemNative';
+import { View } from 'react-native';
+import { IBemHocOutput } from '@steroidsjs/core/hoc/bem';
+import { IFieldListItemViewProps } from '@steroidsjs/core/ui/form/FieldList/FieldList';
+import ButtonView from '../Button';
 
 interface IProps extends IFieldListItemViewProps, IBemHocOutput {}
 
@@ -19,7 +19,7 @@ export default class FieldListItemView extends React.PureComponent<IProps> {
                             key={index}
                             style={bem(
                                 bem.element('field'),
-                                field.className
+                                field.className,
                             )}
                         >
                             {this.props.renderField(field, this.props.prefix)}
@@ -30,8 +30,9 @@ export default class FieldListItemView extends React.PureComponent<IProps> {
                     <View style={bem('col-1')}>
                         {(!this.props.required || this.props.rowIndex > 0) && (
                             <ButtonView
+                                showLabelOnLoading
                                 style={bem(bem.element('remove-btn'))}
-                                icon='closeIcon'
+                                icon="closeIcon"
                                 onClick={() => this.props.onRemove(this.props.rowIndex)}
                                 color={'transparent'}
                                 size={'sm'}
