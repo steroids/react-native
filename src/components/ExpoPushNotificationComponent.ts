@@ -1,7 +1,5 @@
 // import { IComponents } from '@steroidsjs/core/hooks/useComponents';
-// import * as Notifications from 'expo-notifications';
 // import { Platform } from 'react-native';
-// import Constants from 'expo-constants';
 
 // type Subscription = {
 //     remove: () => void;
