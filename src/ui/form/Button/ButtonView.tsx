@@ -4,16 +4,15 @@ import {
     ActivityIndicator,
     TouchableNativeFeedback,
     Platform,
-    StyleProp
+    StyleProp,
 } from 'react-native';
-import bem, {IBemHocOutput} from '../../../hoc/bemNative';
+import bem, { IBemHocOutput } from '../../../hoc/bemNative';
 import color from 'color';
-import {IButtonViewProps} from "@steroidsjs/core/ui/form/Button/Button";
-import {Linking} from "expo";
-import getContrastColor from "../../../utils/getContrastColor";
-import Touchable from "../../../utils/Touchable";
+import { IButtonViewProps } from '@steroidsjs/core/ui/form/Button/Button';
+import getContrastColor from '../../../utils/getContrastColor';
+import Touchable from '../../../utils/Touchable';
 import Icon from '@steroidsjs/core/ui/icon/Icon/Icon';
-import safeRender from "../../../utils/safeRender";
+import safeRender from '../../../utils/safeRender';
 
 interface IProps extends IButtonViewProps, IBemHocOutput {
     style?: StyleProp<any>,
@@ -23,7 +22,7 @@ interface IProps extends IButtonViewProps, IBemHocOutput {
 interface IState {}
 
 @bem('ButtonView')
-export default class ButtonView extends React.PureComponent <IProps, IState>{
+export default class ButtonView extends React.PureComponent <IProps, IState> {
 
     static defaultProps = {
         isLoading: false,
@@ -45,12 +44,12 @@ export default class ButtonView extends React.PureComponent <IProps, IState>{
     render() {
         let touchableProps;
         switch (Platform.OS) {
-            case "android":
+            case 'android':
                 touchableProps = {
-                    background: TouchableNativeFeedback.SelectableBackground()
+                    background: TouchableNativeFeedback.SelectableBackground(),
                 };
                 break;
-            case "ios":
+            case 'ios':
             default:
                 let undColor = color(this.props.bem.color(this.props.color));
                 undColor = this.props.outline
@@ -60,8 +59,8 @@ export default class ButtonView extends React.PureComponent <IProps, IState>{
                 touchableProps = {
                     style: {flex: 1},
                     activeOpacity: 0.6,
-                    underlayColor: undColor.hex()
-                }
+                    underlayColor: undColor.hex(),
+                };
         }
 
         return (
@@ -74,15 +73,11 @@ export default class ButtonView extends React.PureComponent <IProps, IState>{
                     {this.renderLabel()}
                 </Touchable>
             </View>
-        )
+        );
     }
 
     onClick(event) {
         this.props.onClick(event);
-
-        if (this.props.url) {
-            Linking.openURL(this.props.url)
-        }
     }
 
     preloaderSize() {
@@ -131,11 +126,11 @@ export default class ButtonView extends React.PureComponent <IProps, IState>{
                     />
                 )}
                 {this.props.icon && !this.props.isLoading &&
-                    <Icon
-                        iconProps={this.props.iconProps}
-                        name={this.props.icon}
-                        style={bem(bem.element('icon', {size: this.props.size}))}
-                    />
+                <Icon
+                    iconProps={this.props.iconProps}
+                    name={this.props.icon}
+                    style={bem(bem.element('icon', {size: this.props.size}))}
+                />
                 }
                 {React.Children.count(this.props.children)
                 && (this.props.showLabelOnLoading || !this.props.isLoading) && (
@@ -148,18 +143,18 @@ export default class ButtonView extends React.PureComponent <IProps, IState>{
                     // >
                     //     {this.props.children}
                     // </Text>
-                safeRender(this.props.children, {
-                    numberOfLines: 1,
-                    style: bem(bem.element('label-text', {size: this.props.size}),
-                            {color: this.textColor()}
-                        )
-                })
+                    safeRender(this.props.children, {
+                        numberOfLines: 1,
+                        style: bem(bem.element('label-text', {size: this.props.size}),
+                            {color: this.textColor()},
+                        ),
+                    })
                 ) || null}
             </View>
         );
     }
 
-    _getStyle(modifiers:any = {}) {
+    _getStyle(modifiers: any = {}) {
         const bem = this.props.bem;
         return bem(
             'bg-' + this.props.color,
