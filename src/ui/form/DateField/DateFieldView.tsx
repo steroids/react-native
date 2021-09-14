@@ -38,7 +38,7 @@ const DateFieldView: React.FunctionComponent<IProps> = (props) => {
     };
 
     return (
-        <View style={bem(bem.block(), this.props.style)}>
+        <View style={bem(bem.block(), props.style)}>
             <TouchableWithoutFeedback
                 style={bem(bem.element('input'))}
                 onPress={() => !props.disabled && togglePicker()}
@@ -51,7 +51,7 @@ const DateFieldView: React.FunctionComponent<IProps> = (props) => {
                         suffixElement={
                             <Icon
                                 name="calendarIcon"
-                                style={bem.element('side-element', {size: this.props.size})}
+                                style={bem.element('side-element', {size: props.size})}
                             />
                         }
                         size={props.size}
