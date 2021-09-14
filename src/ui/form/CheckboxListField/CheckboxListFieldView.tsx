@@ -1,32 +1,31 @@
 import * as React from 'react';
 import { Text, TextProps, View } from 'react-native';
 import { ICheckboxListFieldViewProps } from '@steroidsjs/core/ui/form/CheckboxListField/CheckboxListField';
-import bem, { IBemHocOutput } from '../../../hoc/bemNative';
 import Touchable from '../../../utils/Touchable';
+import useBemNative from '../../../hooks/useBemNative';
 
-interface IProps extends ICheckboxListFieldViewProps, IBemHocOutput {
+interface IProps extends ICheckboxListFieldViewProps {
     textProps: TextProps,
     onItemClick: (item: any) => void,
 }
 
-@bem('CheckboxListFieldView')
-export default class CheckboxListFieldView extends React.PureComponent <IProps> {
-    render() {
-        const bem = this.props.bem;
-        return (
-            <View style={bem.block()}>
-                {this.props.items.map(item => (
-                    <Touchable
-                        onPress={() => this.props.onItemClick(item)}
-                    >
-                        <View style={bem.element('item', {selected: item.isSelected})}>
-                            <Text {...this.props.textProps} style={bem.element('label')}>
-                                {item.label}
-                            </Text>
-                        </View>
-                    </Touchable>
-                ))}
-            </View>
-        );
-    }
-}
+const CheckboxListFieldView: React.FunctionComponent<IProps> = (props) => {
+    const bem = useBemNative('CheckboxListFieldView');
+    return (
+        <View style={bem.block()}>
+            {props.items.map(item => (
+                <Touchable
+                    onPress={() => props.onItemClick(item)}
+                >
+                    <View style={bem.element('item', {selected: item.isSelected})}>
+                        <Text {...props.textProps} style={bem.element('label')}>
+                            {item.label}
+                        </Text>
+                    </View>
+                </Touchable>
+            ))}
+        </View>
+    );
+};
+
+export default CheckboxListFieldView;
