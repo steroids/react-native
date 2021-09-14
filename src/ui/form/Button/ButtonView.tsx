@@ -1,176 +1,198 @@
 import * as React from 'react';
 import {
     View,
-    ActivityIndicator,
+    Text,
     TouchableNativeFeedback,
     Platform,
+    ActivityIndicator,
     StyleProp,
+    ImageSourcePropType, GestureResponderEvent,
 } from 'react-native';
-import bem, { IBemHocOutput } from '../../../hoc/bemNative';
+import useBemNative from '../../../hooks/useBemNative';
+import Icon from '@steroidsjs/core/ui/icon/Icon';
 import color from 'color';
-import { IButtonViewProps } from '@steroidsjs/core/ui/form/Button/Button';
-import getContrastColor from '../../../utils/getContrastColor';
-import Touchable from '../../../utils/Touchable';
-import Icon from '@steroidsjs/core/ui/icon/Icon/Icon';
-import safeRender from '../../../utils/safeRender';
 
-interface IProps extends IButtonViewProps, IBemHocOutput {
-    style?: StyleProp<any>,
-    textColor?: string,
+import Touchable from '../../../utils/Touchable';
+
+interface IProps {
+    style?: StyleProp<any>;
+    labelStyle?: StyleProp<any>;
+    textColor?: string;
+    iconPosition?: 'left' | 'right';
+    iconStyle?: StyleProp<any>;
+    onClick?: any;
+    submitting?: boolean;
+    showLabelOnLoading?: boolean;
+    isLoading?: boolean;
+    icon?: string | ImageSourcePropType;
+    color?: string | null;
+    outline?: boolean;
+    size?: string;
+    disabled?: boolean;
+    rippleColor?: string | null;
+    rippleOverflow?: boolean | null;
 }
 
-interface IState {}
+const Button: React.FunctionComponent<React.ReactChildren & IProps> = (props) => {
+    const bem = useBemNative('ButtonView');
+    const [state, setState] = React.useState({isLoading: false});
 
-@bem('ButtonView')
-export default class ButtonView extends React.PureComponent <IProps, IState> {
+    const _textColor = () => {
+        let textColor;
+        if (props.textColor && bem.color(props.textColor)) {
+            textColor = bem.color(props.textColor);
+        } else if (props.outline) {
+            textColor = bem.color(props.color);
+        } else {
+            const isDark = props.color === 'transparent'
+                ? false
+                : !color(bem.color(props.color))
+                    .isLight();
 
-    static defaultProps = {
-        isLoading: false,
-        url: null,
-        formId: null,
-        layout: 'default',
-        disabled: false,
-        onClick: null,
-        submitting: false,
-        color: 'primary',
-    };
-
-    constructor(props) {
-        super(props);
-
-        this.onClick = this.onClick.bind(this);
-    }
-
-    render() {
-        let touchableProps;
-        switch (Platform.OS) {
-            case 'android':
-                touchableProps = {
-                    background: TouchableNativeFeedback.SelectableBackground(),
-                };
-                break;
-            case 'ios':
-            default:
-                let undColor = color(this.props.bem.color(this.props.color));
-                undColor = this.props.outline
-                    ? undColor.lighten(0.8)
-                    : undColor.darken(0.15);
-
-                touchableProps = {
-                    style: {flex: 1},
-                    activeOpacity: 0.6,
-                    underlayColor: undColor.hex(),
-                };
+            textColor = isDark ? bem.color('white') : bem.color('gray700');
         }
 
-        return (
-            <View style={this._getStyle()}>
-                <Touchable
-                    disabled={this.props.disabled}
-                    onPress={this.onClick}
-                    {...touchableProps}
-                >
-                    {this.renderLabel()}
-                </Touchable>
-            </View>
-        );
-    }
+        return color(textColor)
+            .hex();
+    };
 
-    onClick(event) {
-        this.props.onClick(event);
-    }
+    const _rippleColor = props.rippleColor || _textColor();
+    const _rippleOverflow = props.rippleOverflow || false;
 
-    preloaderSize() {
-        switch (this.props.size) {
+    const _getStyle = (modifiers: any = {}) => bem(
+        'bg-' + props.color,
+
+        bem.block({
+            outline: props.outline,
+            size: props.size,
+            disabled: props.disabled && !props.isLoading,
+            submitting: props.submitting,
+            'is-loading': props.isLoading,
+            ...modifiers,
+        }),
+
+        props.outline ? {borderColor: _textColor()} : {},
+
+        props.style,
+    );
+
+    const isLoading = () => props.isLoading || state.isLoading;
+
+    const preloaderSize = () => {
+        switch (props.size) {
             case 'lg':
             case 'xl':
                 return 'large';
             default:
                 return 'small';
         }
-    }
+    };
 
-    textColor() {
-        let textColor;
-        let bem = this.props.bem;
-
-        if (this.props.disabled && !this.props.isLoading) {
-            textColor = color(bem.color('gray600'))
-                .alpha(0.32)
-                .rgb()
-                .string();
-        } else if (this.props.textColor && bem.color(this.props.textColor)) {
-            textColor = bem.color(this.props.textColor);
-        } else if (this.props.outline) {
-            textColor = bem.color(this.props.color);
-        } else {
-
-            const bgColor = bem.color(this.props.color);
-            const lightColor = bem.color('white');
-            const darkColor = bem.color('gray700');
-            textColor = getContrastColor(bgColor, lightColor, darkColor);
+    const renderIcon = () => {
+        if (!props.icon || isLoading()) {
+            return null;
         }
 
-        return color(textColor).hex();
-    }
-
-    renderLabel() {
-        const bem = this.props.bem;
         return (
-            <View style={bem(bem.element('label'))}>
-                {this.props.isLoading && (
-                    <ActivityIndicator
-                        style={bem(bem.element('preloader', {size: this.props.size}))}
-                        color={this.textColor()}
-                        size={this.preloaderSize()}
-                    />
+            <Icon
+                style={bem(
+                    bem.element('icon', {size: props.size}),
+                    props.iconStyle,
                 )}
-                {this.props.icon && !this.props.isLoading &&
-                <Icon
-                    iconProps={this.props.iconProps}
-                    name={this.props.icon}
-                    style={bem(bem.element('icon', {size: this.props.size}))}
+                name={props.icon}
+            />
+        );
+    };
+
+    const _isShowLabel = () => {
+        if (props.showLabelOnLoading) {
+            return React.Children.count(props.children);
+        }
+        return !isLoading() && React.Children.count(props.children);
+    };
+
+    const renderLabel = () => (
+        <View
+            style={bem(bem.element('label', {size: props.size}), {
+                height: Platform.OS === 'ios' ? 'auto' : '100%',
+            })}
+        >
+            {props.disabled && (
+                <View style={bem.element('disabled-overlay')}/>
+            )}
+            {!props.color && !props.outline && (
+                <View style={bem.element('white-backdrop')}/>
+            )}
+            {isLoading() && (
+                <ActivityIndicator
+                    style={bem.element('preloader', {size: props.size})}
+                    color={_textColor()}
+                    size={preloaderSize()}
                 />
-                }
-                {React.Children.count(this.props.children)
-                && (this.props.showLabelOnLoading || !this.props.isLoading) && (
-                    // <Text
-                    //     numberOfLines={1}
-                    //     style={bem(
-                    //         bem.element('label-text', {size: this.props.size}),
-                    //         { color: this.textColor() }
-                    //     )}
-                    // >
-                    //     {this.props.children}
-                    // </Text>
-                    safeRender(this.props.children, {
-                        numberOfLines: 1,
-                        style: bem(bem.element('label-text', {size: this.props.size}),
-                            {color: this.textColor()},
-                        ),
+            )}
+            {props.iconPosition === 'left' && renderIcon()}
+            {(_isShowLabel() && (
+                <Text
+                    allowFontScaling={false}
+                    numberOfLines={1}
+                    style={bem(
+                        bem.element('label-text', {
+                            size: props.size,
+                            'with-icon': Boolean(props.icon),
+                        }),
+                        {color: _textColor()},
+                        props.labelStyle,
+                    )}
+                >
+                    {props.children}
+                </Text>
+            ))
+            || null}
+            {props.iconPosition === 'right' && renderIcon()}
+        </View>
+    );
+
+    const onClick = (event: GestureResponderEvent) => {
+        if (props.onClick) {
+            const result = props.onClick(event);
+            if (result instanceof Promise) {
+                setState({isLoading: true});
+                result
+                    .then(() => {
+                        setTimeout(() => setState({isLoading: false}), 800);
                     })
-                ) || null}
-            </View>
-        );
-    }
+                    .catch(e => {
+                        setState({isLoading: false});
+                        throw e;
+                    });
+            }
+        }
+    };
 
-    _getStyle(modifiers: any = {}) {
-        const bem = this.props.bem;
-        return bem(
-            'bg-' + this.props.color,
+    return (
+        <View style={_getStyle()}>
+            <Touchable
+                disabled={props.disabled}
+                onPress={onClick}
+                background={TouchableNativeFeedback.Ripple(_rippleColor, _rippleOverflow)}
+            >
+                {renderLabel()}
+            </Touchable>
+        </View>
+    );
+};
 
-            bem.block({
-                color: this.props.color,
-                outline: this.props.outline,
-                size: this.props.size,
-                disabled: this.props.disabled && !this.props.isLoading,
-                submitting: this.props.submitting,
-                'is-loading': this.props.isLoading,
-                ...modifiers,
-            }),
+Button.defaultProps = {
+    isLoading: false,
+    disabled: false,
+    onClick: null,
+    color: null,
+    iconPosition: 'left',
+    rippleColor: null,
+    rippleOverflow: null,
+    size: 'md',
+    outline: false,
+    showLabelOnLoading: true,
+};
 
-            this.props.outline ? {borderColor: this.textColor()} : {},
-            this.props.style,
-        );
-    }
-}
+export default Button;

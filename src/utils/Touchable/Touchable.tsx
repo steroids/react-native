@@ -4,24 +4,31 @@ import {
     TouchableHighlight,
     TouchableNativeFeedback,
     TouchableHighlightProps,
-    TouchableNativeFeedbackProps} from 'react-native';
+    TouchableNativeFeedbackProps,
+} from 'react-native';
 
-export default class Touchable extends React.PureComponent <TouchableHighlightProps & TouchableNativeFeedbackProps> {
-    render() {
-        let Touchable;
-        switch (Platform.OS) {
-            case "android":
-                Touchable = TouchableNativeFeedback;
-                break
-            case "ios":
-            default:
-                Touchable = TouchableHighlight;
+interface IProps
+    extends TouchableHighlightProps,
+        TouchableNativeFeedbackProps {}
 
-        }
-        return (
-            <Touchable {...this.props}>
-                {this.props.children}
-            </Touchable>
-        )
-    }
-}
+export const defaultTouchableOptions = {
+    delayPressIn: 0,
+    useForeground: true,
+    background: TouchableNativeFeedback.Ripple('#007bff', false),
+    underlayColor: '#00e5ff',
+    activeOpacity: 0.75,
+};
+
+export default function Touchable(props: React.PropsWithChildren<IProps>) {
+    const Touchable = Platform.select<any>({
+        android: TouchableNativeFeedback,
+        ios: TouchableHighlight,
+        default: TouchableHighlight,
+    });
+
+    return (
+        <Touchable {...defaultTouchableOptions} {...props}>
+            {props.children}
+        </Touchable>
+    );
+};
