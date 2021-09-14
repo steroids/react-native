@@ -1,9 +1,9 @@
 import React, { ReactNode } from 'react';
-import bem, { IBemHocOutput } from '../../../hoc/bemNative';
 import { Text, View } from 'react-native';
 import ButtonView from '../Button';
+import useBemNative from '../../../hooks/useBemNative';
 
-interface IProps extends IBemHocOutput {
+interface IProps {
     label: string | boolean,
     hint: string,
     size: Size,
@@ -33,45 +33,44 @@ interface IProps extends IBemHocOutput {
     style: any;
 }
 
-@bem('FieldListView')
-export default class FieldListView extends React.PureComponent<IProps> {
-    render() {
-        const bem = this.props.bem;
-        return (
-            <View style={bem(bem.block(), this.props.style)}>
-                <View style={bem(bem.element('items'))}>
-                    <View style={bem('row')}>
-                        {this.props.items.map((field, rowIndex) => (
-                            <View
-                                key={rowIndex}
-                                style={bem(
-                                    bem.element('table-cell-header'),
-                                    field.headerClassName,
-                                )}
-                            >
-                                <Text>{field.label}</Text>
-                            </View>
-                        ))}
-                    </View>
-                    <View>
-                        {this.props.children}
-                    </View>
+const FieldListView: React.FunctionComponent<IProps> = (props) => {
+    const bem = useBemNative('FieldListView');
+    return (
+        <View style={bem(bem.block(), props.style)}>
+            <View style={bem(bem.element('items'))}>
+                <View style={bem('row')}>
+                    {props.items.map((field, rowIndex) => (
+                        <View
+                            key={rowIndex}
+                            style={bem(
+                                bem.element('table-cell-header'),
+                                field.headerClassName,
+                            )}
+                        >
+                            <Text>{field.label}</Text>
+                        </View>
+                    ))}
                 </View>
-                {this.props.showAdd && !this.props.disabled && (
-                    <ButtonView
-                        style={bem.element('add-btn')}
-                        onClick={(e) => {
-                            e.preventDefault();
-                            this.props.onAdd(e);
-                        }}
-                        size={'sm'}
-                        color={'transparent'}
-                        textColor={'blue'}
-                    >
-                        <Text>{__('Добавить ещё')}</Text>
-                    </ButtonView>
-                )}
+                <View>
+                    {props.children}
+                </View>
             </View>
-        );
-    }
-}
+            {props.showAdd && !props.disabled && (
+                <ButtonView
+                    style={bem.element('add-btn')}
+                    onClick={(e) => {
+                        e.preventDefault();
+                        props.onAdd(e);
+                    }}
+                    size={'sm'}
+                    color={'transparent'}
+                    textColor={'blue'}
+                >
+                    <Text>{__('Добавить ещё')}</Text>
+                </ButtonView>
+            )}
+        </View>
+    );
+};
+
+export default FieldListView;
