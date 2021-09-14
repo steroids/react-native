@@ -1,10 +1,8 @@
 import * as React from 'react';
-import bem, { IBemHocOutput } from '../../../hoc/bemNative';
 import InputFieldView from '../InputField/InputFieldView';
 import DateTimePicker from '@react-native-community/datetimepicker';
 import moment from 'moment';
 import Icon from '@steroidsjs/core/ui/icon/Icon';
-
 import {
     Platform,
     StyleProp,
@@ -12,8 +10,9 @@ import {
     View,
 } from 'react-native';
 import { ITimeFieldViewProps } from '@steroidsjs/core/ui/form/TimeField/TimeField';
+import useBemNative from '../../../hooks/useBemNative';
 
-interface IProps extends ITimeFieldViewProps, IBemHocOutput {
+interface IProps extends ITimeFieldViewProps {
     required: boolean,
     size: Size,
     disabled: boolean,
@@ -27,80 +26,72 @@ interface IState {
     showPicker: boolean;
 }
 
-@bem('TimeFieldView')
-export default class TimeFieldView extends React.PureComponent<IProps, IState> {
-    constructor(props) {
-        super(props);
+const TimeFieldView: React.FunctionComponent<IProps> = (props) => {
+    const bem = useBemNative('TimeFieldView');
 
-        this.setTime = this.setTime.bind(this);
+    const [state, setState] = React.useState<IState>({showPicker: false});
 
-        this.state = {
-            showPicker: false,
-        };
-    }
-
-    static defaultProps = {
-        label: null,
-        required: false,
-        placeholder: null,
-        isInvalid: false,
-        size: 'md',
-        disabled: false,
+    const showPicker = () => {
+        setState({showPicker: true});
     };
 
-    showPicker() {
-        this.setState({showPicker: true});
-    }
-
-    setTime(event, date) {
+    const setTime = (event, date) => {
         // this is a proper way to hide picker according to the package's docs
-        this.setState({showPicker: Platform.OS === 'ios'});
+        setState({showPicker: Platform.OS === 'ios'});
 
         if (event.type && event.type === 'set') {
-            let time = moment(date).format(this.props.timeFormat);
-            this.props.input.onChange(time);
+            let time = moment(date).format(props.timeFormat);
+            props.input.onChange(time);
         }
-    }
+    };
 
-    render() {
-        const bem = this.props.bem;
-        return (
-            <View style={bem(bem.block(), this.props.style)}>
-                <TouchableWithoutFeedback
-                    style={bem(bem.element('input'))}
-                    onPress={() => !this.props.disabled && this.showPicker()}
-                >
-                    <View>
-                        <InputFieldView
-                            autoFocus={false}
-                            editable={false}
-                            placeholder={this.props.placeholder}
-                            suffixElement={
-                                <Icon
-                                    name="clockIcon"
-                                    style={bem.element('side-element', {size: this.props.size})}
-                                />
-                            }
-                            size={this.props.size}
-                            value={this.props.input.value}
-                            isInvalid={this.props.isInvalid}
-                            disabled={this.props.disabled}
-                            inputProps={this.props.inputProps}
-                        />
-                    </View>
-                </TouchableWithoutFeedback>
-
-                {this.state.showPicker && (
-                    <DateTimePicker
-                        value={new Date()}
-                        mode={'time'}
-                        display="default"
-                        onChange={this.setTime}
-                        is24Hour
-                        {...this.props.pickerProps}
+    return (
+        <View style={bem(bem.block(), props.style)}>
+            <TouchableWithoutFeedback
+                style={bem(bem.element('input'))}
+                onPress={() => !props.disabled && showPicker()}
+            >
+                <View>
+                    <InputFieldView
+                        autoFocus={false}
+                        editable={false}
+                        placeholder={props.placeholder}
+                        suffixElement={
+                            <Icon
+                                name="clockIcon"
+                                style={bem.element('side-element', {size: props.size})}
+                            />
+                        }
+                        size={props.size}
+                        value={props.input.value}
+                        isInvalid={props.isInvalid}
+                        disabled={props.disabled}
+                        inputProps={props.inputProps}
                     />
-                )}
-            </View>
-        );
-    }
-}
+                </View>
+            </TouchableWithoutFeedback>
+
+            {state.showPicker && (
+                <DateTimePicker
+                    value={new Date()}
+                    mode={'time'}
+                    display="default"
+                    onChange={setTime}
+                    is24Hour
+                    {...props.pickerProps}
+                />
+            )}
+        </View>
+    );
+};
+
+TimeFieldView.defaultProps = {
+    label: null,
+    required: false,
+    placeholder: null,
+    isInvalid: false,
+    size: 'md',
+    disabled: false,
+};
+
+export default TimeFieldView;
