@@ -31,7 +31,6 @@ export default class FieldListItemView extends React.PureComponent<IProps> {
                     <View style={bem('col-1')}>
                         {(!this.props.required || this.props.rowIndex > 0) && (
                             <ButtonView
-                                showLabelOnLoading
                                 style={bem(bem.element('remove-btn'))}
                                 icon="closeIcon"
                                 onClick={() => this.props.onRemove(this.props.rowIndex)}

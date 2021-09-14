@@ -59,7 +59,6 @@ export default class FieldListView extends React.PureComponent<IProps> {
                 </View>
                 {this.props.showAdd && !this.props.disabled && (
                     <ButtonView
-                        showLabelOnLoading
                         style={bem.element('add-btn')}
                         onClick={(e) => {
                             e.preventDefault();

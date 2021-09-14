@@ -6,7 +6,7 @@ import {
     Platform,
     ActivityIndicator,
     StyleProp,
-    ImageSourcePropType, GestureResponderEvent,
+    GestureResponderEvent,
 } from 'react-native';
 import useBemNative from '../../../hooks/useBemNative';
 import Icon from '@steroidsjs/core/ui/icon/Icon';
@@ -24,7 +24,7 @@ interface IProps {
     submitting?: boolean;
     showLabelOnLoading?: boolean;
     isLoading?: boolean;
-    icon?: string | ImageSourcePropType;
+    icon?: string;
     color?: string | null;
     outline?: boolean;
     size?: string;
@@ -33,7 +33,7 @@ interface IProps {
     rippleOverflow?: boolean | null;
 }
 
-const Button: React.FunctionComponent<React.ReactChildren & IProps> = (props) => {
+const Button: React.FunctionComponent<React.PropsWithChildren<IProps>> = (props) => {
     const bem = useBemNative('ButtonView');
     const [state, setState] = React.useState({isLoading: false});
 
