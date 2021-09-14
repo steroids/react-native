@@ -1,8 +1,8 @@
 import * as React from 'react';
-import bem, { IBemHocOutput } from '../../../hoc/bemNative';
 import { View, Text, TextProps } from 'react-native';
+import useBemNative from '../../../hooks/useBemNative';
 
-interface IProps extends IBemHocOutput {
+interface IProps {
     label: string | boolean;
     hint: string | boolean;
     errors: string | string[] | false;
@@ -14,85 +14,81 @@ interface IProps extends IBemHocOutput {
     fieldTextProps: TextProps,
 }
 
-interface IState {}
-
-@bem('FieldLayoutView')
-export default class FieldLayoutView extends React.PureComponent <IProps, IState> {
-
-    static defaultProps = {
-        required: false,
-        label: false,
-        hint: false,
-        errors: false,
-        layout: {
-            layout: 'default',
-            cols: [5, 7],
-        },
-        size: 'md',
-        layoutstyle: false,
-    };
-
-    render() {
-        const bem = this.props.bem;
-        return (
-            <View style={bem(
-                bem.block({
-                    layout: this.props.layout.layout,
-                    size: this.props.size,
-                }),
-                this.props.layout.layout === 'horizontal' && 'row',
-                this.props.layoutstyle,
-            )}>
-                {this.props.label && (
-                    <View style={bem(
-                        bem.element('label', {
-                            horizontal: this.props.layout.layout === 'horizontal',
-                        }),
-                        this.props.layout.layout === 'horizontal' && 'col-' + this.props.layout.cols[0],
-                    )}>
+const FieldLayoutView: React.FunctionComponent<React.PropsWithChildren<IProps>> = (props) => {
+    const bem = useBemNative('FieldLayoutView');
+    return (
+        <View style={bem(
+            bem.block({
+                layout: props.layout.layout,
+                size: props.size,
+            }),
+            props.layout.layout === 'horizontal' && 'row',
+            props.layoutstyle,
+        )}>
+            {props.label && (
+                <View style={bem(
+                    bem.element('label', {
+                        horizontal: props.layout.layout === 'horizontal',
+                    }),
+                    props.layout.layout === 'horizontal' && 'col-' + props.layout.cols[0],
+                )}>
+                    <Text
+                        {...props.fieldTextProps}
+                        style={bem(bem.element('label-text'))}>
+                        {props.label + ':'}
+                        {props.required &&
                         <Text
-                            {...this.props.fieldTextProps}
-                            style={bem(bem.element('label-text'))}>
-                            {this.props.label + ':'}
-                            {this.props.required &&
+                            {...props.fieldTextProps}
+                            style={bem('text-error')}>*</Text>
+                        }
+                    </Text>
+                </View>
+            )}
+            <View
+                style={bem(
+                    bem.element('field', {horizontal: props.layout.layout === 'horizontal'}),
+                    props.layout.layout === 'horizontal' && 'col-' + props.layout.cols[1],
+                    props.layout.layout === 'inline' && 'w-100',
+                )}
+            >
+                {props.children}
+                {props.errors && (
+                    <View style={bem(bem.element('invalid-feedback'))}>
+                        {[].concat(props.errors).map((error, index) => (
                             <Text
-                                {...this.props.fieldTextProps}
-                                style={bem('text-error')}>*</Text>
-                            }
+                                {...props.fieldTextProps}
+                                key={index}
+                                style={bem('text-error w-100')}>
+                                {error}
+                            </Text>
+                        ))}
+                    </View>
+                )}
+                {!props.errors && props.layout.layout !== 'inline' && props.hint && (
+                    <View>
+                        <Text
+                            {...props.fieldTextProps}
+                            style={bem(bem.element('hint'))}>
+                            {props.hint}
                         </Text>
                     </View>
                 )}
-                <View
-                    style={bem(
-                        bem.element('field', {horizontal: this.props.layout.layout === 'horizontal'}),
-                        this.props.layout.layout === 'horizontal' && 'col-' + this.props.layout.cols[1],
-                        this.props.layout.layout === 'inline' && 'w-100',
-                    )}
-                >
-                    {this.props.children}
-                    {this.props.errors && (
-                        <View style={bem(bem.element('invalid-feedback'))}>
-                            {[].concat(this.props.errors).map((error, index) => (
-                                <Text
-                                    {...this.props.fieldTextProps}
-                                    key={index}
-                                    style={bem('text-error w-100')}>
-                                    {error}
-                                </Text>
-                            ))}
-                        </View>
-                    )}
-                    {!this.props.errors && this.props.layout.layout !== 'inline' && this.props.hint && (
-                        <View>
-                            <Text
-                                {...this.props.fieldTextProps}
-                                style={bem(bem.element('hint'))}>
-                                {this.props.hint}
-                            </Text>
-                        </View>
-                    )}
-                </View>
             </View>
-        );
-    }
-}
+        </View>
+    );
+};
+
+FieldLayoutView.defaultProps = {
+    required: false,
+    label: false,
+    hint: false,
+    errors: false,
+    layout: {
+        layout: 'default',
+        cols: [5, 7],
+    },
+    size: 'md',
+    layoutstyle: false,
+};
+
+export default FieldLayoutView;
