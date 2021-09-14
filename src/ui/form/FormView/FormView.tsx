@@ -1,9 +1,8 @@
 import * as React from 'react';
-
-import bem, { IBemHocOutput } from '../../../hoc/bemNative';
 import { StyleProp, View } from 'react-native';
+import useBemNative from '../../../hooks/useBemNative';
 
-interface IProps extends IBemHocOutput {
+interface IProps {
     label: boolean | string,
     hint: boolean | string,
     required: boolean,
@@ -14,20 +13,18 @@ interface IProps extends IBemHocOutput {
     style?: StyleProp<any>
 }
 
-@bem('FormView')
-export default class FormView extends React.PureComponent<IProps> {
-    render() {
-        const bem = this.props.bem;
-        return (
-            <View
-                style={bem(
-                    bem.block(),
-                    this.props.style,
-                )}
-            >
-                {this.props.children}
-            </View>
-        );
-    }
+const FormView: React.FunctionComponent<React.PropsWithChildren<IProps>> = (props) => {
+    const bem = useBemNative('FormView');
+    return (
+        <View
+            style={bem(
+                bem.block(),
+                props.style,
+            )}
+        >
+            {props.children}
+        </View>
+    );
+};
 
-}
+export default FormView;
