@@ -1,26 +1,22 @@
 import React from 'react';
-
-import bem, { IBemHocOutput } from '../../../hoc/bemNative';
-import { IDateTimeFieldViewProps } from '@steroidsjs/core/ui/form/DateTimeField/DateTimeField';
 import { View } from 'react-native';
+import { IDateTimeFieldViewProps } from '@steroidsjs/core/ui/form/DateTimeField/DateTimeField';
+import useBemNative from '../../../hooks/useBemNative';
 
-interface IProps extends IDateTimeFieldViewProps, IBemHocOutput {}
+interface IProps extends IDateTimeFieldViewProps {}
 
-interface IState {}
-
-@bem('DateTimeFieldView')
-export default class DateTimeFieldView extends React.PureComponent<IProps, IState> {
-    render() {
-        const bem = this.props.bem;
-        return (
-            <View style={bem(bem.block(), 'row', this.props.style)}>
-                <View style={bem(bem.element('date'), 'col-7')}>
-                    {this.props.dateField}
-                </View>
-                <View style={bem(bem.element('time'), 'col-5')}>
-                    {this.props.timeField}
-                </View>
+const DateTimeFieldView: React.FunctionComponent<IProps> = (props) => {
+    const bem = useBemNative('DateTimeFieldView');
+    return (
+        <View style={bem(bem.block(), 'row', props.style)}>
+            <View style={bem(bem.element('date'), 'col-7')}>
+                {props.dateField}
             </View>
-        );
-    }
-}
+            <View style={bem(bem.element('time'), 'col-5')}>
+                {props.timeField}
+            </View>
+        </View>
+    );
+};
+
+export default DateTimeFieldView;
