@@ -1,6 +1,6 @@
 {
   "name": "@steroidsjs/native",
-  "version": "2.1.0-beta.3",
+  "version": "2.1.0-beta.4",
   "description": "",
   "author": "Vladimir Kozhin <hello@kozhindev.com>",
   "repository": {
@@ -15,24 +15,26 @@
   "exports": {
     "./": "./dist"
   },
-  "dependencies": {
-    "@react-native-async-storage/async-storage": "^1.15.7",
-    "@react-native-community/datetimepicker": "^3.5.2",
+  "peerDependencies": {
+    "react": "17.0.2",
+    "react-native": "0.65.1",
+    "@steroidsjs/core": "^2.1.0-beta.13",
     "@react-navigation/bottom-tabs": "^6.0.5",
     "@react-navigation/drawer": "^6.1.4",
     "@react-navigation/native": "^6.0.2",
     "@react-navigation/stack": "^6.0.7",
-    "@steroidsjs/core": "^2.1.0-beta.13",
-    "babel-plugin-inline-dotenv": "^1.6.0",
-    "color": "^4.0.1",
-    "react": "17.0.2",
-    "react-native": "0.65.1",
+    "react-native-reanimated": "2.3.0-alpha.2",
+    "react-native-screens": "^3.6.0",
     "react-native-gesture-handler": "^1.10.3",
+    "babel-plugin-inline-dotenv": "^1.6.0"
+  },
+  "dependencies": {
+    "@react-native-async-storage/async-storage": "^1.15.7",
+    "@react-native-community/datetimepicker": "^3.5.2",
+    "color": "^4.0.1",
     "react-native-modal-datetime-picker": "^11.0.0",
     "react-native-paper": "^3.6.0",
-    "react-native-reanimated": "2.3.0-alpha.2",
     "react-native-safe-area-context": "^3.3.0",
-    "react-native-screens": "^3.6.0"
   },
   "devDependencies": {
     "@babel/core": "^7.12.9",
