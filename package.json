@@ -29,12 +29,12 @@
     "babel-plugin-inline-dotenv": "^1.6.0"
   },
   "dependencies": {
+    "color": "^4.0.1",
     "@react-native-async-storage/async-storage": "^1.15.7",
     "@react-native-community/datetimepicker": "^3.5.2",
-    "color": "^4.0.1",
     "react-native-modal-datetime-picker": "^11.0.0",
     "react-native-paper": "^3.6.0",
-    "react-native-safe-area-context": "^3.3.0",
+    "react-native-safe-area-context": "^3.3.0"
   },
   "devDependencies": {
     "@babel/core": "^7.12.9",
