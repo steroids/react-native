@@ -17,10 +17,10 @@ const CheckboxFieldView: React.FunctionComponent<IProps> = (props) => {
             <Switch
                 disabled={props.disabled}
                 trackColor={{
-                    false: bem.variables('trackSelectedFalseBg'),
-                    true: bem.variables('trackSelectedTrueBg'),
+                    false: bem.variable('trackSelectedFalseBg'),
+                    true: bem.variable('trackSelectedTrueBg'),
                 }}
-                thumbColor={props.inputProps.checked ? bem.variables('thumbSelectedTrueBg') : bem.variables('thumbSelectedFalseBg')}
+                thumbColor={props.inputProps.checked ? bem.variable('thumbSelectedTrueBg') : bem.variable('thumbSelectedFalseBg')}
                 onValueChange={props.inputProps.onChange}
                 value={props.inputProps.checked}
             />

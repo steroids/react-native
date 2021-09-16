@@ -6,7 +6,7 @@ export interface IBem {
     element(...classes: any[]): StyleProp<any>;
     block(...classes: any): StyleProp<any>;
     color(name: string | null): string;
-    variables(name: string): string;
+    variable(name: string): string;
 }
 
 export default function useBemNative(namespace: string, styles?: StyleProp<any>): IBem {

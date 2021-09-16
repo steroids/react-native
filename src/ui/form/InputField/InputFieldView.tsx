@@ -1,4 +1,4 @@
-import React, { ReactNode } from 'react';
+import * as React from 'react';
 import { Image, ImageSourcePropType, StyleProp, TextInput, View } from 'react-native';
 import { IInputFieldViewProps } from '@steroidsjs/core/ui/form/InputField/InputField';
 import styles from './InputFieldViewStyles';
@@ -15,8 +15,8 @@ interface IRNInputFieldViewProps extends IInputFieldViewProps {
     onBlur?: any,
     onFocus?: any,
     color?: string,
-    prefixElement?: ImageSourcePropType | ReactNode,
-    suffixElement?: ImageSourcePropType | ReactNode,
+    prefixElement?: ImageSourcePropType | React.ReactNode,
+    suffixElement?: ImageSourcePropType | React.ReactNode,
     style?: StyleProp<any>,
     multiline?: number | false,
     editable?: boolean,
@@ -33,7 +33,7 @@ const InputFieldView: React.FunctionComponent<IRNInputFieldViewProps> = (props) 
     const bem = useBemNative('InputFieldView', styles);
     const [state, setState] = React.useState<IState>({focused: false});
 
-    const renderSideAddonElement = (component: ImageSourcePropType | ReactNode, element: 'before' | 'after') => {
+    const renderSideAddonElement = (component: ImageSourcePropType | React.ReactNode, element: 'before' | 'after') => {
         if (React.isValidElement(component) || typeof component === 'function') {
             return (
                 <View style={bem.element('addon', {element, size: props.size})}>
@@ -52,7 +52,7 @@ const InputFieldView: React.FunctionComponent<IRNInputFieldViewProps> = (props) 
         );
     };
 
-    const renderSideTextElement = (component: ImageSourcePropType | ReactNode) => {
+    const renderSideTextElement = (component: ImageSourcePropType | React.ReactNode) => {
         if (React.isValidElement(component) || typeof component === 'function') {
             return component;
         }
@@ -89,7 +89,7 @@ const InputFieldView: React.FunctionComponent<IRNInputFieldViewProps> = (props) 
                             multiline: Boolean(props.multiline),
                         }),
                     )}
-                    placeholderTextColor={bem.variables('inputPlaceholderColor')}
+                    placeholderTextColor={bem.variable('inputPlaceholderColor')}
                     {...props.inputProps}
                     secureTextEntry={props.type === 'password'}
                     autoFocus={props.autoFocus}
