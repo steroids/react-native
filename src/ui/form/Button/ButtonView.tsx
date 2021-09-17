@@ -59,6 +59,13 @@ const Button: React.FunctionComponent<React.PropsWithChildren<IProps>> = (props)
     const _rippleColor = props.rippleColor || _textColor();
     const _rippleOverflow = props.rippleOverflow || false;
 
+    const _getButtonColor = () => {
+        if (props.color) {
+            return bem.color(props.color);
+        }
+        return _textColor();
+    };
+
     const _getStyle = (modifiers: any = {}) => bem(
         'bg-' + props.color,
 
@@ -71,7 +78,7 @@ const Button: React.FunctionComponent<React.PropsWithChildren<IProps>> = (props)
             ...modifiers,
         }),
 
-        props.outline ? {borderColor: _textColor()} : {},
+        props.outline ? {borderColor: _getButtonColor()} : {},
 
         props.style,
     );
