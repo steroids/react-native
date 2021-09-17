@@ -1,3 +1,4 @@
+import * as React from 'react';
 import useBemNative, { IBem } from '../hooks/useBemNative';
 import { StyleProp } from 'react-native';
 

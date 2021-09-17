@@ -10,12 +10,12 @@ export default (variables, classes) => {
             borderWidth: variables.inputBtnBorderWidth,
             borderStyle: 'solid',
             borderColor: 'transparent',
-            minWidth: variables.btnMinWidth
+            minWidth: variables.btnMinWidth,
         },
 
         'ButtonView_disabled': {
             backgroundColor: variables.inputDisabledBg,
-            borderWidth: 0
+            borderWidth: 0,
         },
         'ButtonView_outline': {
             borderWidth: variables.btnOutlineBorderWidth,
@@ -23,13 +23,13 @@ export default (variables, classes) => {
         },
 
         'ButtonView_size_sm': {
-            borderRadius: variables.borderRadiusSm
+            borderRadius: variables.borderRadiusSm,
         },
         'ButtonView_size_md': {
-            borderRadius: variables.borderRadius
+            borderRadius: variables.borderRadius,
         },
         'ButtonView_size_lg': {
-            borderRadius: variables.borderRadiusLg
+            borderRadius: variables.borderRadiusLg,
         },
 
         'ButtonView__label': {
@@ -47,30 +47,30 @@ export default (variables, classes) => {
         'ButtonView__label-text_size_sm': {
             fontSize: variables.fontSizeBaseSm,
             paddingVertical: variables.btnPaddingYSm,
-            paddingHorizontal: variables.btnPaddingXSm
+            paddingHorizontal: variables.btnPaddingXSm,
         },
         'ButtonView__label-text_size_md': {
             fontSize: variables.fontSizeBase,
             paddingVertical: variables.btnPaddingY,
-            paddingHorizontal: variables.btnPaddingX
+            paddingHorizontal: variables.btnPaddingX,
         },
         'ButtonView__label-text_size_lg': {
             fontSize: variables.fontSizeBaseLg,
             paddingVertical: variables.btnPaddingYLg,
-            paddingHorizontal: variables.btnPaddingXLg
+            paddingHorizontal: variables.btnPaddingXLg,
         },
 
         'ButtonView__icon_size_sm': {
             width: variables.btnIconSizeSm,
-            height: variables.btnIconSizeSm
+            height: variables.btnIconSizeSm,
         },
         'ButtonView__icon_size_md': {
             width: variables.btnIconSize,
-            height: variables.btnIconSize
+            height: variables.btnIconSize,
         },
         'ButtonView__icon_size_lg': {
             width: variables.btnIconSizeLg,
-            height: variables.btnIconSizeLg
+            height: variables.btnIconSizeLg,
         },
     };
 

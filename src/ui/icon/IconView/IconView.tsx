@@ -1,9 +1,9 @@
 import * as React from 'react';
-
 import { IIconViewProps } from '@steroidsjs/core/ui/icon/Icon/Icon';
 import bem from '../../../hoc/bemNative';
 import { IBemHocOutput } from '@steroidsjs/core/hoc/bem';
-import { Image, StyleProp } from 'react-native';
+import { StyleProp } from 'react-native';
+import FastImage from 'react-native-fast-image';
 
 interface IIconViewInnerProps extends IIconViewProps, IBemHocOutput {
     style?: StyleProp<any>;
@@ -27,7 +27,7 @@ export default class Icon extends React.PureComponent<IIconViewInnerProps> {
                     style={bem(bem.block(), this.props.style)}
                 />
             ) : (
-                <Image
+                <FastImage
                     {...this.props.iconProps}
                     source={this.props.icon}
                     {...this.props}
