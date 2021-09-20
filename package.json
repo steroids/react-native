@@ -1,6 +1,6 @@
 {
   "name": "@steroidsjs/native",
-  "version": "2.1.0-beta.8",
+  "version": "2.1.0-beta.9",
   "description": "",
   "author": "Vladimir Kozhin <hello@kozhindev.com>",
   "repository": {
@@ -27,6 +27,7 @@
     "color": "^4.0.1",
     "react": "17.0.2",
     "react-native": "0.65.1",
+    "react-native-encrypted-storage": "^4.0.2",
     "react-native-fast-image": "^8.5.8",
     "react-native-gesture-handler": "^1.10.3",
     "react-native-modal-datetime-picker": "^11.0.0",
