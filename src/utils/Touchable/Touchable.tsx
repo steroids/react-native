@@ -11,15 +11,7 @@ interface IProps
     extends TouchableHighlightProps,
         TouchableNativeFeedbackProps {}
 
-export const defaultTouchableOptions = {
-    delayPressIn: 0,
-    useForeground: true,
-    background: TouchableNativeFeedback.Ripple('#007bff', false),
-    underlayColor: '#00e5ff',
-    activeOpacity: 0.75,
-};
-
-export default function Touchable(props: React.PropsWithChildren<IProps>) {
+const Touchable: React.FunctionComponent<IProps> = (props) => {
     const Touchable = Platform.select<any>({
         android: TouchableNativeFeedback,
         ios: TouchableHighlight,
@@ -27,8 +19,18 @@ export default function Touchable(props: React.PropsWithChildren<IProps>) {
     });
 
     return (
-        <Touchable {...defaultTouchableOptions} {...props}>
+        <Touchable {...props}>
             {props.children}
         </Touchable>
     );
 };
+
+Touchable.defaultProps = {
+    delayPressIn: 0,
+    useForeground: true,
+    background: TouchableNativeFeedback.Ripple('#adb5bd', false),
+    underlayColor: '#adb5bd',
+    activeOpacity: 0.75,
+};
+
+export default Touchable;
