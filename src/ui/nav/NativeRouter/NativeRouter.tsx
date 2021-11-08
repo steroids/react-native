@@ -2,7 +2,7 @@ import * as React from 'react';
 import { createDrawerNavigator } from '@react-navigation/drawer';
 import { createBottomTabNavigator } from '@react-navigation/bottom-tabs';
 import { createStackNavigator } from '@react-navigation/stack';
-import { NavigationContainer } from '@react-navigation/native';
+import { NavigationContainer, DefaultTheme, Theme } from '@react-navigation/native';
 
 import _isEmpty from 'lodash/isEmpty';
 import _isArray from 'lodash-es/isArray';
@@ -10,6 +10,8 @@ import _isObject from 'lodash-es/isObject';
 
 import { IRouteItem } from '@steroidsjs/core/ui/nav/Router/Router';
 import { useComponents } from '@steroidsjs/core/hooks';
+import useSelector from '@steroidsjs/core/hooks/useSelector';
+import { getUserRole } from '@steroidsjs/core/reducers/auth';
 
 const Stack = createStackNavigator();
 const Drawer = createDrawerNavigator();
@@ -18,21 +20,20 @@ const Tab = createBottomTabNavigator();
 type NavigatorType = 'stack' | 'drawer' | 'tab';
 
 export interface INativeRouteItem extends IRouteItem {
-    items?: Array<INativeRouteItem> | { [key: string]: INativeRouteItem };
+    items?: Array<INativeRouteItem> | {[key: string]: INativeRouteItem};
 }
 
 interface INavigator {
     type?: NavigatorType;
     options?: any;
-    items: Array<INativeRouteItem> | { [key: string]: INativeRouteItem };
+    items: Array<INativeRouteItem> | {[key: string]: INativeRouteItem};
 }
 
-export interface INativeRouterProps {
-    navigator: INavigator;
-    auth: {
-        role: string;
-        [key: string]: any;
+interface INativeRouterComponentProps {
+    routes: {
+        navigator: INavigator
     };
+    theme?: Theme,
 }
 
 const getNavigatorType = (type: NavigatorType | undefined) => {
@@ -47,16 +48,17 @@ const getNavigatorType = (type: NavigatorType | undefined) => {
     }
 };
 
-export default function useNativeRouter(props: INativeRouterProps) {
-    const { store } = useComponents();
+const NativeRouter: React.FunctionComponent<INativeRouterComponentProps> = (props) => {
+    const {store} = useComponents();
     const navigationRef = React.useRef(null);
+
+    const userRole = useSelector(state => getUserRole(state));
 
     React.useEffect(() => {
         store.navigationNative = navigationRef.current;
-        // eslint-disable-next-line react-hooks/exhaustive-deps
     }, []);
 
-    const getRoutesByPermissions = routes => {
+    const getRoutesByPermissions = React.useCallback((routes) => {
         if (_isEmpty(routes)) {
             return null;
         }
@@ -68,13 +70,10 @@ export default function useNativeRouter(props: INativeRouterProps) {
             }));
         }
 
-        return routes.filter(route => {
-            const userRole = props.auth ? props.auth.role : null;
-            return route.roles ? route.include(userRole) : true;
-        });
-    };
+        return routes.filter(route => route.roles ? route.roles.includes(userRole) : true);
+    }, [userRole]);
 
-    const renderNavigator = (navigator: INavigator) => {
+    const renderNavigator = React.useCallback((navigator: INavigator) => {
         const TypedNavigator = getNavigatorType(navigator.type);
         const routes = getRoutesByPermissions(navigator.items);
 
@@ -88,28 +87,38 @@ export default function useNativeRouter(props: INativeRouterProps) {
                             <TypedNavigator.Screen
                                 key={route.id}
                                 name={route.id}
-                                options={route.options}>
+                                options={{...route.options, animation: 'none'}}
+                            >
                                 {route.navigator
                                     ? () => renderNavigator(route.navigator)
                                     : params => (
-                                          <Component
-                                              {...params}
-                                              {...route}
-                                              name={route.id}
-                                              options={route.options}
-                                          />
-                                      )}
+                                        <Component
+                                            {...params}
+                                            {...route}
+                                            name={route.id}
+                                            options={route.options}
+                                        />
+                                    )}
                             </TypedNavigator.Screen>
                         );
                     })}
                 </TypedNavigator.Navigator>
             )
         );
-    };
+    }, [getRoutesByPermissions]);
 
     return (
-        <NavigationContainer ref={navigationRef}>
-            {renderNavigator(props.navigator)}
+        <NavigationContainer
+            theme={props.theme}
+            ref={navigationRef}
+        >
+            {renderNavigator(props.routes.navigator)}
         </NavigationContainer>
     );
-}
+};
+
+NativeRouter.defaultProps = {
+    theme: DefaultTheme,
+};
+
+export default NativeRouter;

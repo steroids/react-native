@@ -99,9 +99,7 @@ const InputFieldView: React.FunctionComponent<IRNInputFieldViewProps> = (props) 
                     editable={props.editable && !props.disabled}
                     onFocus={() => setState({focused: true})}
                     onBlur={() => setState({focused: false})}
-                    onChange={(e) => {
-                        props.inputProps.onChange(e.nativeEvent.text);
-                    }}
+                    onChangeText={props.input.onChange && props.input.onChange}
                     value={props.value && String(props.value)}
                     numberOfLines={Number(props.multiline) || 1}
                     multiline={props.multiline && props.multiline > 1}
