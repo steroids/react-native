@@ -1226,16 +1226,16 @@
   resolved "https://registry.yarnpkg.com/@sideway/pinpoint/-/pinpoint-2.0.0.tgz#cff8ffadc372ad29fd3f78277aeb29e632cc70df"
   integrity sha512-RNiOoTPkptFtSVzQevY/yWtZwf/RxyVnPy/OcA9HBM3MlGDnBEYL5B41H0MTn0Uec8Hi+2qUtTfG2WWZBmMejQ==
 
-"@steroidsjs/core@^2.1.0-beta.33":
-  version "2.2.0"
-  resolved "https://registry.yarnpkg.com/@steroidsjs/core/-/core-2.2.0.tgz#df28ffb680d55db5a3507ba8d4f5ed584a8b27e0"
-  integrity sha512-iglTH6uHwEPY+Z4CBEC8cFUh5jD6ywk1ppmX0uvYLpJpfNZsRLNfV2JKxDgPFSKqF4zuNLzinudv9/VOvk+w1g==
+"@steroidsjs/core@^2.2.16":
+  version "2.2.42"
+  resolved "https://registry.yarnpkg.com/@steroidsjs/core/-/core-2.2.42.tgz#d5e635e818b4f3e12e1b6af36941128de63fd848"
+  integrity sha512-tMzkauFccY6aT5CWBEc4MDljAQQd2sUWOsIcZ0mcuZToCCVN/Qg/J3v94cioSpAOUG1E8x1xvT/DKXWeizmmow==
   dependencies:
     axios "^0.21.1"
     connected-react-router "^6.9.1"
     domready "^1.0.8"
     dot-prop-immutable "^2.1.0"
-    fileup-core "^1.2.0"
+    fileup-core "^1.2.2"
     history "^4.10.1"
     intl-messageformat "^9.11.0"
     js-cookie "^2.2.1"
@@ -2898,10 +2898,10 @@ file-entry-cache@^6.0.1:
   dependencies:
     flat-cache "^3.0.4"
 
-fileup-core@^1.2.0:
-  version "1.2.0"
-  resolved "https://registry.yarnpkg.com/fileup-core/-/fileup-core-1.2.0.tgz#0a08e679906af5b67e1f45ff48267c17f4319684"
-  integrity sha512-jU5gTr5t0NYmdAnaqndOCVYrogEumTfI4FJEjb8ZtAi4BXVSHjHRty6s0pjqJ29FZB7e9XzumYmpNg8vzwtd/w==
+fileup-core@^1.2.2:
+  version "1.2.2"
+  resolved "https://registry.yarnpkg.com/fileup-core/-/fileup-core-1.2.2.tgz#22fd5e672d47bbb0b4d00b2da3292c75bb08c538"
+  integrity sha512-Ptp52NHWAX6ahvrOP+2jJ91vTzzqV0S+aftvdlL2eQo4hizBpkHbM+8IQQ7Pz6+ukAwDnPsCygk/RhjIv1H/kQ==
 
 fill-range@^4.0.0:
   version "4.0.0"
@@ -4362,9 +4362,9 @@ mockdate@^3.0.2:
   integrity sha512-iniQP4rj1FhBdBYS/+eQv7j1tadJ9lJtdzgOpvsOHng/GbcDh2Fhdeq+ZRldrPYdXvCyfFUmFeEwEGXZB5I/AQ==
 
 moment@^2.29.1:
-  version "2.29.1"
-  resolved "https://registry.yarnpkg.com/moment/-/moment-2.29.1.tgz#b2be769fa31940be9eeea6469c075e35006fa3d3"
-  integrity sha512-kHmoybcPV8Sqy59DwNDY3Jefr64lK/by/da0ViFcuA4DH0vQg5Q6Ze5VimxkfQNSC+Mls/Kx53s7TjP1RhFEDQ==
+  version "2.29.2"
+  resolved "https://registry.yarnpkg.com/moment/-/moment-2.29.2.tgz#00910c60b20843bcba52d37d58c628b47b1f20e4"
+  integrity sha512-UgzG4rvxYpN15jgCmVJwac49h9ly9NurikMWGPdVxm8GZD6XjkKPxDTjQQ43gtGgnV3X0cAyWDdP2Wexoquifg==
 
 ms@2.0.0:
   version "2.0.0"
