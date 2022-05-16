@@ -1226,16 +1226,16 @@
   resolved "https://registry.yarnpkg.com/@sideway/pinpoint/-/pinpoint-2.0.0.tgz#cff8ffadc372ad29fd3f78277aeb29e632cc70df"
   integrity sha512-RNiOoTPkptFtSVzQevY/yWtZwf/RxyVnPy/OcA9HBM3MlGDnBEYL5B41H0MTn0Uec8Hi+2qUtTfG2WWZBmMejQ==
 
-"@steroidsjs/core@^2.1.0-beta.33":
-  version "2.2.0"
-  resolved "https://registry.yarnpkg.com/@steroidsjs/core/-/core-2.2.0.tgz#df28ffb680d55db5a3507ba8d4f5ed584a8b27e0"
-  integrity sha512-iglTH6uHwEPY+Z4CBEC8cFUh5jD6ywk1ppmX0uvYLpJpfNZsRLNfV2JKxDgPFSKqF4zuNLzinudv9/VOvk+w1g==
+"@steroidsjs/core@^2.2.16":
+  version "2.2.59"
+  resolved "https://registry.yarnpkg.com/@steroidsjs/core/-/core-2.2.59.tgz#5472f7af0b8b55e5063559ea53bf13949c4851ee"
+  integrity sha512-xZb7MWgSw7SISRMK61mVg6h7gSB7kwgMj8gx2PbTb5zy+K/CZp5gKC6ZASt3hh+v4/AdSyTSm8Nm3rTp92Ludw==
   dependencies:
     axios "^0.21.1"
     connected-react-router "^6.9.1"
     domready "^1.0.8"
     dot-prop-immutable "^2.1.0"
-    fileup-core "^1.2.0"
+    fileup-core "^1.2.2"
     history "^4.10.1"
     intl-messageformat "^9.11.0"
     js-cookie "^2.2.1"
@@ -2898,10 +2898,10 @@ file-entry-cache@^6.0.1:
   dependencies:
     flat-cache "^3.0.4"
 
-fileup-core@^1.2.0:
-  version "1.2.0"
-  resolved "https://registry.yarnpkg.com/fileup-core/-/fileup-core-1.2.0.tgz#0a08e679906af5b67e1f45ff48267c17f4319684"
-  integrity sha512-jU5gTr5t0NYmdAnaqndOCVYrogEumTfI4FJEjb8ZtAi4BXVSHjHRty6s0pjqJ29FZB7e9XzumYmpNg8vzwtd/w==
+fileup-core@^1.2.2:
+  version "1.2.2"
+  resolved "https://registry.yarnpkg.com/fileup-core/-/fileup-core-1.2.2.tgz#22fd5e672d47bbb0b4d00b2da3292c75bb08c538"
+  integrity sha512-Ptp52NHWAX6ahvrOP+2jJ91vTzzqV0S+aftvdlL2eQo4hizBpkHbM+8IQQ7Pz6+ukAwDnPsCygk/RhjIv1H/kQ==
 
 fill-range@^4.0.0:
   version "4.0.0"
@@ -4779,9 +4779,9 @@ pkg-dir@^3.0.0:
     find-up "^3.0.0"
 
 plist@^3.0.1, plist@^3.0.2:
-  version "3.0.4"
-  resolved "https://registry.yarnpkg.com/plist/-/plist-3.0.4.tgz#a62df837e3aed2bb3b735899d510c4f186019cbe"
-  integrity sha512-ksrr8y9+nXOxQB2osVNqrgvX/XQPOXaU4BQMKjYq8PvaY1U18mo+fKgBSwzK+luSyinOuPae956lSVcBwxlAMg==
+  version "3.0.5"
+  resolved "https://registry.yarnpkg.com/plist/-/plist-3.0.5.tgz#2cbeb52d10e3cdccccf0c11a63a85d830970a987"
+  integrity sha512-83vX4eYdQp3vP9SxuYgEM/G/pJQqLUz/V/xzPrzruLs7fz7jxGQ1msZ/mg1nwZxUSuOp4sb+/bEIbRrbzZRxDA==
   dependencies:
     base64-js "^1.5.1"
     xmlbuilder "^9.0.7"
