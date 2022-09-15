@@ -1,9 +1,9 @@
-import React, { ReactNode } from 'react';
+import React, { ReactNode, PropsWithChildren } from 'react';
 import { Text, View } from 'react-native';
 import ButtonView from '../Button';
 import useBemNative from '../../../hooks/useBemNative';
 
-interface IProps extends React.PropsWithChildren {
+interface IProps {
     label: string | boolean,
     hint: string,
     size: Size,
@@ -33,7 +33,7 @@ interface IProps extends React.PropsWithChildren {
     style: any;
 }
 
-const FieldListView: React.FunctionComponent<IProps> = (props) => {
+const FieldListView: React.FunctionComponent<PropsWithChildren<IProps>> = (props) => {
     const bem = useBemNative('FieldListView');
     return (
         <View style={bem(bem.block(), props.style)}>
