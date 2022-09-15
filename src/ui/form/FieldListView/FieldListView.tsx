@@ -3,7 +3,7 @@ import { Text, View } from 'react-native';
 import ButtonView from '../Button';
 import useBemNative from '../../../hooks/useBemNative';
 
-interface IProps {
+interface IProps extends React.PropsWithChildren {
     label: string | boolean,
     hint: string,
     size: Size,
