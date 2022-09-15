@@ -1,6 +1,6 @@
 {
   "name": "@steroidsjs/native",
-  "version": "2.1.0-beta.15",
+  "version": "2.1.0-beta.16",
   "description": "",
   "author": "Vladimir Kozhin <hello@kozhindev.com>",
   "repository": {
@@ -25,8 +25,8 @@
     "@steroidsjs/core": "^2.2.86",
     "babel-plugin-inline-dotenv": "^1.7.0",
     "color": "^4.0.1",
-    "react": "18.1.0",
-    "react-native": "0.70.0",
+    "react": "^17.0.2",
+    "react-native": "^0.69.5",
     "react-native-encrypted-storage": "^4.0.2",
     "react-native-fast-image": "^8.6.1",
     "react-native-gesture-handler": "^2.6.0",
