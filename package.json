@@ -22,7 +22,7 @@
     "@react-navigation/drawer": "^6.4.4",
     "@react-navigation/native": "^6.0.12",
     "@react-navigation/stack": "^6.2.3",
-    "@steroidsjs/core": "^2.3.0-beta.1",
+    "@steroidsjs/core": "^2.3.0-beta.2",
     "babel-plugin-inline-dotenv": "^1.7.0",
     "color": "^4.0.1",
     "react": "^18.2.0",

@@ -1709,10 +1709,10 @@
   resolved "https://registry.yarnpkg.com/@sideway/pinpoint/-/pinpoint-2.0.0.tgz#cff8ffadc372ad29fd3f78277aeb29e632cc70df"
   integrity sha512-RNiOoTPkptFtSVzQevY/yWtZwf/RxyVnPy/OcA9HBM3MlGDnBEYL5B41H0MTn0Uec8Hi+2qUtTfG2WWZBmMejQ==
 
-"@steroidsjs/core@2.3.0-beta.1":
-  version "2.3.0-beta.1"
-  resolved "https://registry.yarnpkg.com/@steroidsjs/core/-/core-2.3.0-beta.1.tgz#8a69806a698c993acbe773d1eb00a772ec9ee8cd"
-  integrity sha512-laubbGOoMijN5g37RoCoh1rCfAMCltWkRsmnPY641NWDYPIkQ+TQMy80TCFuM8Rmp+HknKbJMGOJ+Ul9Iw7Y+g==
+"@steroidsjs/core@^2.3.0-beta.2":
+  version "2.3.0-beta.2"
+  resolved "https://registry.yarnpkg.com/@steroidsjs/core/-/core-2.3.0-beta.2.tgz#2a8877afc8c4cb4e22934fac651ce417902ecc87"
+  integrity sha512-7MSwwibJBjMKp12QN1R5Jm02kK/0EUJD53Oi4yDtYI7Y20tc85zY85miZJyX07BkGxBykkiXqVfrSAtceFmoQg==
   dependencies:
     axios "^0.21.1"
     connected-react-router "^6.9.1"
