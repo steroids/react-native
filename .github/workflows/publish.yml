@@ -9,7 +9,6 @@ jobs:
         with:
           node-version: 14
       - run: yarn
-      - run: yarn upgrade @steroidsjs/core
       - run: yarn tsc
       - run: cp ./{package.json,LICENSE,README.md} dist/
       - uses: JS-DevTools/npm-publish@v1
