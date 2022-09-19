@@ -1709,10 +1709,10 @@
   resolved "https://registry.yarnpkg.com/@sideway/pinpoint/-/pinpoint-2.0.0.tgz#cff8ffadc372ad29fd3f78277aeb29e632cc70df"
   integrity sha512-RNiOoTPkptFtSVzQevY/yWtZwf/RxyVnPy/OcA9HBM3MlGDnBEYL5B41H0MTn0Uec8Hi+2qUtTfG2WWZBmMejQ==
 
-"@steroidsjs/core@^2.3.0-beta.2":
-  version "2.3.0-beta.2"
-  resolved "https://registry.yarnpkg.com/@steroidsjs/core/-/core-2.3.0-beta.2.tgz#2a8877afc8c4cb4e22934fac651ce417902ecc87"
-  integrity sha512-7MSwwibJBjMKp12QN1R5Jm02kK/0EUJD53Oi4yDtYI7Y20tc85zY85miZJyX07BkGxBykkiXqVfrSAtceFmoQg==
+"@steroidsjs/core@^2.3.0-beta.3":
+  version "2.3.0-beta.3"
+  resolved "https://registry.yarnpkg.com/@steroidsjs/core/-/core-2.3.0-beta.3.tgz#e94038708c323d1461c6a38dc7ac5894dc648bee"
+  integrity sha512-6fYXNJPinp/0+9YIpQswT9jBdsEwAF/3I2A81o0+J8YegSKD5CyOy6rKlD3CdC66pkdDWSnB8KmsEJDiQwaKsw==
   dependencies:
     axios "^0.21.1"
     connected-react-router "^6.9.1"
@@ -1730,10 +1730,10 @@
     path-to-regexp "^1.7.0"
     qs "^6.9.4"
     query-string "^6.14.0"
-    react "^18.2.0"
+    react "18.1.0"
     react-click-outside "^3.0.1"
     react-day-picker "^8.2.1"
-    react-dom "^18.2.0"
+    react-dom "18.1.0"
     react-grid-gallery "^0.4.8"
     react-helmet "^6.1.0"
     react-image-crop "^9.0.2"
@@ -5680,13 +5680,13 @@ react-devtools-core@4.24.0:
     shell-quote "^1.6.1"
     ws "^7"
 
-react-dom@^18.2.0:
-  version "18.2.0"
-  resolved "https://registry.yarnpkg.com/react-dom/-/react-dom-18.2.0.tgz#22aaf38708db2674ed9ada224ca4aa708d821e3d"
-  integrity sha512-6IMTriUmvsjHUjNtEDudZfuDQUoWXVxKHhlEGSk81n4YFS+r/Kl99wXiwlVXtPBtJenozv2P+hxDsw9eA7Xo6g==
+react-dom@18.1.0:
+  version "18.1.0"
+  resolved "https://registry.yarnpkg.com/react-dom/-/react-dom-18.1.0.tgz#7f6dd84b706408adde05e1df575b3a024d7e8a2f"
+  integrity sha512-fU1Txz7Budmvamp7bshe4Zi32d0ll7ect+ccxNu9FlObT605GOEB8BfO4tmRJ39R5Zj831VCpvQ05QPBW5yb+w==
   dependencies:
     loose-envify "^1.1.0"
-    scheduler "^0.23.0"
+    scheduler "^0.22.0"
 
 react-fast-compare@^3.1.1:
   version "3.2.0"
@@ -6013,13 +6013,6 @@ react@18.1.0:
   version "18.1.0"
   resolved "https://registry.yarnpkg.com/react/-/react-18.1.0.tgz#6f8620382decb17fdc5cc223a115e2adbf104890"
   integrity sha512-4oL8ivCz5ZEPyclFQXaNksK3adutVS8l2xzZU0cqEFrE9Sb7fC0EFK5uEk74wIreL1DERyjvsU915j1pcT2uEQ==
-  dependencies:
-    loose-envify "^1.1.0"
-
-react@^18.2.0:
-  version "18.2.0"
-  resolved "https://registry.yarnpkg.com/react/-/react-18.2.0.tgz#555bd98592883255fa00de14f1151a917b5d77d5"
-  integrity sha512-/3IjMdb2L9QbBdWiW5e3P2/npwMBaU9mHCSCUzNln0ZCYbcfTsGbTJrU/kGemdH2IWmB2ioZ+zkxtmq6g09fGQ==
   dependencies:
     loose-envify "^1.1.0"
 
