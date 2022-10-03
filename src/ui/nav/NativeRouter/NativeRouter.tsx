@@ -2,6 +2,7 @@ import * as React from 'react';
 import { createDrawerNavigator } from '@react-navigation/drawer';
 import { createBottomTabNavigator } from '@react-navigation/bottom-tabs';
 import { createStackNavigator } from '@react-navigation/stack';
+import { createMaterialTopTabNavigator } from '@react-navigation/material-top-tabs'
 import { NavigationContainer, DefaultTheme, Theme } from '@react-navigation/native';
 
 import _isEmpty from 'lodash/isEmpty';
@@ -16,8 +17,9 @@ import { getUserRole } from '@steroidsjs/core/reducers/auth';
 const Stack = createStackNavigator();
 const Drawer = createDrawerNavigator();
 const Tab = createBottomTabNavigator();
+const TopTab = createMaterialTopTabNavigator();
 
-type NavigatorType = 'stack' | 'drawer' | 'tab';
+type NavigatorType = 'stack' | 'drawer' | 'tab' | 'topTab';
 
 export interface INativeRouteItem extends IRouteItem {
     items?: Array<INativeRouteItem> | {[key: string]: INativeRouteItem};
@@ -42,6 +44,8 @@ const getNavigatorType = (type: NavigatorType | undefined) => {
             return Tab;
         case 'drawer':
             return Drawer;
+        case "topTab":
+            return TopTab;
         case 'stack':
         default:
             return Stack;
