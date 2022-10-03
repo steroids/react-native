@@ -3,6 +3,7 @@ import { createDrawerNavigator } from '@react-navigation/drawer';
 import { createBottomTabNavigator } from '@react-navigation/bottom-tabs';
 import { createStackNavigator } from '@react-navigation/stack';
 import { createMaterialTopTabNavigator } from '@react-navigation/material-top-tabs'
+import {createSharedElementStackNavigator} from 'react-navigation-shared-element';
 import { NavigationContainer, DefaultTheme, Theme } from '@react-navigation/native';
 
 import _isEmpty from 'lodash/isEmpty';
@@ -18,8 +19,9 @@ const Stack = createStackNavigator();
 const Drawer = createDrawerNavigator();
 const Tab = createBottomTabNavigator();
 const TopTab = createMaterialTopTabNavigator();
+const Shared = createSharedElementStackNavigator();
 
-type NavigatorType = 'stack' | 'drawer' | 'tab' | 'topTab';
+type NavigatorType = 'stack' | 'drawer' | 'tab' | 'topTab' | 'shared';
 
 export interface INativeRouteItem extends IRouteItem {
     items?: Array<INativeRouteItem> | {[key: string]: INativeRouteItem};
@@ -44,8 +46,10 @@ const getNavigatorType = (type: NavigatorType | undefined) => {
             return Tab;
         case 'drawer':
             return Drawer;
-        case "topTab":
+        case 'topTab':
             return TopTab;
+        case 'shared':
+            return Shared;
         case 'stack':
         default:
             return Stack;
