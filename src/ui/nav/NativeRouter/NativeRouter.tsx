@@ -91,7 +91,21 @@ const NativeRouter: React.FunctionComponent<INativeRouterComponentProps> = (prop
                     {routes.map(route => {
                         const Component = route.component;
 
+                        if (navigator.type === 'shared') {
+                            return (
+                                <TypedNavigator.Screen
+                                    key={route.id}
+                                    name={route.id}
+                                    options={route.options}
+                                    component={Component}
+                                    {...route.options.shared}
+                                />
+                            )
+                        }
+
+
                         return (
+                            // @ts-ignore
                             <TypedNavigator.Screen
                                 key={route.id}
                                 name={route.id}
