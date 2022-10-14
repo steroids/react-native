@@ -57,6 +57,6 @@
     "@types/react": "^18"
   },
   "scripts": {
-    "start": "nps"
+    "scripts": "nps"
   }
 }
