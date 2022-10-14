@@ -3,5 +3,5 @@ scripts:
   publish:
     prepare: yarn && yarn upgrade @steroidsjs/core && nps build
     manual:
-      script: npm login && nps publish.prepare && cd dist && npm publish
-      description: 'Use it to publish to NPM manually (it contains a full process of publishing)'
+      script: npm whoami && nps publish.prepare && cd dist && npm publish
+      description: 'Use it to publish to NPM manually (authorize to NPM first)'

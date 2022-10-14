@@ -6,9 +6,13 @@
 yarn
 ```
 
-2. To publish the package to NPM run the command (_nps_ **is not a typo!**):
+2. To publish to NPM manually use the command (_nps_ **is not a typo!**):
 ```
-nps publish-to-npm
+nps publish.manual
+
+#OR
+
+yarn script publish.manual
 ```
 **You should be authorized in NPM first!** For this purpose use:
 ```
