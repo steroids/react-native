@@ -1,6 +1,6 @@
 {
   "name": "@steroidsjs/native",
-  "version": "2.1.0-beta.23",
+  "version": "2.1.0-beta.24",
   "description": "",
   "author": "Vladimir Kozhin <hello@kozhindev.com>",
   "repository": {
@@ -45,13 +45,18 @@
     "@types/react": "^18.0.20",
     "@types/react-native": "^0.70.0",
     "@types/react-test-renderer": "^17.0.1",
+    "copyfiles": "^2.4.1",
     "eslint": "^7.32.0",
     "metro-react-native-babel-preset": "^0.72.3",
+    "nps": "^5.10.0",
     "react-native-codegen": "^0.0.7",
     "react-test-renderer": "^18.2.0",
     "typescript": "^4.8.3"
   },
   "resolutions": {
     "@types/react": "^18"
+  },
+  "scripts": {
+    "start": "nps"
   }
 }

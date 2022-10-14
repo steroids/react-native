@@ -1,4 +1,4 @@
-name: NPM Publish
+x`name: NPM Publish
 on: push
 jobs:
   publish:
@@ -9,9 +9,7 @@ jobs:
         with:
           node-version: 14
       - run: yarn
-      - run: yarn upgrade @steroidsjs/core
-      - run: yarn tsc
-      - run: cp ./{package.json,LICENSE,README.md} dist/
+      - run: nps publish.prepare
       - uses: JS-DevTools/npm-publish@v1
         with:
           package: ./dist/package.json
