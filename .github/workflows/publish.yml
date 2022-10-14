@@ -9,7 +9,7 @@ jobs:
         with:
           node-version: 14
       - run: yarn
-      - run: nps scripts publish.prepare
+      - run: npm run scripts publish.prepare
       - uses: JS-DevTools/npm-publish@v1
         with:
           package: ./dist/package.json
