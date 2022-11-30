@@ -18,3 +18,7 @@ yarn script publish.manual
 ```
 npm login
 ```
+
+Native Router Dev Mode
+
+In dev mode navigation state is persistent. To disable this behavior set env variable DISABLE_PERSISTENT_ROUTER
