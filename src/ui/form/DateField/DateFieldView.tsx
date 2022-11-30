@@ -12,7 +12,7 @@ import useBemNative from '../../../hooks/useBemNative';
 
 interface IProps extends IDateFieldViewProps {
     required: boolean,
-    size: Size,
+    size: 'sm' | 'md' | 'lg' | string,
     disabled: boolean,
     isInvalid: boolean,
     style?: StyleProp<any>,
@@ -70,8 +70,8 @@ const DateFieldView: React.FunctionComponent<IProps> = (props) => {
                 onConfirm={setDate}
                 onCancel={togglePicker}
                 display={'default'}
-                cancelTextIOS={__('Закрыть')}
-                confirmTextIOS={__('Подтвердить')}
+                cancelTextIOS={'Закрыть'}
+                confirmTextIOS={'Подтвердить'}
                 {...props.pickerProps}
             />
         </View>
