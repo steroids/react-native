@@ -4,6 +4,8 @@ import { createBottomTabNavigator } from '@react-navigation/bottom-tabs';
 import { createStackNavigator } from '@react-navigation/stack';
 import { createMaterialTopTabNavigator } from '@react-navigation/material-top-tabs'
 import { NavigationContainer, DefaultTheme, Theme } from '@react-navigation/native';
+import {ActivityIndicator, Linking, Platform} from 'react-native';
+import AsyncStorage from '@react-native-async-storage/async-storage';
 
 import _isEmpty from 'lodash/isEmpty';
 import _isArray from 'lodash-es/isArray';
@@ -52,9 +54,13 @@ const getNavigatorType = (type: NavigatorType | undefined) => {
     }
 };
 
+const PERSISTENCE_KEY = 'react_navigation_persistence';
+
 const NativeRouter: React.FunctionComponent<INativeRouterComponentProps> = (props) => {
     const {store} = useComponents();
     const navigationRef = React.useRef(null);
+    const [isReady, setIsReady] = React.useState(!__DEV__);
+    const [initialState, setInitialState] = React.useState();
 
     const userRole = useSelector(state => getUserRole(state));
 
@@ -76,6 +82,30 @@ const NativeRouter: React.FunctionComponent<INativeRouterComponentProps> = (prop
 
         return routes.filter(route => route.roles ? route.roles.includes(userRole) : true);
     }, [userRole]);
+
+    React.useEffect(() => {
+        const restoreState = async () => {
+            try {
+                const initialUrl = await Linking.getInitialURL();
+
+                if (Platform.OS !== 'web' && initialUrl == null) {
+                    // Only restore state if there's no deep link and we're not on web
+                    const savedStateString = await AsyncStorage.getItem(PERSISTENCE_KEY);
+                    const state = savedStateString ? JSON.parse(savedStateString) : undefined;
+
+                    if (state !== undefined) {
+                        setInitialState(state);
+                    }
+                }
+            } finally {
+                setIsReady(true);
+            }
+        };
+
+        if (!isReady) {
+            restoreState();
+        }
+    }, [isReady]);
 
     const renderNavigator = React.useCallback((navigator: INavigator) => {
         const TypedNavigator = getNavigatorType(navigator.type);
@@ -111,10 +141,18 @@ const NativeRouter: React.FunctionComponent<INativeRouterComponentProps> = (prop
         );
     }, [getRoutesByPermissions]);
 
+    if (!isReady) {
+        return <ActivityIndicator />;
+    }
+
     return (
         <NavigationContainer
             theme={props.theme}
             ref={navigationRef}
+            initialState={initialState}
+            onStateChange={(state) =>
+                AsyncStorage.setItem(PERSISTENCE_KEY, JSON.stringify(state))
+            }
         >
             {renderNavigator(props.routes.navigator)}
         </NavigationContainer>
