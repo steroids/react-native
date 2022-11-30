@@ -59,7 +59,7 @@ const PERSISTENCE_KEY = 'react_navigation_persistence';
 const NativeRouter: React.FunctionComponent<INativeRouterComponentProps> = (props) => {
     const {store} = useComponents();
     const navigationRef = React.useRef(null);
-    const [isReady, setIsReady] = React.useState(!__DEV__);
+    const [isReady, setIsReady] = React.useState(!__DEV__ || !!process.env.DISABLE_PERSISTENT_ROUTER);
     const [initialState, setInitialState] = React.useState();
 
     const userRole = useSelector(state => getUserRole(state));
