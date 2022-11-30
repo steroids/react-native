@@ -64,10 +64,6 @@ const NativeRouter: React.FunctionComponent<INativeRouterComponentProps> = (prop
 
     const userRole = useSelector(state => getUserRole(state));
 
-    React.useEffect(() => {
-        store.navigationNative = navigationRef.current;
-    }, []);
-
     const getRoutesByPermissions = React.useCallback((routes) => {
         if (_isEmpty(routes)) {
             return null;
@@ -89,7 +85,6 @@ const NativeRouter: React.FunctionComponent<INativeRouterComponentProps> = (prop
                 const initialUrl = await Linking.getInitialURL();
 
                 if (Platform.OS !== 'web' && initialUrl == null) {
-                    // Only restore state if there's no deep link and we're not on web
                     const savedStateString = await AsyncStorage.getItem(PERSISTENCE_KEY);
                     const state = savedStateString ? JSON.parse(savedStateString) : undefined;
 
@@ -104,6 +99,8 @@ const NativeRouter: React.FunctionComponent<INativeRouterComponentProps> = (prop
 
         if (!isReady) {
             restoreState();
+        } else {
+            store.navigationNative = navigationRef.current;
         }
     }, [isReady]);
 
@@ -150,9 +147,7 @@ const NativeRouter: React.FunctionComponent<INativeRouterComponentProps> = (prop
             theme={props.theme}
             ref={navigationRef}
             initialState={initialState}
-            onStateChange={(state) =>
-                AsyncStorage.setItem(PERSISTENCE_KEY, JSON.stringify(state))
-            }
+            onStateChange={(state) => AsyncStorage.setItem(PERSISTENCE_KEY, JSON.stringify(state))}
         >
             {renderNavigator(props.routes.navigator)}
         </NavigationContainer>
