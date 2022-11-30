@@ -20,7 +20,8 @@
   },
   "include": [
     "src/**/*",
-    "node_modules/@steroidsjs/core/index.d.ts"
+    "node_modules/@steroidsjs/core/index.d.ts",
+    "node_modules/@steroidsjs/core/src/index.d.ts"
   ]
 }
 
