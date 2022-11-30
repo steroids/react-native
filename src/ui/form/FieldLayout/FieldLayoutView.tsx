@@ -9,7 +9,7 @@ interface IProps {
     required: boolean;
     layout: any;
     layoutProps: any;
-    size: 'sm' | 'md' | 'lg' | string;
+    size: Size;
     layoutstyle: string | false;
     fieldTextProps: TextProps,
 }

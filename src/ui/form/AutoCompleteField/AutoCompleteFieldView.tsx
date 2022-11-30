@@ -48,8 +48,8 @@ const AutoCompleteFieldView: React.FunctionComponent<IProps> = (props) => {
                     onClose={props.onClose}
                     onItemClick={item => props.onItemClick(item)}
                     searchInputProps={props.inputProps}
-                    placeholderText={props.placeholder || 'Начните вводить название...'}
-                    noResultsText={'Нет совпадений, введите свое значение'}
+                    placeholderText={props.placeholder || __('Начните вводить название...')}
+                    noResultsText={__('Нет совпадений, введите свое значение')}
                     selectRequired={false}
                     appearanceType={'fade'}
                     focusInputOnOpen={true}
