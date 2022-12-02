@@ -181,7 +181,7 @@ const Button: React.FunctionComponent<React.PropsWithChildren<IProps>> = (props)
             <Touchable
                 disabled={props.disabled}
                 onPress={onClick}
-                background={TouchableNativeFeedback.Ripple(_rippleColor, _rippleOverflow)}
+                rippleColor={_rippleColor}
             >
                 {renderLabel()}
             </Touchable>

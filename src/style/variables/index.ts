@@ -102,6 +102,8 @@ export default custom => {
         bodyBg: variables.colors.white,
         bodyColor: variables.colors.gray900,
 
+        rippleColor: '#747B8433',
+
         ...custom,
     };
 

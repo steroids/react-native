@@ -1,36 +1,37 @@
 import * as React from 'react';
 import {
-    Platform,
-    TouchableHighlight,
-    TouchableNativeFeedback,
-    TouchableHighlightProps,
-    TouchableNativeFeedbackProps,
+    Pressable,
+    PressableProps,
 } from 'react-native';
+import useBemNative from '../../hooks/useBemNative';
+import styles from './TouchableStyles';
 
-interface IProps
-    extends TouchableHighlightProps,
-        TouchableNativeFeedbackProps {}
+interface ITouchableProps extends PressableProps {
+    disableRipple?: boolean,
+    rippleColor?: string,
+}
 
-const Touchable: React.FunctionComponent<IProps> = (props) => {
-    const Touchable = Platform.select<any>({
-        android: TouchableNativeFeedback,
-        ios: TouchableHighlight,
-        default: TouchableHighlight,
-    });
+const Touchable: React.FunctionComponent<ITouchableProps> = (props) => {
+    const bem = useBemNative('Touchable', styles);
 
     return (
-        <Touchable {...props}>
+        <Pressable
+            android_ripple={!props.disableRipple && {
+                color: props.rippleColor || bem.variable('rippleColor'),
+                foreground: true,
+            }}
+            unstable_pressDelay={100}
+            {...props}
+            style={(options) => bem(
+                bem.block({pressed: options.pressed}),
+                typeof props.style === 'function'
+                    ? props.style(options)
+                    : props.style,
+            )}
+        >
             {props.children}
-        </Touchable>
+        </Pressable>
     );
-};
-
-Touchable.defaultProps = {
-    delayPressIn: 0,
-    useForeground: true,
-    background: TouchableNativeFeedback.Ripple('#adb5bd', false),
-    underlayColor: '#adb5bd',
-    activeOpacity: 0.75,
 };
 
 export default Touchable;
