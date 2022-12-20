@@ -11,7 +11,6 @@ export function getDefaultComponentsStyles() {
         require('../ui/form/CheckboxField/CheckboxFieldViewStyles').default,
         require('../ui/form/CheckboxListField/CheckboxListFieldViewStyles').default,
         require('../ui/form/DateField/DateFieldViewStyles').default,
-        require('../ui/form/DateTimeField/DateTimeFieldViewStyles').default,
         require('../ui/form/DropDownField/DropDownFieldViewStyles').default,
         require('../ui/form/FieldLayout/FieldLayoutViewStyles').default,
         require('../ui/form/FieldListView/FieldListViewStyles').default,
