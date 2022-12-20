@@ -1,2 +1,3 @@
-import DateTimeFieldView from './DateTimeFieldView';
-export default DateTimeFieldView;
+import DateTimeField from './DateTimeField';
+
+export default DateTimeField;
