@@ -1,6 +1,6 @@
 {
   "name": "@steroidsjs/native",
-  "version": "2.1.0-beta.32",
+  "version": "2.1.0-beta.33",
   "description": "",
   "author": "Vladimir Kozhin <hello@kozhindev.com>",
   "repository": {
@@ -26,10 +26,10 @@
     "@react-navigation/material-top-tabs": "^6.2.4",
     "@react-navigation/native": "^6.0.12",
     "@react-navigation/stack": "^6.2.3",
-    "@steroidsjs/core": "^2.3.0-beta.3",
+    "@steroidsjs/core": "^3.0.0-beta.79",
     "color": "^4.0.1",
-    "react": "18.1.0",
-    "react-native": "^0.70.1",
+    "react": "18.2.0",
+    "react-native": "^0.72.4",
     "react-native-encrypted-storage": "^4.0.2",
     "react-native-fast-image": "^8.6.1",
     "react-native-gesture-handler": "^2.6.0",
