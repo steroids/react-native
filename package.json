@@ -1,6 +1,6 @@
 {
   "name": "@steroidsjs/native",
-  "version": "2.1.0-beta.33",
+  "version": "2.1.0-beta.34",
   "description": "",
   "author": "Vladimir Kozhin <hello@kozhindev.com>",
   "repository": {
@@ -35,7 +35,7 @@
     "react-native-gesture-handler": "^2.6.0",
     "react-native-modal-datetime-picker": "^14.0.0",
     "react-native-paper": "^3.6.0",
-    "react-native-reanimated": "^2.10.0",
+    "react-native-reanimated": "^3.5.1",
     "react-native-safe-area-context": "^4.3.3",
     "react-native-screens": "^3.17.0",
     "react-native-tab-view": "^3.2.1"
