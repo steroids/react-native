@@ -1,6 +1,6 @@
 {
   "name": "@steroidsjs/native",
-  "version": "2.1.0-beta.34",
+  "version": "2.1.0-beta.35",
   "description": "",
   "author": "Vladimir Kozhin <hello@kozhindev.com>",
   "repository": {
@@ -26,7 +26,7 @@
     "@react-navigation/material-top-tabs": "^6.2.4",
     "@react-navigation/native": "^6.0.12",
     "@react-navigation/stack": "^6.2.3",
-    "@steroidsjs/core": "^3.0.0-beta.79",
+    "@steroidsjs/core": "^3.0.0-beta.80",
     "color": "^4.0.1",
     "react": "18.2.0",
     "react-native": "^0.72.4",
