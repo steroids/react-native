@@ -7,8 +7,8 @@ import {
     View,
 } from 'react-native';
 import { IDateFieldViewProps } from '@steroidsjs/core/ui/form/DateField/DateField';
-import Icon from '@steroidsjs/core/ui/icon/Icon';
 import useBemNative from '../../../hooks/useBemNative';
+import {Icon} from '@steroidsjs/core/ui/content';
 
 interface IProps extends IDateFieldViewProps {
     required: boolean,

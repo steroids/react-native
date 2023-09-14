@@ -2,14 +2,13 @@ import * as React from 'react';
 import {
     View,
     Text,
-    TouchableNativeFeedback,
     Platform,
     ActivityIndicator,
     StyleProp,
     GestureResponderEvent,
 } from 'react-native';
+import {Icon} from '@steroidsjs/core/ui/content';
 import useBemNative from '../../../hooks/useBemNative';
-import Icon from '@steroidsjs/core/ui/icon/Icon';
 import color from 'color';
 
 import Touchable from '../../../utils/Touchable';

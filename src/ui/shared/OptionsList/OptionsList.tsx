@@ -13,9 +13,8 @@ import {
 import InputFieldView from '../../form/InputField/InputFieldView';
 import ButtonView from '../../form/Button/ButtonView';
 import styles from './OptionsListStyles';
-import { IBemHocOutput } from '@steroidsjs/core/hoc/bem';
 
-interface IProps extends IBemHocOutput {
+interface IProps {
     items: {
         id: number | string | boolean,
         label?: string,

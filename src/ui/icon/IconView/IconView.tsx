@@ -1,11 +1,10 @@
 import * as React from 'react';
-import { IIconViewProps } from '@steroidsjs/core/ui/icon/Icon/Icon';
-import bem from '../../../hoc/bemNative';
-import { IBemHocOutput } from '@steroidsjs/core/hoc/bem';
 import { StyleProp } from 'react-native';
 import FastImage from 'react-native-fast-image';
+import {IIconViewProps} from '@steroidsjs/core/ui/content/Icon/Icon';
+import bem from '../../../hoc/bemNative';
 
-interface IIconViewInnerProps extends IIconViewProps, IBemHocOutput {
+interface IIconViewInnerProps extends IIconViewProps {
     style?: StyleProp<any>;
     iconProps: any;
     icon: any,

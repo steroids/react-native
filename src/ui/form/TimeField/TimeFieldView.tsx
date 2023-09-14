@@ -2,7 +2,7 @@ import * as React from 'react';
 import InputFieldView from '../InputField/InputFieldView';
 import DateTimePicker from '@react-native-community/datetimepicker';
 import moment from 'moment';
-import Icon from '@steroidsjs/core/ui/icon/Icon';
+import {Icon} from '@steroidsjs/core/ui/content';
 import {
     Platform,
     StyleProp,
