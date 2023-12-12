@@ -10,6 +10,7 @@ export interface IBem {
 }
 
 export default function useBemNative(namespace: string, styles?: StyleProp<any>): IBem {
-    useComponents().html.addStyles(styles);
-    return useComponents().html.bem(namespace, styles);
+    const html: any = useComponents().html;
+    html.addStyles(styles);
+    return html.bem(namespace, styles);
 }

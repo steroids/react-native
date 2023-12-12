@@ -17,6 +17,7 @@ function DateTimeField(props: IDateTimeFieldProps & IFieldWrapperOutputProps) {
     const value = React.useMemo(() => props.input?.value ? new Date(props.input.value) : new Date(), [props.input]);
 
     const onChange = React.useCallback(({nativeEvent: {timestamp}}: DateTimePickerEvent) => {
+        // @ts-ignore
         const dateTime = components.locale.dayjs(timestamp).format();
         props.input?.onChange?.call(null, dateTime);
     }, [components.locale, props.input]);
@@ -38,6 +39,7 @@ function DateTimeField(props: IDateTimeFieldProps & IFieldWrapperOutputProps) {
         <>
             {components.ui.renderView('form.DateTimeFieldView', {
                 onOpen,
+                // @ts-ignore
                 value: components.locale.dayjs(value).format(props.format),
             })}
             {Platform.OS && components.ui.renderView('form.DateTimeModalView', {
