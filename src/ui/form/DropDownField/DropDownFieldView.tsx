@@ -14,7 +14,10 @@ interface IProps extends IDropDownFieldViewProps {
     items: any,
 }
 
-const DropDownFieldView: React.FunctionComponent<IProps> = (props) => {
+const DropDownFieldView: React.FunctionComponent<IProps> = ({
+    size = 'md',
+    ...props
+}) => {
     const bem = useBemNative('DropDownFieldView');
 
     const renderArrowIcon = () => {
@@ -55,7 +58,7 @@ const DropDownFieldView: React.FunctionComponent<IProps> = (props) => {
                                 ? renderResetIcon()
                                 : renderArrowIcon()
                         }
-                        size={props.size}
+                        size={size}
                         value={props.selectedItems.map(item => item.label).join((' '))}
                         isInvalid={props.isInvalid}
                         disabled={props.disabled}
@@ -77,23 +80,6 @@ const DropDownFieldView: React.FunctionComponent<IProps> = (props) => {
             )}
         </View>
     );
-};
-
-DropDownFieldView.defaultProps = {
-    label: null,
-    hint: null,
-    required: false,
-    placeholder: null,
-    isInvalid: false,
-    searchPlaceholder: null,
-    size: 'md',
-    disabled: false,
-    className: '',
-    searchInputProps: null,
-    searchAutoFocus: false,
-    multiple: false,
-    autoComplete: false,
-    inputProps: null,
 };
 
 export default DropDownFieldView;

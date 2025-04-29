@@ -1,5 +1,6 @@
 scripts:
   build: yarn tsc && yarn copyfiles ./{package.json,LICENSE,README.md} dist/
+  watch: tsc -p tsconfig-debug.json --watch
   publish:
     prepare: yarn && yarn upgrade @steroidsjs/core && nps build
     manual:

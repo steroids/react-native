@@ -29,23 +29,31 @@ interface IState {
     focused: Boolean;
 }
 
-const InputFieldView: React.FunctionComponent<IRNInputFieldViewProps> = (props) => {
+const InputFieldView: React.FunctionComponent<IRNInputFieldViewProps> = ({
+    type = 'text',
+    errors = [],
+    size = 'md',
+    keyboardType = 'default',
+    autoCompleteType = 'off',
+    editable = true,
+    ...props
+}) => {
     const bem = useBemNative('InputFieldView', styles);
     const [state, setState] = React.useState<IState>({focused: false});
 
     const renderSideAddonElement = (component: ImageSourcePropType | React.ReactNode, element: 'before' | 'after') => {
         if (React.isValidElement(component) || typeof component === 'function') {
             return (
-                <View style={bem.element('addon', {element, size: props.size})}>
+                <View style={bem.element('addon', {element, size})}>
                     {component}
                 </View>
             );
         }
 
         return (
-            <View style={bem.element('addon', {element, size: props.size})}>
+            <View style={bem.element('addon', {element, size})}>
                 <Image
-                    style={bem(bem.element('side-element', {size: props.size}))}
+                    style={bem(bem.element('side-element', {size}))}
                     source={component as ImageSourcePropType}
                 />
             </View>
@@ -59,7 +67,7 @@ const InputFieldView: React.FunctionComponent<IRNInputFieldViewProps> = (props) 
 
         return (
             <Image
-                style={bem(bem.element('side-element', {size: props.size}))}
+                style={bem(bem.element('side-element', {size}))}
                 source={component as ImageSourcePropType}
             />
         );
@@ -69,7 +77,7 @@ const InputFieldView: React.FunctionComponent<IRNInputFieldViewProps> = (props) 
         <View
             style={bem(
                 bem.block({
-                    size: props.size,
+                    size,
                     invalid: props.isInvalid,
                     disabled: props.disabled,
                     focused: state.focused,
@@ -79,24 +87,24 @@ const InputFieldView: React.FunctionComponent<IRNInputFieldViewProps> = (props) 
         >
             {props.addonBefore && renderSideAddonElement(props.addonBefore, 'before')}
             {props.textBefore && renderSideTextElement(props.textBefore)}
-            <View style={bem.element('input-text', {size: props.size})}>
+            <View style={bem.element('input-text', {size})}>
                 <TextInput
                     style={bem(
                         bem.element('input', {
                             invalid: props.isInvalid,
                             disabled: props.disabled,
-                            size: props.size,
+                            size,
                             multiline: Boolean(props.multiline),
                         }),
                     )}
                     placeholderTextColor={bem.variable('inputPlaceholderColor')}
                     {...props.inputProps}
-                    secureTextEntry={props.type === 'password'}
+                    secureTextEntry={type === 'password'}
                     autoFocus={props.autoFocus}
-                    autoCompleteType={props.autoCompleteType}
-                    keyboardType={props.keyboardType}
+                    autoCompleteType={autoCompleteType}
+                    keyboardType={keyboardType}
                     placeholder={props.placeholder}
-                    editable={props.editable && !props.disabled}
+                    editable={editable && !props.disabled}
                     onFocus={() => setState({focused: true})}
                     onBlur={() => setState({focused: false})}
                     onChangeText={props.input.onChange && props.input.onChange}
@@ -109,24 +117,6 @@ const InputFieldView: React.FunctionComponent<IRNInputFieldViewProps> = (props) 
             {props.addonAfter && renderSideAddonElement(props.addonAfter, 'after')}
         </View>
     );
-};
-
-InputFieldView.defaultProps = {
-    type: 'text',
-    disabled: false,
-    required: false,
-    className: '',
-    placeholder: '',
-    errors: [],
-    size: 'md',
-    keyboardType: 'default',
-    autoCompleteType: 'off',
-    prefixElement: null,
-    suffixElement: null,
-    multiline: false,
-    editable: true,
-    value: null,
-    autoFocus: false,
 };
 
 export default InputFieldView;

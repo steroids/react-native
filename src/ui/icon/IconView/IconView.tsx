@@ -1,6 +1,6 @@
 import * as React from 'react';
-import { StyleProp } from 'react-native';
-import FastImage from 'react-native-fast-image';
+import {StyleProp} from 'react-native';
+import {FasterImageView} from '@candlefinance/faster-image';
 import {IIconViewProps} from '@steroidsjs/core/ui/content/Icon/Icon';
 import bem from '../../../hoc/bemNative';
 
@@ -26,7 +26,7 @@ export default class Icon extends React.PureComponent<IIconViewInnerProps> {
                     style={bem(bem.block(), this.props.style)}
                 />
             ) : (
-                <FastImage
+                <FasterImageView
                     {...this.props.iconProps}
                     source={this.props.icon}
                     {...this.props}

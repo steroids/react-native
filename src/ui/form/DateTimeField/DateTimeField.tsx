@@ -9,7 +9,10 @@ export interface IDateTimeFieldProps {
     format?: string;
 }
 
-function DateTimeField(props: IDateTimeFieldProps & IFieldWrapperOutputProps) {
+function DateTimeField({
+   format = 'DD.MM.YY',
+    ...props
+}: IDateTimeFieldProps & IFieldWrapperOutputProps) {
     const components = useComponents();
 
     const [visible, setVisible] = React.useState(false);
@@ -40,7 +43,7 @@ function DateTimeField(props: IDateTimeFieldProps & IFieldWrapperOutputProps) {
             {components.ui.renderView('form.DateTimeFieldView', {
                 onOpen,
                 // @ts-ignore
-                value: components.locale.dayjs(value).format(props.format),
+                value: components.locale.dayjs(value).format(format),
             })}
             {Platform.OS && components.ui.renderView('form.DateTimeModalView', {
                 onClose,
@@ -52,9 +55,5 @@ function DateTimeField(props: IDateTimeFieldProps & IFieldWrapperOutputProps) {
         </>
     );
 }
-
-DateTimeField.defaultProps = {
-    format: 'DD.MM.YY',
-};
 
 export default fieldWrapper('DateTimeField', DateTimeField);

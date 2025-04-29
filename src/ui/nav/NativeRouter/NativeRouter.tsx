@@ -5,7 +5,6 @@ import { createStackNavigator } from '@react-navigation/stack';
 import { createMaterialTopTabNavigator } from '@react-navigation/material-top-tabs'
 import { NavigationContainer, DefaultTheme, Theme } from '@react-navigation/native';
 import {ActivityIndicator, Linking, Platform} from 'react-native';
-import AsyncStorage from '@react-native-async-storage/async-storage';
 
 import _isEmpty from 'lodash/isEmpty';
 import _isArray from 'lodash-es/isArray';
@@ -56,10 +55,13 @@ const getNavigatorType = (type: NavigatorType | undefined) => {
 
 const PERSISTENCE_KEY = 'react_navigation_persistence';
 
-const NativeRouter: React.FunctionComponent<INativeRouterComponentProps> = (props) => {
-    const {store} = useComponents();
+const NativeRouter: React.FunctionComponent<INativeRouterComponentProps> = ({
+    theme = DefaultTheme,
+    ...props
+}) => {
+    const {store, clientStorage} = useComponents();
     const navigationRef = React.useRef(null);
-    const [isReady, setIsReady] = React.useState(!__DEV__ || !!process.env.DISABLE_PERSISTENT_ROUTER);
+    const [isReady, setIsReady] = React.useState(!!process.env.DISABLE_PERSISTENT_ROUTER);
     const [initialState, setInitialState] = React.useState();
 
     const userRole = useSelector(state => getUserRole(state));
@@ -85,7 +87,7 @@ const NativeRouter: React.FunctionComponent<INativeRouterComponentProps> = (prop
                 const initialUrl = await Linking.getInitialURL();
 
                 if (Platform.OS !== 'web' && initialUrl == null) {
-                    const savedStateString = await AsyncStorage.getItem(PERSISTENCE_KEY);
+                    const savedStateString = await clientStorage.get(PERSISTENCE_KEY);
                     const state = savedStateString ? JSON.parse(savedStateString) : undefined;
 
                     if (state !== undefined) {
@@ -112,6 +114,7 @@ const NativeRouter: React.FunctionComponent<INativeRouterComponentProps> = (prop
             !_isEmpty(routes) && (
                 <TypedNavigator.Navigator {...navigator.options}>
                     {routes.map(route => {
+                        console.log(routes);
                         const Component = route.component;
 
                         return (
@@ -144,18 +147,14 @@ const NativeRouter: React.FunctionComponent<INativeRouterComponentProps> = (prop
 
     return (
         <NavigationContainer
-            theme={props.theme}
+            theme={theme}
             ref={navigationRef}
             initialState={initialState}
-            onStateChange={(state) => AsyncStorage.setItem(PERSISTENCE_KEY, JSON.stringify(state))}
+            onStateChange={(state) => clientStorage.set(PERSISTENCE_KEY, JSON.stringify(state))}
         >
             {renderNavigator(props.routes.navigator)}
         </NavigationContainer>
     );
-};
-
-NativeRouter.defaultProps = {
-    theme: DefaultTheme,
 };
 
 export default NativeRouter;

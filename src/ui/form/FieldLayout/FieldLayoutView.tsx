@@ -14,23 +14,30 @@ interface IProps {
     fieldTextProps: TextProps,
 }
 
-const FieldLayoutView: React.FunctionComponent<React.PropsWithChildren<IProps>> = (props) => {
+const FieldLayoutView: React.FunctionComponent<React.PropsWithChildren<IProps>> = ({
+   layout = {
+       layout: 'default',
+       cols: [5, 7],
+   },
+   size = 'md',
+    ...props
+}) => {
     const bem = useBemNative('FieldLayoutView');
     return (
         <View style={bem(
             bem.block({
-                layout: props.layout.layout,
-                size: props.size,
+                layout: layout.layout,
+                size,
             }),
-            props.layout.layout === 'horizontal' && 'row',
-            props.layoutstyle,
+            layout.layout === 'horizontal' && 'row',
+            layout.style,
         )}>
             {props.label && (
                 <View style={bem(
                     bem.element('label', {
-                        horizontal: props.layout.layout === 'horizontal',
+                        horizontal: layout.layout === 'horizontal',
                     }),
-                    props.layout.layout === 'horizontal' && 'col-' + props.layout.cols[0],
+                    layout.layout === 'horizontal' && 'col-' + layout.cols[0],
                 )}>
                     <Text
                         {...props.fieldTextProps}
@@ -46,9 +53,9 @@ const FieldLayoutView: React.FunctionComponent<React.PropsWithChildren<IProps>> 
             )}
             <View
                 style={bem(
-                    bem.element('field', {horizontal: props.layout.layout === 'horizontal'}),
-                    props.layout.layout === 'horizontal' && 'col-' + props.layout.cols[1],
-                    props.layout.layout === 'inline' && 'w-100',
+                    bem.element('field', {horizontal: layout.layout === 'horizontal'}),
+                    layout.layout === 'horizontal' && 'col-' + layout.cols[1],
+                    layout.layout === 'inline' && 'w-100',
                 )}
             >
                 {props.children}
@@ -64,7 +71,7 @@ const FieldLayoutView: React.FunctionComponent<React.PropsWithChildren<IProps>> 
                         ))}
                     </View>
                 )}
-                {!props.errors && props.layout.layout !== 'inline' && props.hint && (
+                {!props.errors && layout.layout !== 'inline' && props.hint && (
                     <View>
                         <Text
                             {...props.fieldTextProps}
@@ -76,19 +83,6 @@ const FieldLayoutView: React.FunctionComponent<React.PropsWithChildren<IProps>> 
             </View>
         </View>
     );
-};
-
-FieldLayoutView.defaultProps = {
-    required: false,
-    label: false,
-    hint: false,
-    errors: false,
-    layout: {
-        layout: 'default',
-        cols: [5, 7],
-    },
-    size: 'md',
-    layoutstyle: false,
 };
 
 export default FieldLayoutView;

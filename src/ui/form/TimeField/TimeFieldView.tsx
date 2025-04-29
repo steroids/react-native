@@ -1,8 +1,8 @@
 import * as React from 'react';
 import InputFieldView from '../InputField/InputFieldView';
 import DateTimePicker from '@react-native-community/datetimepicker';
-import moment from 'moment';
 import {Icon} from '@steroidsjs/core/ui/content';
+import dayjs from 'dayjs';
 import {
     Platform,
     StyleProp,
@@ -26,7 +26,10 @@ interface IState {
     showPicker: boolean;
 }
 
-const TimeFieldView: React.FunctionComponent<IProps> = (props) => {
+const TimeFieldView: React.FunctionComponent<IProps> = ({
+    size = 'md',
+    ...props
+}) => {
     const bem = useBemNative('TimeFieldView');
 
     const [state, setState] = React.useState<IState>({showPicker: false});
@@ -40,7 +43,7 @@ const TimeFieldView: React.FunctionComponent<IProps> = (props) => {
         setState({showPicker: Platform.OS === 'ios'});
 
         if (event.type && event.type === 'set') {
-            let time = moment(date).format(props.timeFormat);
+            let time = dayjs(date).format(props.timeFormat);
             props.input.onChange(time);
         }
     };
@@ -59,10 +62,10 @@ const TimeFieldView: React.FunctionComponent<IProps> = (props) => {
                         suffixElement={
                             <Icon
                                 name="clockIcon"
-                                style={bem.element('side-element', {size: props.size})}
+                                style={bem.element('side-element', {size})}
                             />
                         }
-                        size={props.size}
+                        size={size}
                         value={props.input.value}
                         isInvalid={props.isInvalid}
                         disabled={props.disabled}
@@ -83,15 +86,6 @@ const TimeFieldView: React.FunctionComponent<IProps> = (props) => {
             )}
         </View>
     );
-};
-
-TimeFieldView.defaultProps = {
-    label: null,
-    required: false,
-    placeholder: null,
-    isInvalid: false,
-    size: 'md',
-    disabled: false,
 };
 
 export default TimeFieldView;

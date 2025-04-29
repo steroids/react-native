@@ -24,7 +24,9 @@ interface IState {
     showPicker: boolean;
 }
 
-const DateFieldView: React.FunctionComponent<IProps> = (props) => {
+const DateFieldView: React.FunctionComponent<IProps> = ({
+    size = 'md',
+    ...props}) => {
     const bem = useBemNative('DateFieldView');
     const [state, setState] = React.useState<IState>({showPicker: false});
 
@@ -51,10 +53,10 @@ const DateFieldView: React.FunctionComponent<IProps> = (props) => {
                         suffixElement={
                             <Icon
                                 name="calendarIcon"
-                                style={bem.element('side-element', {size: props.size})}
+                                style={bem.element('side-element', {size})}
                             />
                         }
-                        size={props.size}
+                        size={size}
                         value={props.formatDate(props.input.value)}
                         isInvalid={props.isInvalid}
                         disabled={props.disabled}
@@ -76,15 +78,6 @@ const DateFieldView: React.FunctionComponent<IProps> = (props) => {
             />
         </View>
     );
-};
-
-DateFieldView.defaultProps = {
-    label: null,
-    required: false,
-    placeholder: null,
-    isInvalid: false,
-    size: 'md',
-    disabled: false,
 };
 
 export default DateFieldView;

@@ -1,8 +1,8 @@
 import * as React from 'react';
 import InputFieldView from '../InputField/InputFieldView';
 import OptionsList from '../../shared/OptionsList';
-import { TouchableWithoutFeedback, View } from 'react-native';
-import { IAutoCompleteFieldViewProps } from '@steroidsjs/core/ui/form/AutoCompleteField/AutoCompleteField';
+import {TouchableWithoutFeedback, View} from 'react-native';
+import {IAutoCompleteFieldViewProps} from '@steroidsjs/core/ui/form/AutoCompleteField/AutoCompleteField';
 import useBemNative from '../../../hooks/useBemNative';
 
 interface IProps extends IAutoCompleteFieldViewProps {
@@ -11,7 +11,14 @@ interface IProps extends IAutoCompleteFieldViewProps {
     inputProps: any;
 }
 
-const AutoCompleteFieldView: React.FunctionComponent<IProps> = (props) => {
+const AutoCompleteFieldView: React.FunctionComponent<IProps> = ({
+    required = false,
+    placeholder = null,
+    isInvalid = false,
+    disabled = false,
+    size = 'md',
+    ...props
+    }) => {
     const bem = useBemNative('AutoCompleteFieldView');
 
     // TODO wtf? it should work without this
@@ -21,21 +28,20 @@ const AutoCompleteFieldView: React.FunctionComponent<IProps> = (props) => {
     }), [props.items]);
 
     return (
-        <View style={bem(bem.block(), props.style)}>
+        <View style={props.style}>
             <TouchableWithoutFeedback
-                style={bem(bem.element('input'))}
-                onPress={() => !props.disabled && props.onOpen()}
+                onPress={() => !disabled && props.onOpen()}
             >
                 <View>
                     <InputFieldView
                         autoFocus={false}
                         {...props.inputProps}
-                        placeholder={props.placeholder}
-                        disabled={props.disabled}
-                        isInvalid={props.isInvalid}
-                        required={props.required}
+                        placeholder={placeholder}
+                        disabled={disabled}
+                        isInvalid={isInvalid}
+                        required={required}
                         editable={false}
-                        size={props.size}
+                        size={size}
                         inputProps={null}
                     />
                 </View>
@@ -57,14 +63,6 @@ const AutoCompleteFieldView: React.FunctionComponent<IProps> = (props) => {
             )}
         </View>
     );
-};
-
-AutoCompleteFieldView.defaultProps = {
-    required: false,
-    placeholder: null,
-    isInvalid: false,
-    disabled: false,
-    size: 'md',
 };
 
 export default AutoCompleteFieldView;
