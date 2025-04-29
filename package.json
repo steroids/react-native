@@ -1,6 +1,6 @@
 {
   "name": "@steroidsjs/native",
-  "version": "3.0.0-beta.2",
+  "version": "3.0.0-beta.3",
   "description": "",
   "author": "Vladimir Kozhin <hello@kozhindev.com>",
   "repository": {
@@ -27,7 +27,7 @@
     "color": "^4.0.1",
     "dayjs": "^1.11.13",
     "moti": "^0.30.0",
-    "react": "18.2.0",
+    "react": "^18.2.0",
     "react-native": "0.77.2",
     "react-native-drop-shadow": "^1.0.3",
     "react-native-edge-to-edge": "^1.6.0",
