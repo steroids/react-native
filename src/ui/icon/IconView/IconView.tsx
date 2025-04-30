@@ -1,6 +1,5 @@
 import * as React from 'react';
-import {StyleProp} from 'react-native';
-import {FasterImageView} from '@candlefinance/faster-image';
+import {Image, StyleProp} from 'react-native';
 import {IIconViewProps} from '@steroidsjs/core/ui/content/Icon/Icon';
 import bem from '../../../hoc/bemNative';
 
@@ -18,18 +17,19 @@ export default class Icon extends React.PureComponent<IIconViewInnerProps> {
             : null;
 
         const bem = this.props.bem;
+
         return Icon
             ? (
                 <Icon
                     {...this.props}
-                    {...this.props.iconProps}
+                    {...this.props.dataIcon}
                     style={bem(bem.block(), this.props.style)}
                 />
             ) : (
-                <FasterImageView
-                    {...this.props.iconProps}
-                    source={this.props.icon}
+                <Image
                     {...this.props}
+                    source={this.props.icon}
+                    {...this.props.dataIcon}
                     style={bem(bem.block(), this.props.style)}
                 />
             );

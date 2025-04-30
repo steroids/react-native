@@ -1,6 +1,6 @@
 {
   "name": "@steroidsjs/native",
-  "version": "3.0.0-beta.5",
+  "version": "3.0.0-beta.6",
   "description": "",
   "author": "Vladimir Kozhin <hello@kozhindev.com>",
   "repository": {
@@ -16,7 +16,7 @@
     "./": "./dist"
   },
   "dependencies": {
-    "@candlefinance/faster-image": "^1.7.2",
+    "@react-native-async-storage/async-storage": "^2.1.2",
     "@react-native-community/datetimepicker": "^8.3.0",
     "@react-navigation/bottom-tabs": "^7.3.10",
     "@react-navigation/drawer": "^7.3.9",
@@ -33,7 +33,6 @@
     "react-native-edge-to-edge": "^1.6.0",
     "react-native-encrypted-storage": "^4.0.3",
     "react-native-gesture-handler": "^2.25.0",
-    "react-native-mmkv": "^3.2.0",
     "react-native-modal-datetime-picker": "^18.0.0",
     "react-native-nitro-modules": "0.25.2",
     "react-native-paper": "^5.13.5",

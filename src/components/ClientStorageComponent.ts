@@ -1,16 +1,10 @@
 import EncryptedStorage from 'react-native-encrypted-storage';
-import {MMKV} from 'react-native-mmkv'
+import AsyncStorage from '@react-native-async-storage/async-storage';
 
 export const STORAGE_SECURE = 'secure';
 export const STORAGE_ASYNC = 'async';
 
 export default class ClientStorageComponent {
-    protected mmkvAsyncStorage: MMKV;
-
-    constructor() {
-        this.mmkvAsyncStorage = new MMKV();
-    }
-
     /**
      * @param {string} name
      * @param {string} [storageName]
@@ -23,7 +17,7 @@ export default class ClientStorageComponent {
             }
             case STORAGE_ASYNC:
             default: {
-                return this.mmkvAsyncStorage.getString(name);
+                return AsyncStorage.getItem(name);
             }
         }
     }
@@ -42,7 +36,7 @@ export default class ClientStorageComponent {
             }
             case STORAGE_ASYNC:
             default: {
-                return this.mmkvAsyncStorage.set(name, value);
+                return AsyncStorage.setItem(name, value);
             }
         }
     }
@@ -58,7 +52,7 @@ export default class ClientStorageComponent {
             }
             case STORAGE_ASYNC:
             default: {
-                return this.mmkvAsyncStorage.delete(name);
+                return AsyncStorage.removeItem(name);
             }
         }
     }
@@ -87,7 +81,7 @@ export default class ClientStorageComponent {
                         this.remove(key);
                     });
                 } else {
-                    this.mmkvAsyncStorage.clearAll();
+                    await AsyncStorage.clear();
                 }
             }
         }

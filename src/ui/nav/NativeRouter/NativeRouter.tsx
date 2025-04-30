@@ -114,7 +114,6 @@ const NativeRouter: React.FunctionComponent<INativeRouterComponentProps> = ({
             !_isEmpty(routes) && (
                 <TypedNavigator.Navigator {...navigator.options}>
                     {routes.map(route => {
-                        console.log(routes);
                         const Component = route.component;
 
                         return (
