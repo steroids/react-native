@@ -1,6 +1,6 @@
 {
   "name": "@steroidsjs/native",
-  "version": "3.0.0-beta.4",
+  "version": "3.0.0-beta.5",
   "description": "",
   "author": "Vladimir Kozhin <hello@kozhindev.com>",
   "repository": {
@@ -33,7 +33,7 @@
     "react-native-edge-to-edge": "^1.6.0",
     "react-native-encrypted-storage": "^4.0.3",
     "react-native-gesture-handler": "^2.25.0",
-    "react-native-mmkv": "^2.12.2",
+    "react-native-mmkv": "^3.2.0",
     "react-native-modal-datetime-picker": "^18.0.0",
     "react-native-nitro-modules": "0.25.2",
     "react-native-paper": "^5.13.5",
