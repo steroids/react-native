@@ -6,7 +6,7 @@ import { createMaterialTopTabNavigator } from '@react-navigation/material-top-ta
 import { NavigationContainer, DefaultTheme, Theme } from '@react-navigation/native';
 import {ActivityIndicator, Linking, Platform} from 'react-native';
 
-import _isEmpty from 'lodash/isEmpty';
+import _isEmpty from 'lodash-es/isEmpty';
 import _isArray from 'lodash-es/isArray';
 import _isObject from 'lodash-es/isObject';
 
