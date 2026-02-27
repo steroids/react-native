@@ -1,13 +1,12 @@
 import * as React from 'react';
 import { Text, View, TextProps } from 'react-native';
-import { IRadioListFieldViewProps } from '@steroidsjs/core/ui/form/RadioListField/RadioListField';
+import { ICheckboxListFieldViewProps } from '@steroidsjs/core/ui/form/CheckboxListField/CheckboxListField';
 import styles from './RadioFieldListViewStyles';
 import Touchable from '../../../utils/Touchable';
 import useBemNative from '../../../hooks/useBemNative';
 
-interface IProps extends IRadioListFieldViewProps {
-    textProps: TextProps,
-    onItemClick: (item: any) => void,
+interface IProps extends ICheckboxListFieldViewProps {
+    textProps?: TextProps,
 }
 
 const RadioListFieldView: React.FunctionComponent<IProps> = (props) => {
@@ -18,7 +17,7 @@ const RadioListFieldView: React.FunctionComponent<IProps> = (props) => {
                 {props.items.map(item => (
                     <Touchable
                         key={item.id.toString()}
-                        onPress={() => props.onItemClick(item)}
+                        onPress={() => props.onItemSelect(item.id)}
                     >
                         <View style={bem(bem.element('item'), item.isSelected && {backgroundColor: '#0084FF'})}>
                             <Text {...props.textProps} style={bem.element('label')}>{item.label}</Text>
